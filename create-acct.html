@@ -2,12 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="log-in-style.css">
+
+    <style>
+        input[type=submit] {
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        border: none;
+        color: white;
+        cursor: pointer;
+        background-color: #53aacd;
+        width: 100%;
+        font-size: 16px;
+        }
+    </style>
+
 </head>
+<script>
+function check() {
+var input = document.getElementById('password_confirm');
+if (input.value != document.getElementById('password').value) {
+input.setCustomValidity('Password Must be Matching.');
+} else {
+// input is valid -- reset the error message
+input.setCustomValidity('');
+}
+}
+
+</script>
 <body>
+<div class="main">
+    <img src = "tbaylogosquare.PNG" alt = "logo"
+         width="200"
+         height="180"/>
+    <h1><u>Create Your Account</u></h1>
+
+    <form action="">
+        <label for="first">
+            Username:
+        </label>
+        <input type="text"
+               id="first"
+               name="first"
+               placeholder="Enter your Email" required>
+
+        <p>
+            <label for="password">Password:</label>
+            <input name="password" required="required" type="password" id="password" oninput="check()"/>
+        </p>
+
+        <p>
+            <label for="password_confirm">Confirm Password:</label>
+            <input name="password_confirm" required="required" type="password" id="password_confirm" oninput="check()"/>
+        </p>
+
+        <input type = 'submit'/>
+        </form>
 
 
+            <!--<button type="submit"
+                    onclick="href='homepage.html'">
+                Submit
+            </button> -->
 
-
+    </form>
+</div>
 </body>
 </html>
