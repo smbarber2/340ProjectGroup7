@@ -1,3 +1,16 @@
+head{
+
+}
+
+/**BLUE HEADER HOLDER**/
+.banner {
+  border-radius: 25px;
+  background: #d7ecf4;
+  padding: 10px;
+  width: auto;
+  height: 150px;
+}
+
 body {
     
 }
@@ -25,11 +38,23 @@ h3{
   font-size: 25px;
   color: #7adbc6;
   text-shadow: -2px 2px 2px #3a8978;
-
-
 }
 
 p {
   font-family: 'Trebuchet MS', sans-serif;
   font-size: 12px;
+}
+
+
+/** SEARCH BAR**/
+
+#mySearch {
+  width: 50%;
+  height: 50px;
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  top: -65px; left: 10px;
+  padding: 3px;
+  border: 1px solid #ddd;
 }
