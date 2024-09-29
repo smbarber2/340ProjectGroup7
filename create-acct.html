@@ -23,16 +23,31 @@
 </head>
 <script>
 function check() {
-var input = document.getElementById('password_confirm');
-if (input.value != document.getElementById('password').value) {
-input.setCustomValidity('Password Must be Matching.');
-} else {
-// input is valid -- reset the error message
+var inputPass = form.password.value;
+var password = form.password_confirm.value;
+
+if (inputPass == '')
+    input.setCustomValidity('Please enter a Password.');
+
+else if (inputPass != password){
+    input.setCustomValidity('Password Must be Matching.');
+    return false;
+    }
+
+else{
+//input is valid -- reset the error message
 input.setCustomValidity('');
+redirect();
 }
 }
 
+function redirect(){
+window.location.href "homepage.html";
+    }
 </script>
+
+
+
 <body>
 <div class="main">
     <img src = "tbaylogosquare.PNG" alt = "logo"
@@ -51,15 +66,15 @@ input.setCustomValidity('');
 
         <p>
             <label for="password">Password:</label>
-            <input name="password" required="required" type="password" id="password" oninput="check()"/>
+            <input name="password" required="required" type="password" id="password" oninput="check()">
         </p>
 
         <p>
             <label for="password_confirm">Confirm Password:</label>
-            <input name="password_confirm" required="required" type="password" id="password_confirm" oninput="check()"/>
+            <input name="password_confirm" required="required" type="password" id="password_confirm" oninput="check()">
         </p>
 
-        <input type = 'submit'/>
+        <input type = 'submit' value="Submit">
         </form>
 
 

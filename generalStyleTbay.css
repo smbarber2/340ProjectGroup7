@@ -6,9 +6,69 @@ head{
 .banner {
   border-radius: 25px;
   background: #d7ecf4;
-  padding: 10px;
+  position: relative;
+  top: 0%
+  left: 0%
   width: auto;
   height: 150px;
+}
+
+/**LOGO Dimensions**/
+.logo{
+height: 150px;
+width: 150px;
+position: relative;
+}
+
+/**SEARCH BAR**/
+#mySearch {
+  width: 50%;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  top: -100px;
+  left: 25%;
+  padding: 3px;
+  border: 1px solid #ddd;
+}
+
+/**STYLE of the Search button**/
+.search-button{
+color: white;
+border-radius:8px;
+background: #63D2BA;
+font-family: 'Trebuchet MS', sans-serif;
+font-size: 20px;
+}
+
+/**POSITION of the Search Button**/
+.SearchButton{
+position: relative;
+top:-139px;
+left:70%;
+height: 30px;
+width: 80px;
+}
+
+.shopping{
+height: 75px;
+width: 75px;
+position: relative;
+top: -195px;
+left: 80%;
+}
+
+/**PFP circle**/
+.profile{
+position: relative;
+left: 91%;
+top: -290px;
+height: 125px;
+width: 125px;
+background-color: #637AD2;
+border-radius: 50%;
+
 }
 
 body {
@@ -16,12 +76,10 @@ body {
 }
 
 h1 {
-
   font-family: 'Trebuchet MS', sans-serif;
   font-size: 40px;
   color: #7ecbe9;
   text-shadow: -2px 2px 4px #236179;
-
 }
 
 h2{
@@ -46,15 +104,3 @@ p {
 }
 
 
-/** SEARCH BAR**/
-
-#mySearch {
-  width: 50%;
-  height: 50px;
-  font-size: 20px;
-  text-align: center;
-  position: relative;
-  top: -65px; left: 10px;
-  padding: 3px;
-  border: 1px solid #ddd;
-}
