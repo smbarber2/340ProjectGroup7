@@ -52,6 +52,13 @@ button {
     background-color: #53aacd;
     width: 100%;
     font-size: 16px;
+     opacity: 0.6; /* Initially disabled */
+     pointer-events: none; /* Initially disabled */
+}
+
+.submit-btn.enabled {
+            opacity: 1; /* Enabled */
+            pointer-events: auto; /* Enabled */
 }
 
 .wrap {
