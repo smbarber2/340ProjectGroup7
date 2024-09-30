@@ -336,6 +336,10 @@ body{
     margin: 0 auto;
     color: #616670
 }
+.drive-wrapper .drive-item-thumb img{
+    width: 100%;
+    height: 100%;
+}
 
 .drive-wrapper .drive-item-thumb a {
     -webkit-opacity: .8;
