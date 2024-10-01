@@ -585,3 +585,7 @@ body{
     border: 1px solid #f3f3f7;
     margin-bottom: 20px;
 }
+
+a {
+    text-decoration: none;
+}
