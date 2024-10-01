@@ -103,25 +103,39 @@ p {
 
 css.a { text-decoration: none; }
 
+/**X button for deleting item in cart**/
 .deleteItem{
-      position: relative;
-        left: 200px;
-        top: 300px;
-        width: 100px;
-        height: 100px;
+       vertical-align: top;
+      display: inline-block;
+        width: 75px;
+        height: 75px;
         background-color: #f25c5c;
+        margin-left: 275px;
+        padding: 5px;
+        border-radius: 10px;
 
 }
 
-/**Thing that holds the items**/
+/**The X in the center of the delete Item class**/
+.x{
+    font-family: "Helvetica";
+    color: white;
+    text-align: center;
+    font-size: 60px;
+}
+
+/**Thing that holds the items
+    divisible by 75px for the deleteItem button to line up per item
+    and then added 10px to satisfy the padding added as well.
+**/
 .checkoutBox{
-    position: relative;
-    left: 275px;
+    vertical-align: top;
+    display: inline-block;
     width: 1000px;
-    height: 500px;
+    height: 405px;
     background-color: #cae0dc;
     padding: 10px;
-    margin: 10px;
+    margin: 20px;
                     }
 
 /**LISTINGS BOXES**/
