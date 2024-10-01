@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ListingPage</title>
+    <title>SellerProfile</title>
     <link rel="stylesheet" href="profile.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -28,7 +28,7 @@
         </div>
 
         <div class="profile">
-            <a href="profile.html"><img src="smegolPFP.png" height="125" width="125" ></a>
+            <a href="profile.html"><img src="" height="125" width="125" ></a>
         </div>
     </div>
 </head>
@@ -39,12 +39,20 @@
         <section class="module">
             <div class="module-inner">
                 <div class="side-bar">
+                    <div class="user-info">
+                        <img class="img-profile img-circle img-responsive center-block" src="" alt="">
+                        <ul class="meta list list-unstyled" style="list-style-type:none; padding-left: 0px;">
+                            <li class="name" width= 80px>Admin Adminson</li>
+                            <li class="email"><a href="#">Admin@gmail.com</a></li>
+                            <li class="activity">Member Since: April 9th, 1990</li>
+                        </ul>
+                    </div>
                     <nav class="side-menu">
                         <ul class="nav" style="padding-left: 0px;">
-                            <li><a href="sellerpage.html"><span class="fa fa-user"></span> Profile</a></li>
+                            <li class="active"><a href="#"><span class="fa fa-user"></span> Profile</a></li>
                             <li><a href="#"><span class="fa fa-cog"></span> Incoming Orders</a></li>
                             <li><a href="#"><span class="fa fa-credit-card"></span> Completed Orders</a></li>
-                            <li class="active"><a href="#"><span class="fa fa-envelope"></span> Listings</a></li>
+                            <li><a href="ListingPage.html"><span class="fa fa-envelope"></span> Listings</a></li>
 
                         </ul>
                     </nav>
@@ -52,15 +60,28 @@
 
                 <div class="content-panel">
                     <div class="content-header-wrapper">
-                        
+                        <h2 class="title">Bio:</h2>
+                        <div class="actions">
+                            <a href="">
+                                <button class="btn btn-success"><i class="fa fa-plus"></i> Edit Profile</button>
+                            </a>                           
+                            <a href="profile.html">
+                                <button class="btn btn-success"><i class="fa fa-plus"></i> Switch To Customer</button>
+                            </a>
+                            <a href="sellerpage.html">
+                                <button class="btn btn-success"><i class="fa fa-plus"></i> Switch To Seller</button>
+                            </a>
+                        </div>
+                        <div class="content-bio">
+                            <p>This is a sample bio for Admin Adminson. He has been an Admin on Tbay since April 9th, 1990.</p>
+                        </div>
                     </div>
                     <div class="content-utilities">
                         <div class="actions">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Refresh" title="Refresh Listing"><i class="fa fa-refresh"></i></button>
-                                <a href="">
-                                    <button class="btn btn-success"><i class="fa fa-plus"></i> Add Listing</button>
-                                </a>                           
+                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Refresh" title="Refresh Orders"><i class="fa fa-refresh"></i></button>
+                                <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Archive" title="View All Orders"><i class="fa fa-archive"></i></button>
+                                <h2 class="title">Incoming Orders:</h2>
                             </div>
                         </div>
                     </div>
@@ -149,6 +170,12 @@
                                   </ul>
                               </div>
                             </div>
+
+                        </div>
+                      </div>
+                      <h2 class="title">Completed Orders:</h2>
+                      <div class="drive-wrapper drive-grid-view">
+                        <div class="grid-items-wrapper">
                             <div class="drive-item module text-center">
                                 <div class="drive-item-inner module-inner">
                                     <div class="drive-item-thumb">
@@ -158,130 +185,83 @@
                                 <div class="drive-item-footer module-footer">
                                     <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
                                         <li><a href="#">Listing Name</a></li>
-                                        <li>Price: 500</li>
+                                        <li>Price: 400</li>
                                     </ul>
                                 </div>
                             </div>
+                            
                             <div class="drive-item module text-center">
-                                <div class="drive-item-inner module-inner">
-                                    <div class="drive-item-thumb">
-                                        <img class="img-responsive" src="tbaylogo.PNG"></a>
-                                    </div>
-                                </div>
-                                <div class="drive-item-footer module-footer">
-                                    <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                        <li><a href="#">Listing Name</a></li>
-                                        <li>Price: 500</li>
-                                    </ul>
-                                </div>
+                              <div class="drive-item-inner module-inner">
+                                  <div class="drive-item-thumb">
+                                      <img class="img-responsive" src="tbaylogo.PNG"></a>
+                                  </div>
+                              </div>
+                              <div class="drive-item-footer module-footer">
+                                  <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
+                                      <li><a href="#">Listing Name</a></li>
+                                      <li>Price: 500</li>
+                                  </ul>
+                              </div>
                             </div>
+                            
                             <div class="drive-item module text-center">
-                                <div class="drive-item-inner module-inner">
-                                    <div class="drive-item-thumb">
-                                        <img class="img-responsive" src="tbaylogo.PNG"></a>
-                                    </div>
-                                </div>
-                                <div class="drive-item-footer module-footer">
-                                    <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                        <li><a href="#">Listing Name</a></li>
-                                        <li>Price: 500</li>
-                                    </ul>
-                                </div>
+                              <div class="drive-item-inner module-inner">
+                                  <div class="drive-item-thumb">
+                                      <img class="img-responsive" src="tbaylogo.PNG"></a>
+                                  </div>
+                              </div>
+                              <div class="drive-item-footer module-footer">
+                                  <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
+                                      <li><a href="#">Listing Name</a></li>
+                                      <li>Price: 300</li>
+                                  </ul>
+                              </div>
                             </div>
+                            
                             <div class="drive-item module text-center">
-                                <div class="drive-item-inner module-inner">
-                                    <div class="drive-item-thumb">
-                                        <img class="img-responsive" src="tbaylogo.PNG"></a>
-                                    </div>
-                                </div>
-                                <div class="drive-item-footer module-footer">
-                                    <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                        <li><a href="#">Listing Name</a></li>
-                                        <li>Price: 500</li>
-                                    </ul>
-                                </div>
+                              <div class="drive-item-inner module-inner">
+                                  <div class="drive-item-thumb">
+                                      <img class="img-responsive" src="tbaylogo.PNG"></a>
+                                  </div>
+                              </div>
+                              <div class="drive-item-footer module-footer">
+                                  <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
+                                      <li><a href="#">Listing Name</a></li>
+                                      <li>Price: 200</li>
+                                  </ul>
+                              </div>
                             </div>
+
                             <div class="drive-item module text-center">
-                                <div class="drive-item-inner module-inner">
-                                    <div class="drive-item-thumb">
-                                        <img class="img-responsive" src="tbaylogo.PNG"></a>
-                                    </div>
-                                </div>
-                                <div class="drive-item-footer module-footer">
-                                    <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                        <li><a href="#">Listing Name</a></li>
-                                        <li>Price: 500</li>
-                                    </ul>
-                                </div>
+                              <div class="drive-item-inner module-inner">
+                                  <div class="drive-item-thumb">
+                                      <img class="img-responsive" src="tbaylogo.PNG"></a>
+                                  </div>
+                              </div>
+                              <div class="drive-item-footer module-footer">
+                                  <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
+                                      <li><a href="#">Listing Name</a></li>
+                                      <li>Price: 500</li>
+                                  </ul>
+                              </div>
                             </div>
+
                             <div class="drive-item module text-center">
-                                <div class="drive-item-inner module-inner">
-                                    <div class="drive-item-thumb">
-                                        <img class="img-responsive" src="tbaylogo.PNG"></a>
-                                    </div>
-                                </div>
-                                <div class="drive-item-footer module-footer">
-                                    <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                        <li><a href="#">Listing Name</a></li>
-                                        <li>Price: 500</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="drive-item module text-center">
-                                <div class="drive-item-inner module-inner">
-                                    <div class="drive-item-thumb">
-                                        <img class="img-responsive" src="tbaylogo.PNG"></a>
-                                    </div>
-                                </div>
-                                <div class="drive-item-footer module-footer">
-                                    <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                        <li><a href="#">Listing Name</a></li>
-                                        <li>Price: 500</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="drive-item module text-center">
-                                <div class="drive-item-inner module-inner">
-                                    <div class="drive-item-thumb">
-                                        <img class="img-responsive" src="tbaylogo.PNG"></a>
-                                    </div>
-                                </div>
-                                <div class="drive-item-footer module-footer">
-                                    <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                        <li><a href="#">Listing Name</a></li>
-                                        <li>Price: 500</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="drive-item module text-center">
-                                <div class="drive-item-inner module-inner">
-                                    <div class="drive-item-thumb">
-                                        <img class="img-responsive" src="tbaylogo.PNG"></a>
-                                    </div>
-                                </div>
-                                <div class="drive-item-footer module-footer">
-                                    <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                        <li><a href="#">Listing Name</a></li>
-                                        <li>Price: 500</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="drive-item module text-center">
-                                <div class="drive-item-inner module-inner">
-                                    <div class="drive-item-thumb">
-                                        <img class="img-responsive" src="tbaylogo.PNG"></a>
-                                    </div>
-                                </div>
-                                <div class="drive-item-footer module-footer">
-                                    <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                        <li><a href="#">Listing Name</a></li>
-                                        <li>Price: 500</li>
-                                    </ul>
-                                </div>
+                              <div class="drive-item-inner module-inner">
+                                  <div class="drive-item-thumb">
+                                      <img class="img-responsive" src="tbaylogo.PNG"></a>
+                                  </div>
+                              </div>
+                              <div class="drive-item-footer module-footer">
+                                  <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
+                                      <li><a href="#">Listing Name</a></li>
+                                      <li>Price: 500</li>
+                                  </ul>
+                              </div>
                             </div>
 
                         </div>
-                    </div>
+                      </div>
                 </div>
             </div>
         </section>
