@@ -101,14 +101,25 @@ p {
   font-size: 12px;
 }
 
+css.a { text-decoration: none; }
+
+.deleteItem{
+      position: relative;
+        left: 200px;
+        top: 300px;
+        width: 100px;
+        height: 100px;
+        background-color: #f25c5c;
+
+}
+
 /**Thing that holds the items**/
 .checkoutBox{
     position: relative;
-    left: 150px;
+    left: 275px;
     width: 1000px;
     height: 500px;
     background-color: #cae0dc;
-    border: 2px #637AD2;
     padding: 10px;
     margin: 10px;
                     }
