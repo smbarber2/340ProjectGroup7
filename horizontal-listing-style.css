@@ -141,8 +141,26 @@ margin-left: 40px;
   }
 
 .description {
-
 overflow wrap: break-word;
+}
+
+/**X button for deleting item in cart**/
+.ban-button{
+      vertical-align: top;
+      display: inline-block;
+        width: 60px;
+        height: 20px;
+        background-color: #f25c5c;
+        padding: 5px;
+        border-radius: 10px;
+}
+
+/**The X in the center of the delete Item class**/
+.ban-button-text{
+    font-family: "Helvetica";
+    color: black;
+    text-align: center;
+    font-size: 18px;
 }
 
 .module {
