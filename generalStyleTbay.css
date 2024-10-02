@@ -107,8 +107,8 @@ css.a { text-decoration: none; }
 .deleteItem{
        vertical-align: top;
       display: inline-block;
-        width: 75px;
-        height: 75px;
+        width: 45px;
+        height: 45px;
         background-color: #f25c5c;
         margin-left: 275px;
         padding: 5px;
@@ -121,7 +121,7 @@ css.a { text-decoration: none; }
     font-family: "Helvetica";
     color: white;
     text-align: center;
-    font-size: 60px;
+    font-size: 40px;
 }
 
 /**Thing that holds the items
@@ -135,8 +135,19 @@ css.a { text-decoration: none; }
     height: 405px;
     background-color: #cae0dc;
     padding: 10px;
-    margin: 20px;
-                    }
+    z-index:-1;
+}
+
+.checkoutItem{
+    position: absolute;
+    top:260px;
+    left:342px ;
+     width: 1018px;
+     height: 80px;
+     border: dotted 2px black;
+}
+
+
 
 /**LISTINGS BOXES**/
 .module {
