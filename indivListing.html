@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ListingPage</title>
-    <link rel="stylesheet" href="profile.css">
+    <title>Individual Listing Page</title>
+    <link rel="stylesheet" href="indivListingStyle.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="generalStyleTbay.css">
@@ -18,10 +18,11 @@
         <div class="search">
             <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
         </div>
-        <div class="SearchButton">
-            <button class="search-button pure-button pure-button-active" href="results.html">Search!</a></button>
-
-        </div>
+        <a href="results.html">
+            <div class="SearchButton">
+                <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
+            </div>
+        </a>
 
         <div class="shopping">
             <a href="checkout.html"><img src="shopping-cart.png" height="75" width="75" ></a>
@@ -35,6 +36,48 @@
 <body>
 
 <div class="container">
+    <div class="view-account">
+        <section class="module">
+            <div class="module-inner">
+                <div class="side-bar">
+                    <nav class="side-menu">
+                        <ul class="nav" style="padding-left: 0px;">
+                            <li><a href="#"><img src="tbaylogoTRANS.png" alt="" class="center"></a></li>
+                            <li><a href="#"><img src="tbaylogoTRANS.png" alt="" class="center"></a></li>
+                            <li><a href="#"><img src="tbaylogoTRANS.png" alt="" class="center"></a></li>
+                            <li><a href="#"><img src="tbaylogoTRANS.png" alt="" class="center"></a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="content-panel">
+                    <div class="left-column">
+                        <img data-image="black" src="tbaylogo.PNG" alt="">
+                    </div>
+                    <div class="right-column">
+                        <div class="product-description">
+                            <span> Topic </span>
+                            <h1> Textbook </h1>
+                            <p>The sample of a Bio</p>
+                        </div>
+                        <div class="product-configuration">
+                            <div class="type-config">
+                                <div class="type-choose">
+                                    <button>Thing1</button>
+                                    <button>Thing2</button>
+                                    <button>Thing3</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <span>20$</span>
+                            <a href="checkout.html" class="cart-button">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
 </div>
             
