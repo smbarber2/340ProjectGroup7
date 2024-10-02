@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="generalStyleTbay.css">
+
+    <link rel="stylesheet" href="horizontal-listing-style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <div class="banner">
 
         <div class="logo">
-            <a href="homepage.html"><img src="tbaylogoTRANS.png" height="150" width="170"> </a>
+            <a href="admin-dashboard.html"><img src="tbaylogoTRANS.png" height="150" width="170"> </a>
         </div>
 
         <div class="search">
             <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
         </div>
         <div class="SearchButton">
-            <button class="search-button pure-button pure-button-active" href="results.html">Search!</a></button>
+            <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
 
         </div>
 
@@ -25,11 +26,44 @@
         </div>
 
         <div class="profile">
-            <a href="profile.html"><img src="profilePic.png" height="125" width="125" ></a>
+            <a href="adminpage.html"><img src="pfp.png" height="125" width="125" ></a>
         </div>
     </div>
 </head>
 <body>
+
+<h2><Center>Recent Uploads</Center></h2>
+
+
+<div class="grid-items-wrapper">
+    <div class="drive-item module text-center">
+        <div class="drive-item-inner module-inner">
+            <div class="drive-item-thumb">
+                <div class="aligned">
+                    <a href="indivListing.html">
+                        <img style="vertical-align:left" class="img-responsive" src="tbaylogo.png" width="220px"></a>
+                    <div class="text-container">
+                        <div class = "listing-title">
+                            <a href="indivListing.html"><h3>How to format Images</h3></a>
+                        </div>
+                        <p>By: Anon</p>
+                        <div class="price">
+                            <p>$20.00</p>
+                        </div>
+                        <div class="user">Posted by: SomeGuy</div>
+                        <p>Free shipping</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="drive-item-footer module-footer">
+                <ul class="utilities list-inline" style="list-style-type:none;padding-left: 10px;">
+                    <p>Description: Never been touched, baby.
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

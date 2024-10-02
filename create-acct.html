@@ -5,7 +5,9 @@
     <title>Create Account</title>
     <link rel="stylesheet" href="log-in-style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
     <style>
+
         input[type=submit] {
         padding: 15px;
         border-radius: 10px;
@@ -18,26 +20,24 @@
         width: 100%;
         font-size: 16px;
         }
+
     </style>
-
+-->
 </head>
-<script>
-function check() {
-var inputPass = form.password.value;
-var password = form.password_confirm.value;
+<!--
+    function check() {
+     const submitBtn = document.getElementById('submitBtn');
+        var input = document.getElementById('password_confirm');
+        if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('Password Must be Matching.');
+        } else {
+            // input is valid -- reset the error message
+            input.setCustomValidity('');
 
-if (inputPass != password){
-    input.setCustomValidity('Password Must be Matching.');
-    return false;
+        }
     }
+    -->
 
-else{
-//input is valid -- reset the error message
-input.setCustomValidity('');
-}
-}
-
-</script>
 
 
 <body>
@@ -47,9 +47,9 @@ input.setCustomValidity('');
          height="180"/>
     <h1><u>Create Your Account</u></h1>
 
-    <form action="">
+    <!--form action=""-->
         <label for="first">
-            Username:
+            Email:
         </label>
         <input type="text"
                id="first"
@@ -58,16 +58,17 @@ input.setCustomValidity('');
 
         <p>
             <label for="password">Password:</label>
-            <input name="password" required="required" type="password" id="password" oninput="check()">
+            <input name="password" required="required" type="password" id="password" <!--oninput="check()" -->
         </p>
 
         <p>
             <label for="password_confirm">Confirm Password:</label>
-            <input name="password_confirm" required="required" type="password" id="password_confirm" oninput="check()">
+            <input name="password_confirm" required="required" type="password" id="password_confirm" <!--oninput="check()" -->
         </p>
 
-        <input type = "Submit">
-        </form>
+        <a href="log-in.html">
+            <button>Submit and Log In</button>
+        </a>
 
 
             <!--<button type="submit"
@@ -75,7 +76,6 @@ input.setCustomValidity('');
                 Submit
             </button> -->
 
-    </form>
 </div>
 </body>
 </html>
