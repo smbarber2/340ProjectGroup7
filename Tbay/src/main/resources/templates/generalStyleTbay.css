@@ -1,0 +1,297 @@
+head{
+
+}
+
+/**BLUE HEADER HOLDER**/
+.banner {
+  border-radius: 25px;
+  background: #d7ecf4;
+  position: relative;
+  top: 0%
+  left: 0%
+  width: auto;
+  height: 150px;
+}
+
+/**LOGO Dimensions**/
+.logo{
+height: 150px;
+width: 170px;
+position: relative;
+}
+
+/**SEARCH BAR**/
+#mySearch {
+  width: 50%;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  top: -100px;
+  left: 25%;
+  padding: 3px;
+  border: 1px solid #ddd;
+}
+
+/**STYLE of the Search button**/
+.search-button{
+color: white;
+border-radius:8px;
+background: #63D2BA;
+font-family: 'Trebuchet MS', sans-serif;
+font-size: 20px;
+}
+
+/**POSITION of the Search Button**/
+.SearchButton{
+position: relative;
+top:-139px;
+left:70%;
+height: 30px;
+width: 80px;
+}
+
+.shopping{
+height: 75px;
+width: 75px;
+position: relative;
+top: -195px;
+left: 80%;
+}
+
+/**PFP circle**/
+.profile{
+position: relative;
+left: 91%;
+top: -290px;
+height: 125px;
+width: 125px;
+background-color: #637AD2;
+border-radius: 50%;
+
+}
+
+body {
+    
+}
+
+h1 {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 40px;
+  color: #7ecbe9;
+  text-shadow: -2px 2px 4px #236179;
+}
+
+h2{
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 35px;
+  color: #8095e7;
+  text-shadow: -2px 1px 2px #3e4f95;
+}
+
+h3{
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 25px;
+  color: #7adbc6;
+  text-shadow: -2px 2px 2px #3a8978;
+}
+
+p {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 12px;
+}
+
+css.a { text-decoration: none; }
+
+/**X button for deleting item in cart**/
+.deleteItem{
+       vertical-align: top;
+      display: inline-block;
+        width: 45px;
+        height: 45px;
+        background-color: #f25c5c;
+        margin-left: 275px;
+        padding: 5px;
+        border-radius: 10px;
+}
+
+.deleteItem:hover{
+border-color: rgba(255,255,255,1);
+}
+
+/**The X in the center of the delete Item class**/
+.x{
+    font-family: "Helvetica";
+    color: white;
+    text-align: center;
+    font-size: 40px;
+}
+
+/**Thing that holds the items
+    divisible by 75px for the deleteItem button to line up per item
+    and then added 10px to satisfy the padding added as well.
+**/
+.checkoutBox{
+    vertical-align: top;
+    display: inline-block;
+    width: 1000px;
+    height: 405px;
+    background-color: #cae0dc;
+    padding: 10px;
+    z-index:-1;
+}
+
+.checkoutItem{
+    position: absolute;
+    top:260px;
+    left:342px;
+     width: 1018px;
+     height: 80px;
+     border: dotted 2px black;
+}
+
+.checkoutButton{
+position: relative;
+left:400px;
+top: 10px;
+text-align: center;
+width: 200px;
+height: 40px;
+padding:0.3em 1.2em;
+margin:0 0.1em 0.1em 0;
+border:0.16em solid rgba(255,255,255,0);
+border-radius:2em;
+box-sizing: border-box;
+text-decoration:none;
+font-family: 'Trebuchet MS', sans-serif;
+font-size: 20px;
+font-weight:300;
+color:#FFFFFF;
+text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+text-align:center;
+transition: all 0.2s;
+}
+
+.checkoutButton:hover{
+border-color: rgba(255,255,255,1);
+}
+
+.totalBox{
+position: relative;
+text-align: center;
+left: 1200px;
+top: -120px;
+width: 143px;
+height: 40px;
+background-color: #cae0dc;
+border-radius: 3px;
+}
+
+/**LISTINGS BOXES**/
+.module {
+    border: 1px solid #f3f3f3;
+    border-bottom-width: 2px;
+    background: #fff;
+    margin-bottom: 30px;
+    position: relative;
+    border-radius: 4px;
+    background-clip: padding-box;
+}
+.module .module-footer {
+    background: #fff;
+    border-top: 1px solid #f3f3f7;
+    padding: 15px;
+}
+.module .module-footer a {
+    color: #9499a3;
+}
+
+.drive-wrapper {
+    padding: 15px;
+    background: #f5f5f5;
+    overflow: hidden;
+
+}
+
+.drive-wrapper .drive-item {
+    width: 170px;
+    margin-right: 20px;
+    display: inline-block;
+    position: center;
+
+}
+
+.drive-wrapper .drive-item:hover {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, .1);
+    z-index: 1
+}
+
+.drive-wrapper .drive-item-inner {
+    padding: 15px
+}
+
+
+.drive-wrapper .drive-item-thumb {
+    width: 100px;
+    height: 80px;
+    margin: 0 auto;
+    color: #616670
+}
+
+.drive-wrapper .drive-item-thumb a {
+    -webkit-opacity: .8;
+    -moz-opacity: .8;
+    opacity: .8
+}
+
+.drive-wrapper .drive-item-thumb a:hover {
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    opacity: 1
+}
+
+.drive-wrapper .drive-item-thumb .fa {
+    display: inline-block;
+    font-size: 36px;
+    margin: 0 auto;
+    margin-top: 20px
+}
+
+.drive-wrapper .drive-item-footer .utilities {
+    margin-bottom: 0
+}
+
+.drive-wrapper .drive-item-footer .utilities li:last-child {
+    padding-right: 15
+}
+
+.drive-list-view .name {
+    width: 60%
+}
+
+.drive-list-view .name.truncate {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.drive-list-view .type {
+    width: 15px
+}
+
+.drive-list-view .date,
+.drive-list-view .size {
+    max-width: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+.drive-list-view a {
+    color: #494d55
+}
+
+.drive-list-view a:hover {
+    color: #40babd
+}
