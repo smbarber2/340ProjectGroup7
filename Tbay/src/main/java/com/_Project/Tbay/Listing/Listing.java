@@ -8,10 +8,20 @@ import jakarta.persistence.*;
 public class Listing {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int animalId;
+    private int listingId;
 
     @Column(nullable = false)
     private String name;
+
+    private String tag;
+
+    private String description;
+
+    @Column(nullable=false)
+    protected boolean status;
+
+    @Column(nullable = false)
+    private float price;
 
 
 
