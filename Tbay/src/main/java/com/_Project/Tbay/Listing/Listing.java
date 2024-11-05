@@ -22,12 +22,15 @@ public class Listing {
     @Column(nullable = false)
     private float price;
 
-    public Listing(int listingId, String name, List<String> tag, String description, float price) {
+    private List<String> reviewIds;
+
+    public Listing(int listingId, String name, List<String> tag, String description, float price, List<String> reviewIds) {
         this.listingId = listingId;
         this.name = name;
         this.tag = tag;
         this.description = description;
         this.price = price;
+        this.reviewIds = reviewIds;
     }
 
     public void setListingId(int listingId){
@@ -68,5 +71,13 @@ public class Listing {
 
     public float getPrice() {
         return price;
+    }
+
+    public void setReviewIds(List<String> reviewIds) {
+        this.reviewIds = reviewIds;
+    }
+
+    public List<String> getReviewIds() {
+        return reviewIds;
     }
 }
