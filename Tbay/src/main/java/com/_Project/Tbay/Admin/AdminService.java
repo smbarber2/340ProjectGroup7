@@ -21,7 +21,7 @@ public class AdminService {
         return adminRepository.findById(userId).orElse(null);
     }
 
-    public void deleteUserById(int userId) {
+    public void deleteUserById(long userId) {
         adminRepository.deleteById(userId);
     }
 

@@ -45,10 +45,10 @@ public class AdminController {
         return service.getAllListings();
     }
     //PUT review
-    @PutMapping("/")
+    //@PutMapping("/")
 
     //DELETE existing Review
-    @DeleteMapping("/")
+    //@DeleteMapping("/")
 
 
 
