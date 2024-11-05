@@ -18,8 +18,16 @@ public class ListingController {
         return service.getAllListings();
     }
 
+    @GetMapping("/{listingId}")
+    public Listing getListing(@PathVariable long listingId) {
+        return service.getListingById(listingId);
+    }
+
     @PostMapping("/newListing")
-    public List<Listing> addNewListing(@RequestBody Listing listing){service.addNewListing(listing); return service.getAllListings();}
+    public List<Listing> addNewListing(@RequestBody Listing listing){
+        service.addNewListing(listing);
+        return service.getAllListings();
+    }
 
     @PutMapping("/updateListing/{listingId}")
     public Listing updateListing(@PathVariable long listingId, @RequestBody Listing listing) {
@@ -27,6 +35,10 @@ public class ListingController {
         return service.getListingById(listingId);
     }
 
-
+    @DeleteMapping("/delete/{listingId}")
+    public List<Listing> deleteListingById(@PathVariable long listingId) {
+        service.deleteListingById(listingId);
+        return service.getAllListings();
+    }
 
 }

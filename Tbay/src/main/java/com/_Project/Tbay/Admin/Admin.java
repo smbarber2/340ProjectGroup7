@@ -1,10 +1,9 @@
 package com._Project.Tbay.Admin;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "admins")
 public class Admin {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

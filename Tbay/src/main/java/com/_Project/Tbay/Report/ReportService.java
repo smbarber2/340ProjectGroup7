@@ -9,4 +9,29 @@ import java.util.List;
 public class ReportService {
     @Autowired
     private ReportRepository reportRepository;
+
+    public List<Report> getAllReports() {
+        return reportRepository.findAll();
+    }
+
+    public Report getReportById(long reportId) {
+        return reportRepository.findById(reportId).orElse(null);
+    }
+
+    public void addNewReport(Report report){
+        reportRepository.save(report);
+    }
+
+    public void updateReport(long reportId, Report report) {
+        Report existing = getReportById(reportId);
+        existing.setReason(existing.getReason());
+        existing.setStatus(existing.isStatus());
+
+        reportRepository.save(existing);
+    }
+
+    public void deleteReportById(long reportId) {
+        reportRepository.deleteById(reportId);
+    }
+
 }

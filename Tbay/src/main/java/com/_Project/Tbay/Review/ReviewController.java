@@ -25,7 +25,7 @@ public class ReviewController {
     @PostMapping("/newReview")
     public List<Review> addNewReview(@RequestBody Review review){reviewService.addNewReview(review); return reviewService.getAllReviews();}
 
-    @DeleteMapping("/delete/{reviewId}")
+    @DeleteMapping("/deleteReview/{reviewId}")
     public List<Review> deleteReviewById(@PathVariable long reviewId) {
         reviewService.deleteReviewById(reviewId);
         return null;

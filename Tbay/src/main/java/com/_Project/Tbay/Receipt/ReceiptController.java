@@ -10,4 +10,33 @@ import java.util.List;
 public class ReceiptController {
     @Autowired
     private ReceiptService receiptService;
+
+    @GetMapping("/allReceipts")
+    public List<Receipt> getAllReceipts() {
+        return receiptService.getAllReceipts();
+    }
+
+    @GetMapping("/{receiptId}")
+    public Receipt getReceipt(@PathVariable long receiptId) {
+        return receiptService.getReceiptById(receiptId);
+    }
+
+    @PostMapping("/newReceipt")
+    public List<Receipt> addNewReceipt(@RequestBody Receipt receipt) {
+        receiptService.addNewReceipt(receipt);
+        return receiptService.getAllReceipts();
+    }
+
+    @PutMapping("/updateReceipt/{receiptId}")
+    public Receipt updateReceipt(@PathVariable long receiptId, @RequestBody Receipt receipt) {
+        receiptService.updateReceipt(receiptId, receipt);
+        return receiptService.getReceiptById(receiptId);
+    }
+
+    @DeleteMapping("/delete/{receiptId}")
+    public List<Receipt> deleteReceiptById(@PathVariable long receiptId) {
+        receiptService.deleteReceiptById(receiptId);
+        return receiptService.getAllReceipts();
+    }
+
 }

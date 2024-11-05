@@ -12,16 +12,17 @@ public class ListingService {
     @Autowired
     private ListingRepository listingRepository;
 
-    /**
-     Fetch all listings.*
-     @return list of all listings.*/
     public List<Listing> getAllListings() {
         return listingRepository.findAll();
     }
 
-    public Listing getListingById(long listingId) {return listingRepository.findById(listingId).orElse(null);}
+    public Listing getListingById(long listingId) {
+        return listingRepository.findById(listingId).orElse(null);
+    }
 
-    public void addNewListing(Listing listing){listingRepository.save(listing);}
+    public void addNewListing(Listing listing){
+        listingRepository.save(listing);
+    }
 
     public void updateListing(long listingId, Listing listing) {
         Listing existing = getListingById(listingId);

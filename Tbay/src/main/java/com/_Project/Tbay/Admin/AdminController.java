@@ -39,14 +39,4 @@ public class AdminController {
         adminservice.deleteUserById(userId);
         return adminservice.getAllUsers();
     }
-    //DELETE existing Listing
-    @DeleteMapping("/delete/{listingId}")
-    public List<Listing> deleteListingById(@PathVariable long listingId) {
-        listingService.deleteListingById(listingId);
-        return listingService.getAllListings();
-    }
-
-    //PUT review
-    //@PutMapping("/")
-
 }
