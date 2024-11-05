@@ -17,7 +17,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(int userId) {
+    public User getUserById(long userId) {
         return userRepository.findById(userId).orElse(null);
     }
 
@@ -32,7 +32,7 @@ public class UserService {
      @param user the new User details
      **/
 
-    public void updateUser(int userId, User user) {
+    public void updateUser(long userId, User user) {
         User existing = getUserById(userId);
         existing.setName(user.getName());
         existing.setEmail(user.getEmail());

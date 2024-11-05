@@ -30,7 +30,7 @@ public class UserController {
     public List<User> addNewUser(@RequestBody User user){service.addNewUser(user); return service.getAllUsers();}
 
     @PutMapping("/update/{userId}")
-    public User updateUser(@PathVariable int userId, @RequestBody User user) {
+    public User updateUser(@PathVariable long userId, @RequestBody User user) {
         service.updateUser(userId, user);
         return service.getUserById(userId);
     }

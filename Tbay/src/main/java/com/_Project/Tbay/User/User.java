@@ -10,7 +10,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int userId;
+    private long userId;
 
     @Column(nullable=false)
     public String name;
@@ -33,7 +33,7 @@ public class User {
     @Column(nullable=true)
     protected int cartId;
 
-    public User(int userId, String name, String password, String email, String role) {
+    public User(long userId, String name, String password, String email, String role) {
         this.userId = userId;
         this.name = name;
         this.password = password;
@@ -41,7 +41,7 @@ public class User {
         this.role = role;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -73,7 +73,7 @@ public class User {
         this.cartId = cartId;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
