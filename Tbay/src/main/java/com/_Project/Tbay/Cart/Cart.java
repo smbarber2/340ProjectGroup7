@@ -9,7 +9,7 @@ import java.util.List;
 public class Cart {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    public int cartId;
+    public long cartId;
 
     public List<Integer> cartList;
 
@@ -19,7 +19,7 @@ public class Cart {
     @GeneratedValue(strategy=GenerationType.AUTO)
     public int transactionId;
 
-    public Cart(int cartId, List<Integer> cartList, float totalPrice, int transactionId){
+    public Cart(long cartId, List<Integer> cartList, float totalPrice, int transactionId){
         this.cartId = cartId;
         this.cartList = cartList;
         this.totalPrice = totalPrice;
@@ -30,7 +30,7 @@ public class Cart {
         this.cartId = cartId;
     }
 
-    public int getCartId() {
+    public long getCartId() {
         return cartId;
     }
 

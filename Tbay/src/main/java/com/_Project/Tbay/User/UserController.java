@@ -24,7 +24,7 @@ public class UserController {
      * @return One User object.
      */
     @GetMapping("/{userId}")
-    public User getOneUser(@PathVariable int userId){return service.getUserById(userId);}
+    public User getOneUser(@PathVariable long userId){return service.getUserById(userId);}
 
     @PostMapping("/new")
     public List<User> addNewUser(@RequestBody User user){service.addNewUser(user); return service.getAllUsers();}
