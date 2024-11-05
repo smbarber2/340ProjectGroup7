@@ -21,6 +21,9 @@ public class User {
     @Column(nullable=false)
     private String email;
 
+    @Column(nullable=false)
+    private boolean auth;
+
     @Column(nullable=true)
     protected List<Integer> wishlist;
 
@@ -33,11 +36,12 @@ public class User {
     @Column(nullable=true)
     protected int cartId;
 
-    public User(long userId, String name, String password, String email, String role) {
+    public User(long userId, String name, String password, String email, boolean auth, String role) {
         this.userId = userId;
         this.name = name;
         this.password = password;
         this.email = email;
+        this.auth = auth;
         this.role = role;
     }
 
@@ -103,6 +107,14 @@ public class User {
 
     public int getCartId() {
         return cartId;
+    }
+
+    public void setAuth(boolean auth) {
+        this.auth = auth;
+    }
+
+    public boolean isAuth() {
+        return auth;
     }
 }
 
