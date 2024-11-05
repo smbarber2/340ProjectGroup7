@@ -2,6 +2,8 @@ package com._Project.Tbay.User;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="users")
 
@@ -19,8 +21,8 @@ public class User {
     @Column(nullable=false)
     private String email;
 
-    /*@Column(nullable=true)
-    protected Array[] wishlist;*/
+    @Column(nullable=true)
+    protected List<Integer> wishlist;
 
     @Column(nullable=false)
     protected String role;
@@ -55,9 +57,9 @@ public class User {
         this.email = email;
     }
 
-//    public void setWishlist(Listing[] wishlist) {
-//        this.wishlist = wishlist;
-//    }
+    public void setWishlist(List<Integer> wishlist) {
+        this.wishlist = wishlist;
+   }
 
     public void setRole(String role) {
         this.role = role;
@@ -87,9 +89,9 @@ public class User {
         return email;
     }
 
-//    public Listing[] getWishlist() {
-//        return wishlist;
-//    }
+    public List<Integer> getWishlist() {
+        return wishlist;
+    }
 
     public String getRole() {
         return role;
