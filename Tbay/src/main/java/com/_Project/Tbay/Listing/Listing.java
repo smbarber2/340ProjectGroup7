@@ -10,7 +10,7 @@ import java.util.List;
 public class Listing {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int listingId;
+    private long listingId;
 
     @Column(nullable = false)
     private String name;
@@ -22,9 +22,9 @@ public class Listing {
     @Column(nullable = false)
     private float price;
 
-    private List<String> reviewIds;
+    private List<Long> reviewIds;
 
-    public Listing(int listingId, String name, List<String> tag, String description, float price, List<String> reviewIds) {
+    public Listing(long listingId, String name, List<String> tag, String description, float price, List<Long> reviewIds) {
         this.listingId = listingId;
         this.name = name;
         this.tag = tag;
@@ -33,11 +33,11 @@ public class Listing {
         this.reviewIds = reviewIds;
     }
 
-    public void setListingId(int listingId){
+    public void setListingId(long listingId){
         this.listingId = listingId;
     }
 
-    public int getListingId(){
+    public long getListingId(){
         return listingId;
     }
 
@@ -73,11 +73,11 @@ public class Listing {
         return price;
     }
 
-    public void setReviewIds(List<String> reviewIds) {
+    public void setReviewIds(List<Long> reviewIds) {
         this.reviewIds = reviewIds;
     }
 
-    public List<String> getReviewIds() {
+    public List<Long> getReviewIds() {
         return reviewIds;
     }
 }
