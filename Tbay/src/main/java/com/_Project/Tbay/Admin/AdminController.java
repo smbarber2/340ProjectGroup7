@@ -25,26 +25,27 @@ public class AdminController {
 
     //GET specific user
     @GetMapping("/{userId}")
-    public User getOneUser(@PathVariable int userId){return adminservice.getUserById(userId);}
+    public User getOneUser(@PathVariable long userId){return adminservice.getUserById(userId);}
 
     //GET all listings
-    @GetMapping("/allListings")
+    @GetMapping("/allListing")
     public List<Listing> getAllListings(){
         return listingService.getAllListings();
     }
 
     //DELETE existing User
     @DeleteMapping("/delete/{userId}")
-    public List<User> deleteUserById(@PathVariable int userId) {
+    public List<User> deleteUserById(@PathVariable long userId) {
         adminservice.deleteUserById(userId);
         return adminservice.getAllUsers();
     }
     //DELETE existing Listing
     @DeleteMapping("/delete/{listingId}")
-    public List<Listing> deleteListingById(@PathVariable int listingId) {
+    public List<Listing> deleteListingById(@PathVariable long listingId) {
         listingService.deleteListingById(listingId);
         return listingService.getAllListings();
     }
+
     //PUT review
     //@PutMapping("/")
 
