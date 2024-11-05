@@ -17,12 +17,6 @@ public class UserController {
         return service.getAllUsers();
     }
 
-    /**
-     * Get a specific User by Id.
-     *
-     * @param userId the unique Id for a User.
-     * @return One User object.
-     */
     @GetMapping("/{userId}")
     public User getOneUser(@PathVariable long userId){return service.getUserById(userId);}
 

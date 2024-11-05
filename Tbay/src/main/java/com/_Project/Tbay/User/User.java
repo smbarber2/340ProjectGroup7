@@ -34,7 +34,7 @@ public class User {
     protected boolean status;
 
     @Column(nullable=true)
-    protected int cartId;
+    protected long cartId;
 
     public User(long userId, String name, String password, String email, boolean auth, String role) {
         this.userId = userId;
@@ -105,7 +105,7 @@ public class User {
         return status;
     }
 
-    public int getCartId() {
+    public long getCartId() {
         return cartId;
     }
 

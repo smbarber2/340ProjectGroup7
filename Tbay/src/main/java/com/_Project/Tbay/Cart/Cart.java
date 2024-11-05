@@ -15,8 +15,6 @@ public class Cart {
 
     public float totalPrice;
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     public int transactionId;
 
     public Cart(long cartId, List<Integer> cartList, float totalPrice, int transactionId){
