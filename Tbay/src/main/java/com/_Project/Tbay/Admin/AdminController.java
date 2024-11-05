@@ -9,40 +9,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 
 public class AdminController {
     @Autowired
-    private AdminService service;
+    private AdminService adminservice;
+    private ListingService listingService;
 
     //GET all users
     @GetMapping("/all")
     public List<User> getAllUsers(){
-        return service.getAllUsers();
+        return adminservice.getAllUsers();
     }
 
     //GET specific user
     @GetMapping("/{userId}")
-    public User getOneUser(@PathVariable int userId){return service.getUserById(userId);}
+    public User getOneUser(@PathVariable int userId){return adminservice.getUserById(userId);}
 
     //GET all listings
     @GetMapping("/allListings")
     public List<Listing> getAllListings(){
-        return service.getAllListings();
+        return listingService.getAllListings();
     }
 
     //DELETE existing User
     @DeleteMapping("/delete/{userId}")
     public List<User> deleteUserById(@PathVariable int userId) {
-        service.deleteUserById(userId);
-        return service.getAllUsers();
+        adminservice.deleteUserById(userId);
+        return adminservice.getAllUsers();
     }
     //DELETE existing Listing
     @DeleteMapping("/delete/{listingId}")
     public List<Listing> deleteListingById(@PathVariable int listingId) {
-        service.deleteListingById(listingId);
-        return service.getAllListings();
+        listingService.deleteListingById(listingId);
+        return listingService.getAllListings();
     }
     //PUT review
     //@PutMapping("/")
