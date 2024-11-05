@@ -14,7 +14,7 @@ public class ListingService {
 
     /**
      Fetch all listings.*
-     @return the list of all listings.*/
+     @return list of all listings.*/
     public List<Listing> getAllListings() {
         return listingRepository.findAll();
     }
