@@ -1,5 +1,6 @@
 package com._Project.Tbay.Cart;
 
+import com._Project.Tbay.User.User;
 import com._Project.Tbay.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +14,21 @@ public class CartService {
 
     public Cart getCartById(long cartId) { return cartRepository.findById(cartId).orElse(null);}
 
+    public List<Cart> getAllCarts() {
+        return cartRepository.findAll();
+    }
+
+    public void deleteCartById(long cartId) {
+        cartRepository.deleteById(cartId);
+    }
+
     public void updateCart(long cartId, Cart cart) {
         Cart existing = getCartById(cartId);
         existing.setCartList(cart.getCartList());
 
         cartRepository.save(existing);
     }
+
+
+
 }

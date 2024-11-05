@@ -20,4 +20,12 @@ public class CartController {
         service.updateCart(cartId, cart);
         return service.getCartById(cartId);
     }
+
+    //DELETE existing User
+    @DeleteMapping("/delete/{cartId}")
+    public List<Cart> deleteById(@PathVariable long cartId) {
+        service.deleteCartById(cartId);
+        return service.getAllCarts();
+    }
+
 }
