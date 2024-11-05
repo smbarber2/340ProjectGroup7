@@ -25,10 +25,6 @@ public class AdminService {
         adminRepository.deleteById(userId);
     }
 
-    public void deleteListingById(long listingId) {
-        adminRepository.deleteById(listingId);
-    }
-
     public List<User> getAllListing() {
         return adminRepository.findAll();
     }

@@ -33,5 +33,8 @@ public class ListingService {
         listingRepository.save(existing);
     }
 
+    public void deleteListingById(long listingId) {
+        listingRepository.deleteById(listingId);
+    }
 
 }
