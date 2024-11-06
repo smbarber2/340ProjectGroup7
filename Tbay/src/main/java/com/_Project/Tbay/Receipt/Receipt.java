@@ -26,6 +26,8 @@ public class Receipt {
         this.date = date;
     }
 
+    public Receipt() {}
+
     public void setReceiptId(long receiptId) {
         this.receiptId = receiptId;
     }

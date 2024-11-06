@@ -34,6 +34,8 @@ public class Report {
         this.status = status;
     }
 
+    public Report() {}
+
     public void setReportId(long reportId) {
         this.reportId = reportId;
     }

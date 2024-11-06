@@ -33,6 +33,8 @@ public class Listing {
         this.reviewIds = reviewIds;
     }
 
+    public Listing() {}
+
     public void setListingId(long listingId){
         this.listingId = listingId;
     }

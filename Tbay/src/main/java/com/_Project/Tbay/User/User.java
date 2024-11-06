@@ -28,21 +28,22 @@ public class User {
     protected List<Integer> wishlist;
 
     @Column(nullable=false)
-    protected String role;
-
-    @Column(nullable=false)
     protected boolean status;
 
     @Column(nullable=true)
     protected long cartId;
 
-    public User(long userId, String name, String password, String email, boolean auth, String role) {
+    public User(long userId, String name, String password, String email, boolean auth, Boolean status) {
         this.userId = userId;
         this.name = name;
         this.password = password;
         this.email = email;
         this.auth = auth;
-        this.role = role;
+        this.status = status;
+    }
+
+    public User(){
+
     }
 
     public void setUserId(long userId) {
@@ -65,9 +66,6 @@ public class User {
         this.wishlist = wishlist;
    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public void setStatus(boolean status) {
         this.status = status;
@@ -95,10 +93,6 @@ public class User {
 
     public List<Integer> getWishlist() {
         return wishlist;
-    }
-
-    public String getRole() {
-        return role;
     }
 
     public boolean isStatus() {
