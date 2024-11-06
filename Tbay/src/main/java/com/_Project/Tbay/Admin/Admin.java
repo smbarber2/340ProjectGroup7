@@ -25,6 +25,7 @@ public class Admin {
         this.email = email;
     }
 
+    public Admin(){}
     public void setAdminId(long adminId) {
         this.adminId = adminId;
     }

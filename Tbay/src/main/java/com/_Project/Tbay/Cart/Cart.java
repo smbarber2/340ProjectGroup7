@@ -16,6 +16,8 @@ public class Cart {
     public float totalPrice;
 
     public int transactionId;
+    public Cart(){}
+
 
     public Cart(long cartId, List<Integer> cartList, float totalPrice, int transactionId){
         this.cartId = cartId;

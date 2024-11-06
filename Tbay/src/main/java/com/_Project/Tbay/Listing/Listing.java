@@ -32,6 +32,13 @@ public class Listing {
         this.price = price;
         this.reviewIds = reviewIds;
     }
+    public Listing(){}
+
+    public Listing(long listingId, String name, float price) {
+        this.listingId = listingId;
+        this.name = name;
+        this.price = price;
+    }
 
     public void setListingId(long listingId){
         this.listingId = listingId;

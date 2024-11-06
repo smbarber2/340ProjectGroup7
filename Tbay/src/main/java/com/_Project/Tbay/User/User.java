@@ -44,6 +44,7 @@ public class User {
         this.auth = auth;
         this.role = role;
     }
+    public User(){}
 
     public void setUserId(long userId) {
         this.userId = userId;

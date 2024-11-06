@@ -25,6 +25,7 @@ public class Receipt {
         this.price = price;
         this.date = date;
     }
+    public Receipt(){}
 
     public void setReceiptId(long receiptId) {
         this.receiptId = receiptId;

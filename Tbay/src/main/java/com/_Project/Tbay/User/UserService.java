@@ -31,7 +31,6 @@ public class UserService {
      @param userId the new user to add
      @param user the new User details
      **/
-
     public void updateUser(long userId, User user) {
         User existing = getUserById(userId);
         existing.setName(user.getName());
@@ -42,5 +41,7 @@ public class UserService {
         //Technically the 4 lines above are not necessary because the save method merges by default.
         userRepository.save(existing);
     }
+
+
 
 }
