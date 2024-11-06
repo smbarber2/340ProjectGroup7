@@ -34,6 +34,8 @@ public class ListingService {
         listingRepository.save(existing);
     }
 
+    public List<Listing> getListingBySearch(String name) {return listingRepository.findByNameContainingIgnoreCase(name); }
+
     public void deleteListingById(long listingId) {
         listingRepository.deleteById(listingId);
     }

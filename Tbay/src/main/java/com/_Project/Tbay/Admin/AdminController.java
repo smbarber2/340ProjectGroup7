@@ -27,11 +27,11 @@ public class AdminController {
     @GetMapping("/{userId}")
     public User getOneUser(@PathVariable long userId){return adminservice.getUserById(userId);}
 
-    //GET all listings
-    @GetMapping("/allListing")
-    public List<Listing> getAllListings(){
-        return listingService.getAllListings();
-    }
+    //GET all listings - IN Listing controller
+    //@GetMapping("/allListing")
+    //public List<Listing> getAllListings(){
+    //    return service.getAllListings();
+    //}
 
     //DELETE existing User
     @DeleteMapping("/delete/{userId}")

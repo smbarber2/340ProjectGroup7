@@ -41,4 +41,11 @@ public class ListingController {
         return service.getAllListings();
     }
 
+    //Listing by search through name [WORKS OMG]
+    @GetMapping("/search") // /search?contains= input
+    public List<Listing> getListingBySearch(@RequestParam(name = "contains", defaultValue = "unspecified") String name) {
+        return service.getListingBySearch(name);
+    }
+
+
 }
