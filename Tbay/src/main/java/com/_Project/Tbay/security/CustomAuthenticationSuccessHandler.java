@@ -1,3 +1,4 @@
+/*
 package com._Project.Tbay.security;
 
 import jakarta.servlet.ServletException;
@@ -11,7 +12,7 @@ public class CustomAuthenticationSuccessHandler implements org.springframework.s
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException {
-        /*
+
         String redirectURL = request.getContextPath();
 
         if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
@@ -21,6 +22,8 @@ public class CustomAuthenticationSuccessHandler implements org.springframework.s
         }
 
         response.sendRedirect(redirectURL);
-        */
+
     }
 }
+
+*/

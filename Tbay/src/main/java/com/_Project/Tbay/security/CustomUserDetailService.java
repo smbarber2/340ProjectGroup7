@@ -1,3 +1,4 @@
+/*
 package com._Project.Tbay.security;
 
 import com._Project.Tbay.User.User;
@@ -25,3 +26,4 @@ public class CustomUserDetailService implements UserDetailsService{
                 user.getName(), user.getPassword(), authList);
     }
 }
+*/

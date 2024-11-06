@@ -1,3 +1,4 @@
+/*
 package com._Project.Tbay;
 
 import org.springframework.stereotype.Controller;
@@ -17,3 +18,4 @@ public class AppController {
         return "login";
     }
 }
+*/

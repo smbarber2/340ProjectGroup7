@@ -1,3 +1,4 @@
+/*
 package com._Project.Tbay.security;
 import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +16,7 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 
 public class SecurityConfig {
     private CustomUserDetailService userDetailService;
-    /*
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         HttpSessionRequestCache requestCache = new HttpSessionRequestCache();
@@ -52,5 +53,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-     */
+
 }
+*/
