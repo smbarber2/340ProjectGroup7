@@ -20,6 +20,8 @@ public class Review {
         this.description = description;
     }
 
+    public Review() {}
+
     public void setReviewId(long reviewId) {
         this.reviewId = reviewId;
     }

@@ -26,6 +26,8 @@ public class Cart {
         this.transactionId = transactionId;
     }
 
+    public Cart() {}
+
     public void setCartId(int cartId) {
         this.cartId = cartId;
     }

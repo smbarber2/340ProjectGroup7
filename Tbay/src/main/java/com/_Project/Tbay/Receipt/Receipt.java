@@ -27,6 +27,8 @@ public class Receipt {
     }
     public Receipt(){}
 
+    public Receipt() {}
+
     public void setReceiptId(long receiptId) {
         this.receiptId = receiptId;
     }

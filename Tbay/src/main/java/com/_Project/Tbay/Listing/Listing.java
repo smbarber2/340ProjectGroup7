@@ -40,6 +40,8 @@ public class Listing {
         this.price = price;
     }
 
+    public Listing() {}
+
     public void setListingId(long listingId){
         this.listingId = listingId;
     }
