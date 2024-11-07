@@ -29,6 +29,8 @@ public class CartService {
         cartRepository.save(existing);
     }
 
-
+    public void addNewCart(Cart cart){
+        cartRepository.save(cart);
+    }
 
 }
