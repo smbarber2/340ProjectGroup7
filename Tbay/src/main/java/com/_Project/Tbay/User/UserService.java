@@ -1,18 +1,20 @@
 package com._Project.Tbay.User;
 
+import com._Project.Tbay.Cart.CartRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private CartRepository cartRepository;
 
-    /**
-     Fetch all Users.*
-     @return the list of all Users.*/
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -21,16 +23,11 @@ public class UserService {
         return userRepository.findById(userId).orElse(null);
     }
 
-    /**
-     Add New User
-     @param user the new user to add **/
-    public void addNewUser(User user){userRepository.save(user);}
+    public void addNewUser(User user){
+        user.setCreationDate(new Date(System.currentTimeMillis()));
+        userRepository.save(user);
+    }
 
-    /**
-     Update a User
-     @param userId the new user to add
-     @param user the new User details
-     **/
     public void updateUser(long userId, User user) {
         User existing = getUserById(userId);
         existing.setName(user.getName());
@@ -42,6 +39,8 @@ public class UserService {
         userRepository.save(existing);
     }
 
-
+    public User getLastUser() {
+        return userRepository.findFirstByOrderByCreationDateDesc();
+    }
 
 }

@@ -1,5 +1,6 @@
 package com._Project.Tbay.Cart;
 
+import com._Project.Tbay.User.User;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -11,12 +12,13 @@ public class Cart {
     @GeneratedValue(strategy=GenerationType.AUTO)
     public long cartId;
 
+
     public List<Integer> cartList;
 
     public float totalPrice;
 
     public int transactionId;
-    public Cart(){}
+
 
 
     public Cart(long cartId, List<Integer> cartList, float totalPrice, int transactionId){
@@ -26,9 +28,13 @@ public class Cart {
         this.transactionId = transactionId;
     }
 
-    public Cart() {}
+    public Cart(){}
 
-    public void setCartId(int cartId) {
+    public Cart(long cartId){
+        this.cartId = cartId;
+    }
+
+    public void setCartId(long cartId) {
         this.cartId = cartId;
     }
 

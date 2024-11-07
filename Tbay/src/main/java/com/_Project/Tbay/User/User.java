@@ -2,6 +2,8 @@ package com._Project.Tbay.User;
 
 import jakarta.persistence.*;
 
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -24,28 +26,30 @@ public class User {
     @Column(nullable=false)
     private boolean auth;
 
+    @Column(nullable=false)
+    private Date creationDate;
+
+    private long cartId;
+
     @Column(nullable=true)
     protected List<Integer> wishlist;
 
     @Column(nullable=false)
     protected boolean status;
 
-    @Column(nullable=true)
-    protected long cartId;
-
-    public User(long userId, String name, String password, String email, boolean auth, Boolean status) {
+    public User(long userId, String name, String password, String email, boolean auth, boolean status,  Date creationDate) {
         this.userId = userId;
         this.name = name;
         this.password = password;
         this.email = email;
         this.auth = auth;
         this.status = status;
+        this.creationDate = creationDate;
     }
 
     public User(){
 
     }
-    public User(){}
 
     public void setUserId(long userId) {
         this.userId = userId;
@@ -65,15 +69,10 @@ public class User {
 
     public void setWishlist(List<Integer> wishlist) {
         this.wishlist = wishlist;
-   }
-
+    }
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
     }
 
     public long getUserId() {
@@ -100,16 +99,28 @@ public class User {
         return status;
     }
 
-    public long getCartId() {
-        return cartId;
-    }
-
     public void setAuth(boolean auth) {
         this.auth = auth;
     }
 
     public boolean isAuth() {
         return auth;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public long getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(long cartId) {
+        this.cartId = cartId;
     }
 }
 
