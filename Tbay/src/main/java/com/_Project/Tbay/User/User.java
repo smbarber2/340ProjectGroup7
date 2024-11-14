@@ -37,7 +37,10 @@ public class User {
     @Column(nullable=false)
     protected boolean status;
 
-    public User(long userId, String name, String password, String email, boolean auth, boolean status,  Date creationDate) {
+    @Column(nullable=true)
+    protected long cartId;
+
+    public User(long userId, String name, String password, String email, boolean auth, boolean status) {
         this.userId = userId;
         this.name = name;
         this.password = password;
@@ -47,9 +50,7 @@ public class User {
         this.creationDate = creationDate;
     }
 
-    public User(){
-
-    }
+    public User(){}
 
     public void setUserId(long userId) {
         this.userId = userId;
@@ -69,7 +70,8 @@ public class User {
 
     public void setWishlist(List<Integer> wishlist) {
         this.wishlist = wishlist;
-    }
+   }
+
 
     public void setStatus(boolean status) {
         this.status = status;

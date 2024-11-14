@@ -25,7 +25,6 @@ public class CartService {
     public void updateCart(long cartId, Cart cart) {
         Cart existing = getCartById(cartId);
         existing.setCartList(cart.getCartList());
-
         cartRepository.save(existing);
     }
 
@@ -34,3 +33,5 @@ public class CartService {
     }
 
 }
+
+
