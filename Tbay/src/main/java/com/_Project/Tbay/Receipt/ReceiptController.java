@@ -1,7 +1,9 @@
 package com._Project.Tbay.Receipt;
 
+import com._Project.Tbay.Listing.Listing;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -12,31 +14,35 @@ public class ReceiptController {
     private ReceiptService receiptService;
 
     @GetMapping("/allReceipts")
-    public List<Receipt> getAllReceipts() {
-        return receiptService.getAllReceipts();
+    public String getAllReceipts(Model model) {
+        model.addAttribute("receiptList", receiptService.getAllReceipts());
+        model.addAttribute("receipt", "All receipts");
+        return "receipt-list"; //2do
     }
-
+    
     @GetMapping("/{receiptId}")
-    public Receipt getReceipt(@PathVariable long receiptId) {
-        return receiptService.getReceiptById(receiptId);
+    public String getReceipt(@PathVariable long receiptId, Model model) {
+        model.addAttribute("receipt", receiptService.getReceiptById(receiptId));
+        model.addAttribute("title", receiptId);
+        return "receipt.html"; //???
     }
 
     @PostMapping("/newReceipt")
-    public List<Receipt> addNewReceipt(@RequestBody Receipt receipt) {
+    public String addNewReceipt(@RequestBody Receipt receipt) {
         receiptService.addNewReceipt(receipt);
-        return receiptService.getAllReceipts();
+        return "redirect:/Receipt/" + receipt.getReceiptId();
     }
 
-    @PutMapping("/updateReceipt/{receiptId}")
-    public Receipt updateReceipt(@PathVariable long receiptId, @RequestBody Receipt receipt) {
-        receiptService.updateReceipt(receiptId, receipt);
-        return receiptService.getReceiptById(receiptId);
-    }
+//    @PutMapping("/updateReceipt/{receiptId}")
+//    public Receipt updateReceipt(@PathVariable long receiptId, @RequestBody Receipt receipt) {
+//        receiptService.updateReceipt(receiptId, receipt);
+//        return receiptService.getReceiptById(receiptId);
+//    }
 
     @DeleteMapping("/delete/{receiptId}")
-    public List<Receipt> deleteReceiptById(@PathVariable long receiptId) {
+    public String deleteReceiptById(@PathVariable long receiptId) {
         receiptService.deleteReceiptById(receiptId);
-        return receiptService.getAllReceipts();
+        return "redirect:/receipts/receipt-list";
     }
 
 }

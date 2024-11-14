@@ -51,7 +51,7 @@ public class ListingController {
         return "redirect:/Listing/" +listing.getListingId();
     }
 
-    @GetMapping("/delete/{listingId}")
+    @DeleteMapping("/delete/{listingId}")
     public String deleteListingById(@PathVariable long listingId) {
         service.deleteListingById(listingId);
         return "redirect:/Listing/allListing";
