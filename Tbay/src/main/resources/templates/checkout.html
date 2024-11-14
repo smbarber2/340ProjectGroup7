@@ -43,20 +43,13 @@
     <div style="align-content: center;">
 
         <table class="table table-striped rounded-3 overflow-hidden">
-            <thead>
-            <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Seller</th>
-                <th>Price</th>
-            </tr>
-            </thead>
             <tbody>
             <tr data-th-each="listing : ${listingList}">
                 <td data-th-text=" ${listing.description}"></td>
                 <td data-th-text=" ${listing.name}"></td>
                 <td data-th-text=" ${listing.tag}"></td>
                 <td data-th-text=" ${listing.price}"></td>
+                <td class="btn btn-primary" style="background:#f25c5c;" #f25c5c> Delete </td>
             </tr>
             </tbody>
         </table>
