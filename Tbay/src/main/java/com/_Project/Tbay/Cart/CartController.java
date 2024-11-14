@@ -2,7 +2,8 @@ package com._Project.Tbay.Cart;
 
 import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
-import com._Project.Tbay.User.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class CartController {
     private ListingService listingService;
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    private static final Logger logger = LoggerFactory.getLogger(CartController.class);
+
 
     @GetMapping("/all")
     public String getAllCarts(Model model){
@@ -58,21 +62,24 @@ public class CartController {
                     new Object[]{cartId},
                     (rs, rowNum) -> rs.getBlob("cart_list")
             );
+            if(blobData != null) {
+                byte[] data = blobData.getBytes(1, (int) blobData.length());
 
-            byte[] data = blobData.getBytes(1, (int) blobData.length());
-
-            try(ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data))) {
-                deserializedList = (ArrayList<Integer>) ois.readObject();
+                try(ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data))) {
+                    deserializedList = (ArrayList<Integer>) ois.readObject();
+                }
+            }
+            else {
+                logger.warn("No listings found for cart_id: {}", cartId);
             }
         } catch (Exception e){
-            e.printStackTrace();
+            logger.error("Exception was thrown:",e);
         }
         for(int val: deserializedList){
             list.add(listingService.getListingById(val));
         }
 
         model.addAttribute("listingList", list);
-
         return "checkout";
     }
 
