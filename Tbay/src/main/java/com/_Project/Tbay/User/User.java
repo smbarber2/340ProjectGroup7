@@ -29,8 +29,6 @@ public class User {
     @Column(nullable=false)
     private Date creationDate;
 
-    private long cartId;
-
     @Column(nullable=true)
     protected List<Integer> wishlist;
 
