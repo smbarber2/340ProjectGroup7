@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Individual Listing Page</title>
-    <link rel="stylesheet" href="indivListingStyle.css">
+    <link rel="stylesheet" type="text/css" href="../css/indivListingStyle.css" th:href="@{/css/indivListingStyle.css}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,7 @@
     <div class="banner">
 
         <div class="logo">
-            <a href="homepage.html"><img src="tbaylogoTRANS.png" height="150" width="170"> </a>
+            <a href="homepage.html"><img src="../tbaylogoTRANS.png" height="150" width="170"> </a>
         </div>
 
         <div class="search">
@@ -24,11 +24,11 @@
         </a>
 
         <div class="shopping">
-            <a href="checkout.html"><img src="shopping-cart.png" height="75" width="75" ></a>
+            <a href="checkout.html"><img src="../shopping-cart.png" height="75" width="75" ></a>
         </div>
 
         <div class="profile">
-            <a href="profile.html"><img src="profilePic.png" height="125" width="125" ></a>
+            <a href="profile.html"><img src="../profilePic.png" height="125" width="125" ></a>
         </div>
     </div>
 </head>
@@ -41,24 +41,24 @@
                 <div class="side-bar">
                     <nav class="side-menu">
                         <ul class="nav" style="padding-left: 0px;">
-                            <li><a href="#"><img src="tbaylogoTRANS.png" alt="" class="center"></a></li>
-                            <li><a href="#"><img src="tbaylogoTRANS.png" alt="" class="center"></a></li>
-                            <li><a href="#"><img src="tbaylogoTRANS.png" alt="" class="center"></a></li>
-                            <li><a href="#"><img src="tbaylogoTRANS.png" alt="" class="center"></a></li>
+                            <li><a href="#"><img src="../tbaylogoTRANS.png" alt="" class="center"></a></li>
+                            <li><a href="#"><img src="../tbaylogoTRANS.png" alt="" class="center"></a></li>
+                            <li><a href="#"><img src="../tbaylogoTRANS.png" alt="" class="center"></a></li>
+                            <li><a href="#"><img src="../tbaylogoTRANS.png" alt="" class="center"></a></li>
                         </ul>
                     </nav>
                 </div>
 
                 <div class="content-panel">
                     <div class="left-column">
-                        <img data-image="black" src="htmlBook.png" alt="">
+                        <img data-image="black" src="../htmlBook.png" alt="">
                     </div>
                     <div class="right-column">
                         <div class="product-description">
-                            <span> Computer Science </span>
-                            <h1> HTML, CSS & Javascript for Dummies </h1>
+                            <span data-th-text="${listing.tag}"></span>
+                            <h1 data-th-text="${listing.name}"></h1>
                             <h2> Listed by: Smegol </h2>
-                            <p> For dummies who don't know HTML, CSS, & Javascript</p>
+                            <p data-th-text="${listing.description}"></p>
                         </div>
                         <div class="product-configuration">
                             <div class="type-config">
@@ -70,8 +70,8 @@
                             </div>
                         </div>
                         <div class="product-price">
-                            <span>$25</span>
-                            <a href="checkout.html" class="cart-button">Add to cart</a>
+                            <span data-th-text="'$'+${listing.price}"></span>
+                            <a data-th-text="@{/carts/{cartId} (cartId=102)}" class="cart-button">Add to cart</a>
                         </div>
                     </div>
                 </div>
