@@ -15,7 +15,7 @@ public class Listing {
     @Column(nullable = false)
     private String name;
 
-    private List<String> tag;
+    private String tag;
 
     private String description;
 
@@ -24,7 +24,7 @@ public class Listing {
 
     private List<Long> reviewIds;
 
-    public Listing(long listingId, String name, List<String> tag, String description, float price, List<Long> reviewIds) {
+    public Listing(long listingId, String name, String tag, String description, float price, List<Long> reviewIds) {
         this.listingId = listingId;
         this.name = name;
         this.tag = tag;
@@ -65,11 +65,11 @@ public class Listing {
         return description;
     }
 
-    public void setTag(List<String> tag) {
+    public void setTag(String tag) {
         this.tag = tag;
     }
 
-    public List<String> getTag() {
+    public String getTag() {
         return tag;
     }
 

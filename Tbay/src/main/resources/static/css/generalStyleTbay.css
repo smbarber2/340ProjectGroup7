@@ -132,9 +132,9 @@ border-color: rgba(255,255,255,1);
     and then added 10px to satisfy the padding added as well.
 **/
 .checkoutBox{
-    vertical-align: top;
+    margin-left: 5vw;
     display: inline-block;
-    width: 1000px;
+    width: 90vw;
     height: 405px;
     background-color: #cae0dc;
     padding: 10px;

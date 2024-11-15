@@ -7,6 +7,7 @@ import com._Project.Tbay.User.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 import java.util.List;
 
 @Controller
@@ -19,13 +20,19 @@ public class AdminController {
 
     //GET all users
     @GetMapping("/all")
-    public List<User> getAllUsers(){
-        return adminservice.getAllUsers();
+    public String getAllUsers(Model model) {
+        model.addAttribute("userList", adminservice.getAllUsers());
+        model.addAttribute("title", "All Users");
+        return "user-list"; //Like the table from hw
     }
 
     //GET specific user
     @GetMapping("/{userId}")
-    public User getOneUser(@PathVariable long userId){return adminservice.getUserById(userId);}
+    public String getUserById(@PathVariable long userId, Model model) {
+        model.addAttribute("user", adminservice.getUserById(userId));
+        model.addAttribute("title", userId);
+        return "profile.html";
+    }
 
     //GET all listings - IN Listing controller
     //@GetMapping("/allListing")
@@ -35,8 +42,8 @@ public class AdminController {
 
     //DELETE existing User
     @DeleteMapping("/delete/{userId}")
-    public List<User> deleteUserById(@PathVariable long userId) {
+    public String deleteUserById(@PathVariable long userId) {
         adminservice.deleteUserById(userId);
-        return adminservice.getAllUsers();
+        return "redirect:/admin/all";
     }
 }

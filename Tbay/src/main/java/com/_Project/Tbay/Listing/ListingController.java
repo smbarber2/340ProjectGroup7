@@ -3,6 +3,7 @@ package com._Project.Tbay.Listing;
 import com._Project.Tbay.User.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,37 +15,53 @@ public class ListingController {
     private ListingService service;
 
     @GetMapping("/allListing")
-    public List<Listing> getAllListings(){
-        return service.getAllListings();
+    public String getAllListings(Model model){
+        model.addAttribute("listingList", service.getAllListings());
+        model.addAttribute("title", "All listing");
+        return "listingPage";
     }
 
     @GetMapping("/{listingId}")
-    public Listing getListing(@PathVariable long listingId) {
-        return service.getListingById(listingId);
+    public String getListing(@PathVariable long listingId, Model model) {
+        model.addAttribute("listing", service.getListingById(listingId));
+        model.addAttribute("title", "Listing Details:"+listingId);
+        return "indivListing";
+    }
+
+    @GetMapping("/showNew")
+    public String showNewListing(Model model){
+        return "createListing";
     }
 
     @PostMapping("/newListing")
-    public List<Listing> addNewListing(@RequestBody Listing listing){
+    public String addNewListing(@RequestBody Listing listing){
         service.addNewListing(listing);
-        return service.getAllListings();
+        return "redirect:/Listing/"+listing.getListingId();
     }
 
-    @PutMapping("/updateListing/{listingId}")
-    public Listing updateListing(@PathVariable long listingId, @RequestBody Listing listing) {
-        service.updateListing(listingId, listing);
-        return service.getListingById(listingId);
+    @GetMapping("/updateListing/{listingId}")
+    public String showUpdate(@PathVariable long listingId, Model model) {
+       model.addAttribute("listing", service.getListingById(listingId));
+       return "listingUpdate";
+    }
+
+    @PostMapping("/update")
+    public String updateListing(Listing listing) {
+        service.addNewListing(listing);
+        return "redirect:/Listing/" +listing.getListingId();
     }
 
     @DeleteMapping("/delete/{listingId}")
-    public List<Listing> deleteListingById(@PathVariable long listingId) {
+    public String deleteListingById(@PathVariable long listingId) {
         service.deleteListingById(listingId);
-        return service.getAllListings();
+        return "redirect:/Listing/allListing";
     }
 
-    //Listing by search through name [WORKS OMG]
     @GetMapping("/search") // /search?contains= input
-    public List<Listing> getListingBySearch(@RequestParam(name = "contains", defaultValue = "unspecified") String name) {
-        return service.getListingBySearch(name);
+    public String getListingBySearch(@RequestParam(name = "contains", defaultValue = "unspecified") String name, Model model) {
+        model.addAttribute("listingList", service.getListingBySearch(name));
+        model.addAttribute("title", "Name:" + name);
+        return "ListingPage";
     }
 
 
