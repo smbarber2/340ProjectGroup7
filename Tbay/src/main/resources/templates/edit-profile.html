@@ -2,9 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Profile</title>
+
+    <link rel="stylesheet" href="../static/css/profile.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/generalStyleTbay.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div class="banner">
+
+        <div class="logo">
+            <a href="homepage.html"><img src="../static/tbaylogoTRANS.png" height="150" width="170"> </a>
+        </div>
+
+        <div class="search">
+            <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
+        </div>
+        <a href="results.html">
+            <div class="SearchButton">
+                <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
+            </div>
+        </a>
+
+        <div class="shopping">
+            <a href="checkout.html"><img src="../static/shopping-cart.png" height="75" width="75" ></a>
+        </div>
+
+        <div class="profile">
+            <a href="profile.html"><img src="../static/profilePic.png" height="125" width="125" ></a>
+        </div>
+    </div>
 </head>
 <body>
+
+<center>
+    <div class="editProfile">
+    <h2>Edit Profile</h2>
+
+<div class="editPFP">
+</div>
+<div class="editForm">
+    <center>
+<form action="/users/update" method="post">
+    <label>Name:</label>
+    <input type="text" id="name" name="name" data-th-value=${user.name}">
+    <label>Email:</label>
+    <input type="text" id="email" name="email" data-th-value=${user.email}">
+    <label>New Password:</label>
+    <input type="text" id="password" name="password" data-th-value=${user.password}">
+    <label>Confirm Password:</label>
+    <input type="text" id="passwordCheck" name="passwordCheck">
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+
+
+</form>
+</div>
+    </div>
 
 </body>
 </html>

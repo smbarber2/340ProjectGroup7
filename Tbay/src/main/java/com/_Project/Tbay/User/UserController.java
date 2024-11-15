@@ -50,10 +50,13 @@ public class UserController {
 //        return service.getAllUsers();
 //    }
 
-    //Shows the create account form page
-    @PostMapping("/createform")
-    public String showCreateForm(){
-        return "create-acct";
+    @PostMapping("/new")
+    public String addNewUser(User user){
+        Cart cart = new Cart();
+        cartService.addNewCart(cart);
+        user.setCartId(cart.getCartId());
+        service.addNewUser(user);
+        return "redirect:/create-acct";
     }
 
 //    @PutMapping("/update/{userId}")
@@ -63,7 +66,7 @@ public class UserController {
 //    }
     @PostMapping("/update")
     public String updateUser(User user) {
-        service.saveUser(user);
+        service.updateUser(user.getUserId(), user);
         return "redirect:/profile/" + user.getUserId();
     }
 
