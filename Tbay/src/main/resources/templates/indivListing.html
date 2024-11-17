@@ -71,7 +71,13 @@
                         </div>
                         <div class="product-price">
                             <span data-th-text="'$'+${listing.price}"></span>
-                            <a data-th-text="@{/carts/{cartId} (cartId=102)}" class="cart-button">Add to cart</a>
+                            <a> <!--data-th-href="@{/carts/{cartId} (cartId=102)}"-->
+                                <form action="/carts/addListing" method="post">
+                                <input type="hidden" name="cartId" data-th-value="102">
+                                <input type="hidden" name="listingId" data-th-value="${listing.listingId}">
+                                <button type="submit" class="cart-button">Add to cart</button>
+                                </form>
+                            </a>
                         </div>
                     </div>
                 </div>

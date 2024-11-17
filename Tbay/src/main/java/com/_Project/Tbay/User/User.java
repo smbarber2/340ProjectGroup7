@@ -38,7 +38,13 @@ public class User {
     @Column(nullable=true)
     protected long cartId;
 
-    public User(long userId, String name, String password, String email, boolean auth, boolean status) {
+    @Column(nullable=true)
+    public String bio;
+
+    @Column(nullable=true)
+    public String pfp;
+
+    public User(long userId, String name, String password, String email, boolean auth, boolean status, String pfp) {
         this.userId = userId;
         this.name = name;
         this.password = password;
@@ -46,6 +52,15 @@ public class User {
         this.auth = auth;
         this.status = status;
         this.creationDate = creationDate;
+        this.pfp = pfp;
+    }
+
+    public User(long userId, String name, String password, String email, boolean auth) {
+        this.userId = userId;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.auth = auth;
     }
 
     public User(){}
@@ -121,6 +136,14 @@ public class User {
 
     public void setCartId(long cartId) {
         this.cartId = cartId;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }
 

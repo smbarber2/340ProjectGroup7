@@ -33,9 +33,7 @@ public class UserService {
         existing.setName(user.getName());
         existing.setEmail(user.getEmail());
         existing.setPassword(user.getPassword());
-
-
-        //Technically the 4 lines above are not necessary because the save method merges by default.
+        existing.setBio(user.getBio());
         userRepository.save(existing);
     }
 

@@ -36,45 +36,21 @@ public class CartController {
         return "cartList";
     }
 
-    /*@GetMapping("/all")
-    public List<Cart> getAllCarts(){
-        return service.getAllCarts();
-    }*/
-
-    @PutMapping("/update/{cartId}")
-    public Cart updateCart(@PathVariable long cartId, @RequestBody Cart cart) {
-        service.updateCart(cartId, cart);
-        return service.getCartById(cartId);
+    @PostMapping("/addListing")
+    public String addListing(@RequestParam("cartId") long cartId, @RequestParam("listingId") long listingId) {
+        service.addListing(cartId, listingId);
+        return "redirect:/carts/"+cartId;
     }
 
     @GetMapping("/{cartId}")
     public String getCart(@PathVariable long cartId, Model model){
 
-        List<Integer> deserializedList = new ArrayList<>();
-        List<Listing> list = new ArrayList<>();
-
         model.addAttribute("cart", service.getCartById(cartId));
         model.addAttribute("title", "Cart:"+cartId);
 
-        try{
-            Blob blobData = jdbcTemplate.queryForObject(
-                    "SELECT cart_list FROM carts WHERE cart_id= ?",
-                    new Object[]{cartId},
-                    (rs, rowNum) -> rs.getBlob("cart_list")
-            );
-            if(blobData != null) {
-                byte[] data = blobData.getBytes(1, (int) blobData.length());
+        List<Listing> list = new ArrayList<>();
+        List<Integer> deserializedList = service.getCartListing(cartId);
 
-                try(ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data))) {
-                    deserializedList = (ArrayList<Integer>) ois.readObject();
-                }
-            }
-            else {
-                logger.warn("No listings found for cart_id: {}", cartId);
-            }
-        } catch (Exception e){
-            logger.error("Exception was thrown:",e);
-        }
         for(int val: deserializedList){
             list.add(listingService.getListingById(val));
         }
@@ -83,26 +59,26 @@ public class CartController {
         return "checkout";
     }
 
-    @PostMapping("/new")
+    /*@PostMapping("/new")
     public void addNewCart(@RequestBody Cart cart) {
         service.addNewCart(cart);
-    }
+    }*/
 
-    /*@PostMapping("/new")
+    @PostMapping("/new")
     public List<Cart> addNewCart(@RequestBody Cart cart) {
         service.addNewCart(cart);
         return service.getAllCarts();
-    }*/
+    }
 
     @GetMapping("/update/{cartId}")
     public void showUpdateCart(@PathVariable long cartId, Model model) {
         model.addAttribute("cart",service.getCartById(cartId));
     }
 
-    @PostMapping("/update")
-    public String updateCart(Cart cart) {
-        service.addNewCart(cart);
-        return "redirect:/carts/"+cart.getCartId();
+    @PostMapping("/removeListing")
+    public String updateCart(@RequestParam("cartId") long cartId,@RequestParam("listingId") long listingId) {
+        service.removeListing(cartId, listingId);
+        return "redirect:/carts/"+cartId;
     }
 
     @GetMapping("/delete/{cartId}")
