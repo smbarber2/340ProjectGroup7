@@ -26,6 +26,7 @@ public class AdminController {
         return "user-list.html"; //Like the table from hw
     }
 
+
     //GET specific user
     @GetMapping("/{userId}")
     public String getUserById(@PathVariable long userId, Model model) {
