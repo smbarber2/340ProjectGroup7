@@ -135,8 +135,18 @@ border-color: rgba(255,255,255,1);
     margin-left: 5vw;
     display: inline-block;
     width: 90vw;
-    height: 405px;
+    height: 20vw;
     background-color: #cae0dc;
+    padding: 10px;
+    z-index:-1;
+}
+
+.totalBox{
+    margin-left: 5vw;
+    display: inline-block;
+    background-color: #cae0dc;
+    width: 20px;
+    height: 20px;
     padding: 10px;
     z-index:-1;
 }

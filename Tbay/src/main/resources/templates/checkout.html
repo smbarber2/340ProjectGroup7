@@ -27,7 +27,7 @@
         </a>
 
         <div class="shopping">
-            <a href="checkout.html"><img src="../shopping-cart.png" height="75" width="75" ></a>
+            <a data-th-href="@{/carts/{cartId} (cartId=${cart.cartId})}"><img src="../shopping-cart.png" height="75" width="75" ></a>
         </div>
 
         <div class="profile">
@@ -37,7 +37,7 @@
 
 </head>
 <body>
-<h1 style="margin-left:150px">Shopping Cart</h1>
+<h1 style="margin-left:5vw">Shopping Cart</h1>
 <div class="checkoutBox">
 
     <div style="align-content: center;">
@@ -49,13 +49,20 @@
                 <td data-th-text=" ${listing.name}"></td>
                 <td data-th-text=" ${listing.tag}"></td>
                 <td data-th-text=" ${listing.price}"></td>
-                <td class="btn btn-primary" style="background:#f25c5c;" #f25c5c> Delete </td>
+                <td>
+                    <form action="/carts/removeListing" method="post">
+                    <input type="hidden" name="cartId" data-th-value="${cart.cartId}">
+                    <input type="hidden" name="listingId" data-th-value="${listing.listingId}">
+                    <button type="submit">Remove</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
-</div>
+</div><br>
 
-<span data-th-text="'Total: $'+${cart.totalPrice}"></span>
+<span style="margin-left:5vw" data-th-text="'Total: $'+${cart.totalPrice}"></span>
+
 </body>
 </html>

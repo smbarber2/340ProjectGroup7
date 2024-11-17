@@ -18,7 +18,7 @@ public class ListingController {
     public String getAllListings(Model model){
         model.addAttribute("listingList", service.getAllListings());
         model.addAttribute("title", "All listing");
-        return "listingPage";
+        return "ListingPage";
     }
 
     @GetMapping("/{listingId}")
