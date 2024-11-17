@@ -55,7 +55,6 @@
     <a href="profile.html"></a>
     <h1 data-th-text="${title}"></h1>
 
-    <br>
     <table class="table table-striped rounded-3 overflow-hidden">
         <thead>
         <tr>
@@ -70,16 +69,22 @@
         </thead>
         <tbody>
         <tr data-th-each="users : ${users}">
-            <td><a data-th-href="@{/users/{userId}(userId=${users}.userId})}" data-th-text="${users.userId}"></a></td>
-            <td><a data-th-text="${users.auth}"></a></td>
-            <td><a data-th-text="${users.cartId}"></a></td>
-            <td><a data-th-text="${users.email}"></a></td>
-            <td><a data-th-text="${users.name}"></a></td>
-            <td><a data-th-text="${users.password}"></a></td>
-            <td><a data-th-text="${users.status}"></a></td>
+            <td><a data-th-href="@{/users/{userId} (userId=${users.userId})}" data-th-text="${users.userId}"></a></td>
+            <td data-th-text="${users.auth}"></td>
+            <td data-th-text="${users.cartId}"></td>
+            <td data-th-text="${users.email}"></td>
+            <td data-th-text="${users.name}"></td>
+            <td data-th-text="${users.password}"></td>
+            <td data-th-text="${users.status}"></td>
+            <td><a data-th-href="@{/users/{userId} (userId=${user.userId})}"
+                   class="btn btn-sm btn-outline-secondary">View</a>
+                <a data-th-href="@{/users/delete/{userId} (userId=${user.userId})}"
+                   class="btn btn-sm btn-outline-danger">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
+
 
 </div>
 <script>
@@ -91,12 +96,8 @@
       document.getElementById("new-animal").style.display = "none";
     }
 
-
-
-
 </script>
-
-
 
 </body>
 </html>
+
