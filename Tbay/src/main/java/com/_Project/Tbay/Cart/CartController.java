@@ -36,11 +36,6 @@ public class CartController {
         return "cartList";
     }
 
-    /*@GetMapping("/all")
-    public List<Cart> getAllCarts(){
-        return service.getAllCarts();
-    }*/
-
     @PutMapping("/update/{cartId}")
     public Cart updateCart(@PathVariable long cartId, @RequestBody Cart cart) {
         service.updateCart(cartId, cart);
@@ -83,26 +78,26 @@ public class CartController {
         return "checkout";
     }
 
-    @PostMapping("/new")
+    /*@PostMapping("/new")
     public void addNewCart(@RequestBody Cart cart) {
         service.addNewCart(cart);
-    }
+    }*/
 
-    /*@PostMapping("/new")
+    @PostMapping("/new")
     public List<Cart> addNewCart(@RequestBody Cart cart) {
         service.addNewCart(cart);
         return service.getAllCarts();
-    }*/
+    }
 
     @GetMapping("/update/{cartId}")
     public void showUpdateCart(@PathVariable long cartId, Model model) {
         model.addAttribute("cart",service.getCartById(cartId));
     }
 
-    @PostMapping("/update")
-    public String updateCart(Cart cart) {
-        service.addNewCart(cart);
-        return "redirect:/carts/"+cart.getCartId();
+    @PostMapping("/removeListing")
+    public String updateCart(@RequestParam("cartId") Long cartId,@RequestParam("listingId") Long listingId) {
+        service.removeListing(cartId, listingId);
+        return "redirect:/carts/"+cartId;
     }
 
     @GetMapping("/delete/{cartId}")

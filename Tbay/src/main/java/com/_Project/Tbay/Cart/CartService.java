@@ -32,6 +32,14 @@ public class CartService {
         cartRepository.save(cart);
     }
 
+    public void removeListing(long cartId, long listingId) {
+        Cart existing = getCartById(cartId);
+        List<Integer> list = existing.getCartList();
+        list.remove(Integer.valueOf((int)listingId));
+        existing.setCartList(list);
+        cartRepository.save(existing);
+    }
+
 }
 
 
