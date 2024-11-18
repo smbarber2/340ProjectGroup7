@@ -1,6 +1,7 @@
 package com._Project.Tbay.Report;
 
 import com._Project.Tbay.User.User;
+import com._Project.Tbay.User.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -13,6 +14,8 @@ import java.util.List;
 public class ReportController {
     @Autowired
     private ReportService reportService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/all")
     public String getAllReports(Model model) {
@@ -34,8 +37,10 @@ public class ReportController {
     //    return reportService.getAllReports();
    // }
 
-    @GetMapping("/createReportForm")
-    public String showCreateForm(){
+    @GetMapping("/createReportForm/{userId}")
+    public String showCreateForm(@PathVariable long userId, Model model){
+        model.addAttribute("user", userService.getUserById(userId));
+        model.addAttribute("title", userId);
         return "report-create";
     }
     @PostMapping("/newReport")
