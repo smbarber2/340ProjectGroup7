@@ -22,11 +22,22 @@ public class ReportController {
         return reportService.getReportById(reportId);
     }
 
-    @PostMapping("/newReport")
-    public List<Report> addNewReport(@RequestBody Report report) {
-        reportService.addNewReport(report);
-        return reportService.getAllReports();
+    //@PostMapping("/newReport")
+    //public List<Report> addNewReport(@RequestBody Report report) {
+    //    reportService.addNewReport(report);
+    //    return reportService.getAllReports();
+   // }
+
+    @GetMapping("/createReportForm")
+    public String showCreateForm(){
+        return "report-create";
     }
+    @PostMapping("/newReport")
+    public String addNewReport(Report report) {
+        reportService.saveReport(report);
+        return "redirect:/reports/all";
+    }
+
 
     @PutMapping("/updateReport/{reportId}")
     public Report updateListing(@PathVariable long reportId, @RequestBody Report report) {

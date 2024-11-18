@@ -11,7 +11,7 @@ import java.util.List;
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long reportId;
+    private int reportId;
 
     private long listingId;
 
@@ -25,7 +25,7 @@ public class Report {
 
     private boolean status;
 
-    public Report(long reportId, long listingId, long adminId, long userId, String reason, Date date, Boolean status) {
+    public Report(int reportId, long listingId, long adminId, long userId, String reason, Date date, Boolean status) {
         this.reportId = reportId;
         this.adminId = adminId;
         this.userId = userId;
@@ -36,7 +36,7 @@ public class Report {
 
     public Report() {}
 
-    public void setReportId(long reportId) {
+    public void setReportId(int reportId) {
         this.reportId = reportId;
     }
 

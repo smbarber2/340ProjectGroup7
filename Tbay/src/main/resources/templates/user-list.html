@@ -69,15 +69,18 @@
         </thead>
         <tbody>
         <tr data-th-each="users : ${userList}">
-            <td><a data-th-href="@{/users/{userId} (userId=${users.userId})}" data-th-text="${users.userId}"></a></td>
+            <td data-th-text="${users.userId}"></a></td>
             <td data-th-text="${users.auth}"></td>
             <td data-th-text="${users.cartId}"></td>
             <td data-th-text="${users.email}"></td>
             <td data-th-text="${users.name}"></td>
             <td data-th-text="${users.password}"></td>
             <td data-th-text="${users.status}"></td>
+
             <td><a data-th-href="@{/users/{userId} (userId=${users.userId})}"
                    class="btn btn-sm btn-outline-secondary">View</a>
+                <a data-th-href="@{/reports/createReportForm (userId=${users.userId})}"
+                   class="btn btn-sm btn-outline-primary">Report</a>
                 <a data-th-href="@{/users/delete/{userId} (userId=${users.userId})}"
                    class="btn btn-sm btn-outline-danger">Delete</a>
             </td>

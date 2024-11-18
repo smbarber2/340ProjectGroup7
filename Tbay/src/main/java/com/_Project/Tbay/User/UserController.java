@@ -27,6 +27,13 @@ public class UserController {
 //        return service.getAllUsers();
 //    }
 
+    //GET specific user
+    @GetMapping("/{userId}")
+    public String getUserById(@PathVariable long userId, Model model) {
+        model.addAttribute("user", service.getUserById(userId));
+        model.addAttribute("title", userId);
+        return "profile";
+    }
 
     @GetMapping("create-acct")
     public String createAcct(){return "create-acct";}

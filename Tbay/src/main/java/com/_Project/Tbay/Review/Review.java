@@ -12,11 +12,14 @@ public class Review {
 
     private long listingId;
 
+    private long userId;
+
     private String description;
 
-    public Review(long reviewId, long listingId, String description) {
+    public Review(long reviewId, long listingId, long userId, String description) {
         this.reviewId = reviewId;
         this.listingId =listingId;
+        this.userId = userId;
         this.description = description;
     }
 
@@ -37,6 +40,10 @@ public class Review {
     public long getListingId() {
         return listingId;
     }
+
+    public void setUserId(long userId) { this.userId = userId; }
+
+    public long getUserId() { return userId; }
 
     public void setDescription(String description) {
         this.description = description;
