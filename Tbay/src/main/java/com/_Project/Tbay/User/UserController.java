@@ -35,7 +35,7 @@ public class UserController {
         return "profile";
     }
 
-    @GetMapping("create-acct")
+    @GetMapping("/create-acct")
     public String createAcct(){return "create-acct";}
 
     @PostMapping("/new")
@@ -44,11 +44,14 @@ public class UserController {
         cartService.addNewCart(cart);
         user.setCartId(cart.getCartId());
         service.addNewUser(user);
-        return "homepageUser" + user.getUserId();
+        return "homepageUser";
     }
 
-    @GetMapping("homepageUser/{userId}")
-    public String homepageUser(){return "homepageUser";}
+    @GetMapping("/homepageUser/{userId}")
+    public String homepageUser(@PathVariable long userId, Model model){
+        model.addAttribute("user", service.getUserById(userId));
+        model.addAttribute("title", userId);
+        return "homepageUser";}
 
     //Pre MVC update
 //    @PutMapping("/update/{userId}")
@@ -63,7 +66,7 @@ public class UserController {
     }
 
     @GetMapping("/update/{userid}")
-    public String showUpdateForm(@PathVariable int userId, Model model){
+    public String showUpdateForm(@PathVariable long userId, Model model){
         model.addAttribute("user", service.getUserById(userId));
         return "edit-profile";
     }
