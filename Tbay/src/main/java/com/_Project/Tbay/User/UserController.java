@@ -27,6 +27,8 @@ public class UserController {
 //        return service.getAllUsers();
 //    }
 
+    @GetMapping("")
+    public String home(){return "homepage";}
 
     @GetMapping("create-acct")
     public String createAcct(){return "create-acct";}
@@ -36,9 +38,8 @@ public class UserController {
         Cart cart = new Cart();
         cartService.addNewCart(cart);
         user.setCartId(cart.getCartId());
-
-        service.updateUser(user.getUserId(), user);
-        return "redirect:/homepage";
+        service.addNewUser(user);
+        return "redirect:/homepage.html";
     }
 
     //Pre MVC update
@@ -59,5 +60,9 @@ public class UserController {
         return "redirect:/profile/" + user.getUserId();
     }
 
+    @GetMapping("/profile")
+    public String profile(){
+        return "profile";
+    }
 
 }
