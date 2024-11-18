@@ -46,12 +46,21 @@
   <h1>File New Report</h1>
   <form id="new-report" action="/reports/newReport" method="post">
 
-    adminId:<input type="text" class="form-control" id="adminId" name="adminId" placeholder="AdminId">
+
+    <input type="hidden" class="form-control" id="adminId" name="adminId" data-th-value="1"> <!-- whatever admin is logged in -->
+    <input type="hidden" class="form-control" id="userId" name="userId" data-th-value="${user.userId}">
+    <input type="hidden" class="form-control" id="email" name="email" data-th-value="${user.email}">
+    Report Title:<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+    Reason: <textarea class="form-control" id="reason" rows="3" name="reason" placeholder="Reason"></textarea>
+
+
+
+    <!--adminId:<input type="text" class="form-control" id="adminId" name="adminId" placeholder="AdminId">
     userId:<input type="text" class="form-control" id="userId" name="userId" placeholder="UserId">
     Email: <input type="text" class="form-control" id="email" name="email" placeholder="Email">
     Name:<input type="text" class="form-control" id="name" name="name" placeholder="Name">
     Reason: <textarea class="form-control" id="reason" rows="3" name="reason" placeholder="Reason"></textarea>
-    <!--Date: <input type="date" class="form-control" id="date" name="date" min="2000-01-01" max="2100-12-31">-->
+    Date: <input type="date" class="form-control" id="date" name="date" min="2000-01-01" max="2100-12-31">-->
 
     <button type="submit" class="btn btn-primary">Save</button> <br>
     <button type="reset"><a href="/admin/all">Cancel</a></button>

@@ -79,7 +79,7 @@
 
             <td><a data-th-href="@{/users/{userId} (userId=${users.userId})}"
                    class="btn btn-sm btn-outline-secondary">View</a>
-                <a data-th-href="@{/reports/createReportForm (userId=${users.userId})}"
+                <a data-th-href="@{/reports/createReportForm/{userId} (userId=${users.userId})}"
                    class="btn btn-sm btn-outline-primary">Report</a>
                 <!--<a data-th-href="@{/users/ban/{userId} (userId=${users.userId})}"
                    class="btn btn-sm btn-outline-secondary">Ban</a>-->
