@@ -14,6 +14,7 @@ public class ReportService {
         return reportRepository.findAll();
     }
 
+
     public Report getReportById(long reportId) {
         return reportRepository.findById(reportId).orElse(null);
     }

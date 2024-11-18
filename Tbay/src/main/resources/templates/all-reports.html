@@ -1,10 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+
+    <title>Tbay Report List</title>
+
+    <link rel="stylesheet" type="text/css" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
+    <div class="banner">
+
+        <div class="logo">
+            <a href="homepage.html"><img src="../tbaylogoTRANS.png" height="150" width="170"> </a>
+        </div>
+
+        <div class="search">
+            <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
+        </div>
+        <a href="results.html">
+            <div class="SearchButton">
+                <a href="results.html">
+                    <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
+                </a>
+            </div>
+        </a>
+
+        <div class="shopping">
+            <a href="checkout.html"><img src="../shopping-cart.png" height="75" width="75" ></a>
+        </div>
+
+        <div class="profile">
+            <a href="adminpage.html"><img src="../pfp.png" height="125" width="125" ></a>
+        </div>
+    </div>
+
+</head>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    //<link href="/static/css/styles.css" type="text/css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <title>All Reports</title>
 </head>
 <body>
+<div class="container">
+    <a href="profile.html"></a>
+    <h1 data-th-text="${title}"></h1>
+
+    <table class="table table-striped rounded-3 overflow-hidden">
+        <thead>
+        <tr>
+            <th>reportID</th>
+            <th>adminID</th>
+            <th>userID</th>
+            <th>Name</th>
+            <th>Reason</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="reports : ${reportList}">
+            <td data-th-text="${reports.reportId}"></a></td>
+            <td data-th-text="${reports.adminId}"></td>
+            <td data-th-text="${reports.userId}"></td>
+            <td data-th-text="${reports.name}"></td>
+            <td data-th-text="${reports.reason}"></td>
+            <td data-th-text="${reports.date}"></td>
+            <td data-th-text="${reports.status}"></td>
+
+            <td><a data-th-href="@{/reports/{reportId} (reportId=${reports.reportId})}"
+                   class="btn btn-sm btn-outline-secondary">View</a>
+                <a data-th-href="@{/reports/deleteReport/{reportId} (reportId=${reports.reportId})}"
+                   class="btn btn-sm btn-outline-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+<script>
+    function openForm() {
+      document.getElementById("new-animal").style.display = "block";
+    }
+
+    function closeForm() {
+      document.getElementById("new-animal").style.display = "none";
+    }
+
+</script>
 
 </body>
 </html>
+

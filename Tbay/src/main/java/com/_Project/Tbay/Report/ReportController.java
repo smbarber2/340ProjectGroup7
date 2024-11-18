@@ -2,6 +2,7 @@ package com._Project.Tbay.Report;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -12,9 +13,11 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
-    @GetMapping("/allReports")
-    public List<Report> getAllReports() {
-        return reportService.getAllReports();
+    @GetMapping("/all")
+    public String getAllReports(Model model) {
+        model.addAttribute("reportList", reportService.getAllReports());
+        model.addAttribute("title", "All Reports");
+        return "all-reports"; //Like the table from hw
     }
 
     @GetMapping("/{reportId}")
@@ -46,8 +49,9 @@ public class ReportController {
     }
 
     @DeleteMapping("/deleteReport/{reportId}")
-    public List<Report> deleteReportById(@PathVariable long reportId) {
+    public String deleteReportById(@PathVariable long reportId) {
         reportService.deleteReportById(reportId);
-        return reportService.getAllReports();
+        return "redirect:/reports/all";
     }
+
 }

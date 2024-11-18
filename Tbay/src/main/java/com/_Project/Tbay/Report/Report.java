@@ -19,16 +19,19 @@ public class Report {
 
     private long userId;
 
+    private String name;
+
     private String reason;
 
     private Date date;
 
     private boolean status;
 
-    public Report(int reportId, long listingId, long adminId, long userId, String reason, Date date, Boolean status) {
+    public Report(int reportId, long listingId, long adminId, long userId, String name, String reason, Date date, Boolean status) {
         this.reportId = reportId;
         this.adminId = adminId;
         this.userId = userId;
+        this.name = name;
         this.reason = reason;
         this.date = date;
         this.status = status;
@@ -66,6 +69,14 @@ public class Report {
 
     public long getUserId() {
         return userId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setReason(String reason) {
