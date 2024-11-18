@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Profile</title>
-    <link rel="stylesheet" href="../static/css/profile.css">
+    <title>Profile</title>
+    <link rel="stylesheet" href="../css/profile.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../static/css/generalStyleTbay.css">
+    <link rel="stylesheet" type="text/css" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <div class="banner">
 
         <div class="logo">
-            <a href="admin-dashboard.html"><img src="../static/tbaylogoTRANS.png" height="150" width="170"> </a>
+            <a href="admin-dashboard.html"><img src="../tbaylogoTRANS.png" height="150" width="170"> </a>
         </div>
 
         <div class="search">
@@ -25,11 +25,11 @@
         </a>
 
         <div class="shopping">
-            <a href="checkout.html"><img src="../static/shopping-cart.png" height="75" width="75" ></a>
+            <a href="checkout.html"><img src="../shopping-cart.png" height="75" width="75" ></a>
         </div>
 
         <div class="profile">
-            <a href="adminpage.html"><img src="../static/pfp.png" height="125" width="125" ></a>
+            <a href="adminpage.html"><img src="../pfp.png" height="125" width="125" ></a>
         </div>
     </div>
 </head>

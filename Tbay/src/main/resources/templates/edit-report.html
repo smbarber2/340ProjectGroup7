@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+
+  <link rel="stylesheet" href="../css/profile.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/generalStyleTbay.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <div class="banner">
+
+    <div class="logo">
+      <a href="homepage.html"><img src="../tbaylogoTRANS.png" height="150" width="170"> </a>
+    </div>
+
+    <div class="search">
+      <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
+    </div>
+    <a href="results.html">
+      <div class="SearchButton">
+        <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
+      </div>
+    </a>
+
+    <div class="shopping">
+      <a href="checkout.html"><img src="../shopping-cart.png" height="75" width="75" ></a>
+    </div>
+
+    <div class="profile">
+      <a href="profile.html"><img src="../profilePic.png" height="125" width="125" ></a>
+    </div>
+  </div>
+</head>
+<body>
+
+<center>
+  <div class="editReport">
+    <h2>Edit Report</h2>
+
+    <div class="editForm">
+      <label>Email:</label> <input type="text" class="form-control" id="email" name="email" placeholder="${report.email}" data-th-value="${report.email}"><br>
+      <label>Name:</label> <input type="text" class="form-control" id="name" name="name" placeholder="${report.name}" data-th-value="${report.name}"><br>
+      <label>Reason:</label> <input type="text" class="form-control" id="reason" name="reason" placeholder="${report.reason}"
+                                        data-th-value="${report.reason}"><br>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

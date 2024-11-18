@@ -14,6 +14,7 @@ public class ReportService {
         return reportRepository.findAll();
     }
 
+
     public Report getReportById(long reportId) {
         return reportRepository.findById(reportId).orElse(null);
     }
@@ -34,4 +35,7 @@ public class ReportService {
         reportRepository.deleteById(reportId);
     }
 
+    public void saveReport(Report report){
+        reportRepository.save(report);
+    }
 }

@@ -19,11 +19,6 @@ public class CartController {
     private CartService service;
     @Autowired
     private ListingService listingService;
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    private static final Logger logger = LoggerFactory.getLogger(CartController.class);
-
 
     @GetMapping("/all")
     public String getAllCarts(Model model){

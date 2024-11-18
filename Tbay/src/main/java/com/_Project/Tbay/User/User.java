@@ -35,6 +35,9 @@ public class User {
     @Column(nullable=false)
     protected boolean status;
 
+//    @Column(nullable=true)
+//    protected boolean ban;
+
     @Column(nullable=true)
     protected long cartId;
 
@@ -50,6 +53,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.auth = auth;
+//        this.ban = ban;
         this.status = status;
         this.creationDate = creationDate;
         this.pfp = pfp;
@@ -145,6 +149,11 @@ public class User {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+    //Banning stuff
+
+    //public void setBan(boolean ban) { this.ban = ban; }
+    //public boolean isBan() { return ban;}
 }
 
 

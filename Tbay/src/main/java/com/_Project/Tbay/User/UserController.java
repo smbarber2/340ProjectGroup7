@@ -27,8 +27,13 @@ public class UserController {
 //        return service.getAllUsers();
 //    }
 
-    @GetMapping("")
-    public String home(){return "homepage";}
+    //GET specific user
+    @GetMapping("/{userId}")
+    public String getUserById(@PathVariable long userId, Model model) {
+        model.addAttribute("user", service.getUserById(userId));
+        model.addAttribute("title", userId);
+        return "profile";
+    }
 
     @GetMapping("create-acct")
     public String createAcct(){return "create-acct";}
@@ -49,6 +54,11 @@ public class UserController {
 //        return service.getUserById(userId);
 //    }
 
+    @GetMapping("/orders/{userId}")
+    public String showOrders(){
+        return "sellerOrders";
+    }
+
     @GetMapping("/update/{userid}")
     public String showUpdateForm(@PathVariable int userId, Model model){
         model.addAttribute("user", service.getUserById(userId));
@@ -60,9 +70,16 @@ public class UserController {
         return "redirect:/profile/" + user.getUserId();
     }
 
-    @GetMapping("/profile")
-    public String profile(){
-        return "profile";
-    }
+//    @GetMapping("/ban/{userid}")
+//    public String showBanForm(@PathVariable int userId, Model model){
+//        model.addAttribute("user", service.getUserById(userId));
+//        return "ban-profile";
+//    }
+//    @PostMapping("/banUpdate")
+//    public String banUser(User user) {
+//        service.banUser(user.getUserId(), user);
+//        return "redirect:/admin/banlist";
+//    }
+
 
 }
