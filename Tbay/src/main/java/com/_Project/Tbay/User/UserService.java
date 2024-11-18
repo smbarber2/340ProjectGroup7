@@ -37,6 +37,12 @@ public class UserService {
         userRepository.save(existing);
     }
 
+//    public void banUser(long userId, User user) {
+//        User existing = getUserById(userId);
+//        existing.setBan(user.isBan());
+//        userRepository.save(existing);
+//    }
+
     public User getLastUser() {
         return userRepository.findFirstByOrderByCreationDateDesc();
     }

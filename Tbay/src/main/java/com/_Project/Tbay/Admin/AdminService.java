@@ -25,4 +25,10 @@ public class AdminService {
         adminRepository.deleteById(userId);
     }
 
+//    public void banUser(long userId, Model model) {
+//        Model existing = getUserById(userId);
+//        existing.setBan(model.getBan());
+//        userRepository.save(existing);
+//    }
+
 }

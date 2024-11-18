@@ -71,5 +71,16 @@ public class UserController {
         return "redirect:/profile/" + user.getUserId();
     }
 
+//    @GetMapping("/ban/{userid}")
+//    public String showBanForm(@PathVariable int userId, Model model){
+//        model.addAttribute("user", service.getUserById(userId));
+//        return "ban-profile";
+//    }
+//    @PostMapping("/banUpdate")
+//    public String banUser(User user) {
+//        service.banUser(user.getUserId(), user);
+//        return "redirect:/admin/banlist";
+//    }
+
 
 }

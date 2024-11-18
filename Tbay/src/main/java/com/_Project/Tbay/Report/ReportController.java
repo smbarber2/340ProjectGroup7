@@ -1,5 +1,6 @@
 package com._Project.Tbay.Report;
 
+import com._Project.Tbay.User.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -21,8 +22,10 @@ public class ReportController {
     }
 
     @GetMapping("/{reportId}")
-    public Report getReport(@PathVariable long reportId) {
-        return reportService.getReportById(reportId);
+    public String getReport(@PathVariable long reportId, Model model) {
+        model.addAttribute("report", reportService.getReportById(reportId));
+        model.addAttribute("title", reportId);
+        return "report-info";
     }
 
     //@PostMapping("/newReport")
@@ -42,16 +45,29 @@ public class ReportController {
     }
 
 
-    @PutMapping("/updateReport/{reportId}")
-    public Report updateListing(@PathVariable long reportId, @RequestBody Report report) {
-        reportService.updateReport(reportId, report);
-        return reportService.getReportById(reportId);
+//    @PutMapping("/updateReport/{reportId}")
+//    public Report updateListing(@PathVariable long reportId, @RequestBody Report report) {
+//        reportService.updateReport(reportId, report);
+//        return reportService.getReportById(reportId);
+//    }
+
+    @GetMapping("/updateReport/{reportId}")
+    public String showUpdateReport(@PathVariable long reportId, @RequestBody Model model){
+        model.addAttribute("report", reportService.getReportById(reportId));
+        return "edit-report";
     }
+    @PostMapping("/update")
+    public String updateReport(Report report) {
+        reportService.updateReport(report.getReportId(), report);
+        return "redirect:/profile/" + report.getReportId();
+    }
+
 
     @DeleteMapping("/deleteReport/{reportId}")
     public String deleteReportById(@PathVariable long reportId) {
         reportService.deleteReportById(reportId);
         return "redirect:/reports/all";
     }
+
 
 }

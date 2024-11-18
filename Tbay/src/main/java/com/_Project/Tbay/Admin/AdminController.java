@@ -48,4 +48,15 @@ public class AdminController {
         adminservice.deleteUserById(userId);
         return "redirect:/admin/all";
     }
+
+//    @GetMapping("/ban/{userid}")
+//    public String showBanForm(@PathVariable int userId, Model model){
+//        model.addAttribute("user", adminservice.getUserById(userId));
+//        return "edit-profile";
+//    }
+//    @PostMapping("/ban")
+//    public String banUser(Model model) {
+//        adminservice.banUser(model.getUserById(), model);
+//        return "redirect:/admin/banlist";
+//    }
 }
