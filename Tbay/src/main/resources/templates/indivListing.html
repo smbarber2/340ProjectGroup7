@@ -71,7 +71,7 @@
                         </div>
                         <div class="product-price">
                             <span data-th-text="'$'+${listing.price}"></span>
-                            <a> <!--data-th-href="@{/carts/{cartId} (cartId=102)}"-->
+                            <a>
                                 <form action="/carts/addListing" method="post">
                                 <input type="hidden" name="cartId" data-th-value="102">
                                 <input type="hidden" name="listingId" data-th-value="${listing.listingId}">

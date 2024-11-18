@@ -23,7 +23,7 @@ public class AdminController {
     public String getAllUsers(Model model) {
         model.addAttribute("userList", adminservice.getAllUsers());
         model.addAttribute("title", "All Users");
-        return "user-list.html"; //Like the table from hw
+        return "user-list"; //Like the table from hw
     }
 
 

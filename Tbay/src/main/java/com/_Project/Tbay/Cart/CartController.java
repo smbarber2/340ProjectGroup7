@@ -9,10 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.ByteArrayInputStream;
-import java.io.ObjectInputStream;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,15 +55,9 @@ public class CartController {
         return "checkout";
     }
 
-    /*@PostMapping("/new")
+    @PostMapping("/new")
     public void addNewCart(@RequestBody Cart cart) {
         service.addNewCart(cart);
-    }*/
-
-    @PostMapping("/new")
-    public List<Cart> addNewCart(@RequestBody Cart cart) {
-        service.addNewCart(cart);
-        return service.getAllCarts();
     }
 
     @GetMapping("/update/{cartId}")

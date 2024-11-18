@@ -1,9 +1,6 @@
 package com._Project.Tbay.Cart;
 
-import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
-import com._Project.Tbay.User.User;
-import com._Project.Tbay.User.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
