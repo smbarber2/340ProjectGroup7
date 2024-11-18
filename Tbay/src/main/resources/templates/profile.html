@@ -46,9 +46,9 @@
                     <div class="user-info">
                         <img class="img-profile img-circle img-responsive center-block" src="../profilePic.png" alt="">
                         <ul class="meta list list-unstyled" style="list-style-type:none; padding-left: 0px;">
-                            <li class="name" width= 80px>Bob Bobson</li>
-                            <li class="email"><a href="#">bob@gmail.com</a></li>
-                            <li class="activity">Member Since: April 5th, 1945</li>
+                            <li class="name" width= 80px data-th-text="${user.name}"></li>
+                            <li class="email"><a href="#" data-th-text="${user.email}"></a></li>
+                            <p>User Since:<li class="activity" data-th-text="${user.creationDate}"> </li></p>
                         </ul>
                     </div>
                     <nav class="side-menu">
@@ -80,7 +80,7 @@
                             </a>
                         </div>
                         <div class="content-bio">
-                            <p>This is a sample bio for Bilbo Baggins. He has been a member of Tbay since April 5th, 1945.</p>
+                            <p class="card-text" data-th-text="${user.bio}"></p>
                         </div>
                     </div>
                     <div class="content-utilities">
