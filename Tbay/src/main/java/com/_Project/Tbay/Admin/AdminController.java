@@ -16,6 +16,7 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private AdminService adminservice;
+    @Autowired
     private ListingService listingService;
 
     //GET all users

@@ -55,6 +55,11 @@ public class UserController {
 //        return service.getUserById(userId);
 //    }
 
+    @GetMapping("/orders/{userId}")
+    public String showOrders(){
+        return "sellerOrders";
+    }
+
     @GetMapping("/update/{userid}")
     public String showUpdateForm(@PathVariable int userId, Model model){
         model.addAttribute("user", service.getUserById(userId));
