@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Create Account</title>
-    <link href="../static/css/log-in-style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/log-in-style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
@@ -11,25 +11,30 @@
 
 <body>
 <div class="main">
-    <img src="../static/tbaylogo.PNG" alt = "logo"
+    <img src="/static/tbaylogo.png" alt = "logo"
          width="200"
          height="180"/>
     <h1><u>Create Your Account</u></h1>
 
     <form action="/users/new" method="post">
-        <label for="first">
+        <label for="name">
+            Name:
+        </label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Name" required>
+<p>
+        <label for="email">
             Email:
         </label>
-        <input type="text" class="form-control" id="first" name="first" placeholder="Enter your Email" required>
-
+        <input type="text" class="form-control" id="email" name="email" placeholder="Enter your Email" required>
+</p>
         <p>
             <label for="password">Password:</label>
-            <input name="password" class="form-control" required="required" type="password" id="password"><!--oninput="check()" -->
+            <input name="password" class="form-control" required="required" placeholder="Enter a Password" type="password" id="password">
         </p>
 
         <p>
             <label for="password_confirm">Confirm Password:</label>
-            <input name="password_confirm" class="form-control" required="required" type="password" id="password_confirm"> <!--oninput="check()" -->
+            <input name="password_confirm" class="form-control" required="required" type="password" id="password_confirm" placeholder="Match your Password"> <!--oninput="check()" -->
         </p>
 
 

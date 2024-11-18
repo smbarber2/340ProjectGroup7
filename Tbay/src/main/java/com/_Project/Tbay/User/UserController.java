@@ -44,8 +44,11 @@ public class UserController {
         cartService.addNewCart(cart);
         user.setCartId(cart.getCartId());
         service.addNewUser(user);
-        return "redirect:/homepage.html";
+        return "homepageUser" + user.getUserId();
     }
+
+    @GetMapping("homepageUser/{userId}")
+    public String homepageUser(){return "homepageUser";}
 
     //Pre MVC update
 //    @PutMapping("/update/{userId}")
@@ -67,7 +70,7 @@ public class UserController {
     @PostMapping("/update")
     public String updateUser(User user) {
         service.updateUser(user.getUserId(), user);
-        return "redirect:/profile/" + user.getUserId();
+        return "redirect:/profile/";
     }
 
 //    @GetMapping("/ban/{userid}")
