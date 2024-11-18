@@ -43,11 +43,12 @@ public class AdminController {
     //}
 
     //DELETE existing User
-    @DeleteMapping("/delete/{userId}")
+    @GetMapping("/delete/{userId}")
     public String deleteUserById(@PathVariable long userId) {
         adminservice.deleteUserById(userId);
         return "redirect:/admin/all";
     }
+
 
 //    @GetMapping("/ban/{userid}")
 //    public String showBanForm(@PathVariable int userId, Model model){

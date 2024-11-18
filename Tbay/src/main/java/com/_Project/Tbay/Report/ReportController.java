@@ -63,7 +63,7 @@ public class ReportController {
     }
 
 
-    @DeleteMapping("/deleteReport/{reportId}")
+    @GetMapping("/deleteReport/{reportId}")
     public String deleteReportById(@PathVariable long reportId) {
         reportService.deleteReportById(reportId);
         return "redirect:/reports/all";
