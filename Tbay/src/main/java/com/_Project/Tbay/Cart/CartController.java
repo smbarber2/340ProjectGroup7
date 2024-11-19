@@ -40,7 +40,7 @@ public class CartController {
         model.addAttribute("title", "Cart:"+cartId);
 
         List<Listing> list = new ArrayList<>();
-        List<Integer> deserializedList = service.getCartListing(cartId);
+        List<Integer> deserializedList = service.getCartById(cartId).getCartList();
 
         for(int val: deserializedList){
             list.add(listingService.getListingById(val));

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Individual Listing Page</title>
+    <link rel="stylesheet" type="text/css" href="../css/indivListingStyle.css" th:href="@{/css/indivListingStyle.css}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div class="banner">
+
+        <div class="logo">
+            <a href="homepage.html"><img th:src="@{/tbaylogoTRANS.png}" height="150" width="170"> </a>
+        </div>
+
+        <div class="search">
+            <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
+        </div>
+        <a href="results.html">
+            <div class="SearchButton">
+                <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
+            </div>
+        </a>
+
+        <div class="shopping">
+            <a href="checkout.html"><img th:src="@{/shopping-cart.png}" height="75" width="75" ></a>
+        </div>
+
+        <div class="profile">
+            <a href="profile.html"><img th:src="@{/smegolPFP.png}" height="125" width="125" ></a>
+        </div>
+    </div>
+</head>
+<body>
+
+<div class="container">
+    <div class="view-account">
+        <section class="module">
+            <div class="module-inner">
+                <div class="side-bar">
+                    <nav class="side-menu">
+                        <ul class="nav" style="padding-left: 0px;">
+                            <li><a href="#"><img th:src="@{/tbaylogoTRANS.png}" alt="" class="center"></a></li>
+                            <li><a href="#"><img th:src="@{/tbaylogoTRANS.png}" alt="" class="center"></a></li>
+                            <li><a href="#"><img th:src="@{/tbaylogoTRANS.png}" alt="" class="center"></a></li>
+                            <li><a href="#"><img th:src="@{/tbaylogoTRANS.png}" alt="" class="center"></a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="content-panel">
+                    <div class="left-column">
+                        <img data-image="black" th:src="@{/tbaylogo.PNG}" alt="">
+                    </div>
+                    <form id="new-listing" action="/Listing/newListing" method="post">
+                        <div class="right-column">
+                            <div class="product-description">
+                                <span><input type="text" id="tag" name="tag" placeholder="tag"/></span>
+                                <h1><input type="text" id="name" name="name" placeholder="name"/></h1>
+                                <h2 data-th-text="'Listed by: ' +${sellerId}" >   </h2>
+                                <p><input type="text" id="description" name="description" placeholder="description"/></p>
+                            </div>
+                            <div class="product-configuration">
+                                <div class="type-config">
+                                    <div class="type-choose">
+                                        <button>Thing1</button>
+                                        <button>Thing2</button>
+                                        <button>Thing3</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <span><input type="text" id="price" name="price" placeholder="$price"/></span>
+                                <a>
+                                        <input type="hidden" name="sellerId" data-th-value="${sellerId}">
+                                        <button type="submit" class="cart-button">Add Listing</button>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+
+
+
+</body>
+</html>

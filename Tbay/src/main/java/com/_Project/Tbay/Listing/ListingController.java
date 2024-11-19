@@ -1,5 +1,6 @@
 package com._Project.Tbay.Listing;
 
+import com._Project.Tbay.Seller.SellerService;
 import com._Project.Tbay.User.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import java.util.List;
 public class ListingController {
     @Autowired
     private ListingService service;
+    @Autowired
+    private SellerService sellerService;
 
     @GetMapping("/allListing")
     public String getAllListings(Model model){
@@ -28,15 +31,16 @@ public class ListingController {
         return "indivListing";
     }
 
-    @GetMapping("/showNew")
-    public String showNewListing(Model model){
-        return "createListing";
+    @GetMapping("/showNew/{sellerId}")
+    public String showNewListing(@PathVariable long sellerId, Model model){
+        return "indivListingAdd";
     }
 
     @PostMapping("/newListing")
-    public String addNewListing(@RequestBody Listing listing){
+    public String addNewListing(@RequestParam("sellerId") long sellerId, Listing listing){
         service.addNewListing(listing);
-        return "redirect:/Listing/"+listing.getListingId();
+        sellerService.addToSellerList(sellerId, listing.getListingId(), "listings");
+        return "redirect:/seller/"+sellerId;
     }
 
     @GetMapping("/updateListing/{listingId}")

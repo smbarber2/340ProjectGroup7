@@ -23,7 +23,7 @@ public class ReportService {
         reportRepository.save(report);
     }
 
-    public void updateReport(long reportId, Report report) {
+    public void updateReport(long reportId) {
         Report existing = getReportById(reportId);
         existing.setReason(existing.getReason());
         existing.setStatus(existing.isStatus());

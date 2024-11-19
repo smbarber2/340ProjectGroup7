@@ -61,10 +61,11 @@ public class ReportController {
         model.addAttribute("report", reportService.getReportById(reportId));
         return "edit-report";
     }
+
     @PostMapping("/update")
-    public String updateReport(Report report) {
-        reportService.updateReport(report);
-        return "redirect:/profile/" + report.getReportId();
+    public String updateReport(long reportId) {
+        reportService.updateReport(reportId);
+        return "redirect:/profile/" + reportId;
     }
 
 
