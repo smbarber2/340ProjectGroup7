@@ -58,14 +58,14 @@
     <div class="card-header" data-th-text="'Date Received: '+ ${report.date}">
     </div>
     <div class="card-body">
-      <h5 class="card-title" data-th-text=" 'User receiving report: '+ ${report.name} +' UserId: ('+ ${report.userId} +')'"></h5>
+      <h5 class="card-title" data-th-text=" 'User receiving report: '+ ${report.name}"></h5>
+      <h5 class="card-subtitle" data-th-text=" ' UserId: '+ ${report.userId}"></h5>
       <h5 class="card-text" data-th-text="'Reasoning: ' + ${report.reason}"></h5>
-      <a data-th-href="@{/reports/delete/{reportId}(reportId=${report.reportId})}" class="btn btn-danger">Delete
-        Report</a>
-      <a data-th-href="@{/reports/updateReport/{reportId} (reportId=${report.reportId})}"
-         class="btn btn-primary">Edit Report</a>
 
-      <a href="/reports/all" class="btn btn-primary">Go back</a>
+      <a data-th-href="@{/reports/updateReport/{reportId} (reportId = ${report.reportId})}" class="btn btn-primary">Edit Report</a>
+
+      <a data-th-href="@{/reports/deleteReport/{reportId} (reportId = ${report.reportId})}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete Report</a>
+      <a href="/reports/all" class="btn btn-secondary">Return</a>
     </div>
     <div class="card-footer text-body-secondary" data-th-text="'Report Id: ' + ${report.reportId}">
 

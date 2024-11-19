@@ -2,6 +2,7 @@ package com._Project.Tbay.User;
 
 import com._Project.Tbay.Cart.Cart;
 import com._Project.Tbay.Cart.CartService;
+import com._Project.Tbay.Report.Report;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -76,16 +77,16 @@ public class UserController {
         return "redirect:/profile/";
     }
 
-//    @GetMapping("/ban/{userid}")
-//    public String showBanForm(@PathVariable int userId, Model model){
-//        model.addAttribute("user", service.getUserById(userId));
-//        return "ban-profile";
-//    }
-//    @PostMapping("/banUpdate")
-//    public String banUser(User user) {
-//        service.banUser(user.getUserId(), user);
-//        return "redirect:/admin/banlist";
-//    }
+    @GetMapping("/ban/{userid}")
+    public String showBanForm(@PathVariable int userId, @RequestBody Model model){
+        model.addAttribute("user", service.getUserById(userId));
+        return "ban-create";
+    }
+    @PostMapping("/banUpdate")
+    public String updateBan(User user) {
+        service.updateBan(user.getUserId(), user);
+        return "redirect:/admin/banlist";
+    }
 
 
 }

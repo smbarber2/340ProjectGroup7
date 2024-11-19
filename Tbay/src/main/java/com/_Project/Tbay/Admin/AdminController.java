@@ -49,7 +49,6 @@ public class AdminController {
         return "redirect:/admin/all";
     }
 
-
 //    @GetMapping("/ban/{userid}")
 //    public String showBanForm(@PathVariable int userId, Model model){
 //        model.addAttribute("user", adminservice.getUserById(userId));

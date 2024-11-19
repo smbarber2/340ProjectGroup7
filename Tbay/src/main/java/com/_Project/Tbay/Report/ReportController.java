@@ -57,15 +57,16 @@ public class ReportController {
 //    }
 
     @GetMapping("/updateReport/{reportId}")
-    public String showUpdateReport(@PathVariable long reportId, @RequestBody Model model){
+    public String showUpdateReport(@PathVariable long reportId, Model model){
         model.addAttribute("report", reportService.getReportById(reportId));
         return "edit-report";
     }
     @PostMapping("/update")
     public String updateReport(Report report) {
-        reportService.updateReport(report.getReportId(), report);
+        reportService.updateReport(report);
         return "redirect:/profile/" + report.getReportId();
     }
+
 
 
     @GetMapping("/deleteReport/{reportId}")
