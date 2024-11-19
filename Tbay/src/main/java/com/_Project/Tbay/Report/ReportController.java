@@ -65,7 +65,7 @@ public class ReportController {
     @PostMapping("/update")
     public String updateReport(long reportId) {
         reportService.updateReport(reportId);
-        return "redirect:/profile/" + reportId;
+        return "redirect:/reports/" + reportId;
     }
 
 

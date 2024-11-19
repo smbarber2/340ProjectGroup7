@@ -77,8 +77,8 @@ public class UserController {
         return "redirect:/profile/";
     }
 
-    @GetMapping("/ban/{userid}")
-    public String showBanForm(@PathVariable int userId, @RequestBody Model model){
+    @GetMapping("/ban/{userId}")
+    public String showBanForm(@PathVariable int userId, Model model){
         model.addAttribute("user", service.getUserById(userId));
         return "ban-create";
     }
