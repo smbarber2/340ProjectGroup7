@@ -20,6 +20,8 @@ public class Report {
 
     private long userId;
 
+    private String email;
+
     private String name;
 
     private String reason;
@@ -29,10 +31,11 @@ public class Report {
 
     private boolean status;
 
-    public Report(int reportId, long listingId, long adminId, long userId, String name, String reason, Date date, Boolean status) {
+    public Report(int reportId, long listingId, long adminId, long userId, String email, String name, String reason, Date date, Boolean status) {
         this.reportId = reportId;
         this.adminId = adminId;
         this.userId = userId;
+        this.email = email;
         this.name = name;
         this.reason = reason;
         this.date = date;
@@ -71,6 +74,14 @@ public class Report {
 
     public long getUserId() {
         return userId;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setName(String name) {
