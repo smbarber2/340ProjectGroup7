@@ -44,14 +44,18 @@
   <div class="editReport">
     <div class="editForm">
       <center><h2>Edit Report</h2></center>
-      <label>Email:</label> <input type="text" class="form-control" id="email" name="email" placeholder="${report.email}" data-th-value="${report.email}"><br>
-      <label>Name:</label> <input type="text" class="form-control" id="name" name="name" placeholder="${report.name}" data-th-value="${report.name}"><br>
-      <label>Reason:</label> <input type="text" class="form-control" id="reason" name="reason" placeholder="${report.reason}" data-th-value="${report.reason}"><br>
+      <form action="/reports/update" method="post">
+        <label>Email:</label> <input type="text" class="form-control" id="email" name="email" placeholder="${report.email}" data-th-value="${report.email}"><br>
+        <label>Name:</label> <input type="text" class="form-control" id="name" name="name" placeholder="${report.name}" data-th-value="${report.name}"><br>
+        <label>Reason:</label> <input type="text" class="form-control" id="reason" name="reason" placeholder="${report.reason}" data-th-value="${report.reason}"><br>
+        <input type="hidden" name="reportId" data-th-value="${report.reportId}">
+        <input type="hidden" name="userId" data-th-value="${report.userId}">
+        <input type="hidden" name="adminId" data-th-value="${report.adminId}">
 
-      <button type="submit" href="/reports/update" class="btn btn-primary">Save</button>
+        <button type="submit"  class="btn btn-primary">Save</button>
 
-      <a href="/reports/all" class="btn btn-secondary">Cancel</a>
-
+        <a href="/reports/all" class="btn btn-secondary">Cancel</a>
+      </form>
     </div>
 
   </div>

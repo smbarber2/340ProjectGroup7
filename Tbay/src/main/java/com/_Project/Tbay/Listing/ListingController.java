@@ -43,7 +43,7 @@ public class ListingController {
         return "redirect:/seller/"+sellerId;
     }
 
-    @GetMapping("/updateListing/{listingId}")
+    /*@GetMapping("/updateListing/{listingId}")
     public String showUpdate(@PathVariable long listingId, Model model) {
        model.addAttribute("listing", service.getListingById(listingId));
        return "listingUpdate";
@@ -66,7 +66,7 @@ public class ListingController {
         model.addAttribute("listingList", service.getListingBySearch(name));
         model.addAttribute("title", "Name:" + name);
         return "ListingPage";
-    }
+    }*/
 
 
 }
