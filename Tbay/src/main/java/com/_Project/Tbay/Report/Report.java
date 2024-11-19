@@ -1,6 +1,7 @@
 package com._Project.Tbay.Report;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Report {
 
     private String reason;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     private boolean status;
