@@ -35,8 +35,8 @@ public class User {
     @Column(nullable=false)
     protected boolean status;
 
-    @Column(nullable=true)
-    protected boolean ban;
+//    @Column(nullable=true)
+//    protected boolean ban;
 
     @Column(nullable=true)
     protected long cartId;
@@ -53,7 +53,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.auth = auth;
-        this.ban = ban;
+//        this.ban = ban;
         this.status = status;
         this.creationDate = creationDate;
         this.pfp = pfp;
@@ -89,6 +89,13 @@ public class User {
         this.wishlist = wishlist;
    }
 
+    public String getPfp() {
+        return pfp;
+    }
+
+    public void setPfp(String pfp) {
+        this.pfp = pfp;
+    }
 
     public void setStatus(boolean status) {
         this.status = status;
@@ -152,9 +159,9 @@ public class User {
 
     //Banning stuff
 
-    public void setBan(boolean ban) { this.ban = ban; }
+    //public void setBan(boolean ban) { this.ban = ban; }
 
-    public boolean isBan() { return ban;}
+    //public boolean isBan() { return ban;}
 }
 
 

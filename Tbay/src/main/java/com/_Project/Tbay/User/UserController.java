@@ -18,16 +18,6 @@ public class UserController {
     @Autowired
     private CartService cartService;
 
-    //Pre MVC new
-//    @PostMapping("/new")
-//    public List<User> addNewUser(@RequestBody User user){
-//        Cart cart = new Cart();
-//        cartService.addNewCart(cart);
-//        user.setCartId(cart.getCartId());
-//        service.addNewUser(user);
-//        return service.getAllUsers();
-//    }
-
     //GET specific user
     @GetMapping("/{userId}")
     public String getUserById(@PathVariable long userId, Model model) {
@@ -36,9 +26,11 @@ public class UserController {
         return "profile";
     }
 
+    //GET create an account page and form
     @GetMapping("/create-acct")
     public String createAcct(){return "create-acct";}
 
+    //POST a new user and redirect to their homepage
     @PostMapping("/new")
     public String addNewUser(User user){
         Cart cart = new Cart();
@@ -48,45 +40,45 @@ public class UserController {
         return "homepageUser";
     }
 
+    //GET user specific homepage
     @GetMapping("/homepageUser/{userId}")
     public String homepageUser(@PathVariable long userId, Model model){
         model.addAttribute("user", service.getUserById(userId));
         model.addAttribute("title", userId);
         return "homepageUser";}
 
-    //Pre MVC update
-//    @PutMapping("/update/{userId}")
-//    public User updateUser(@PathVariable long userId, @RequestBody User user) {
-//        service.updateUser(userId, user);
-//        return service.getUserById(userId);
-//    }
 
+    //GET specific orders for a seller
     @GetMapping("/orders/{userId}")
     public String showOrders(){
         return "sellerOrders";
     }
 
-    @GetMapping("/update/{userid}")
-    public String showUpdateForm(@PathVariable long userId, Model model){
+
+
+    //GET updated information about a user and form to edit it
+    @GetMapping("/edit/{userId}")
+    public String edit(@PathVariable long userId, Model model) {
         model.addAttribute("user", service.getUserById(userId));
         return "edit-profile";
     }
+
     @PostMapping("/update")
     public String updateUser(User user) {
         service.updateUser(user.getUserId(), user);
-        return "redirect:/profile/";
+        return "redirect:/" + user.getUserId();
     }
 
-    @GetMapping("/ban/{userId}")
-    public String showBanForm(@PathVariable int userId, Model model){
-        model.addAttribute("user", service.getUserById(userId));
-        return "ban-create";
-    }
-    @PostMapping("/banUpdate")
-    public String updateBan(User user) {
-        service.updateBan(user.getUserId(), user);
-        return "redirect:/admin/banlist";
-    }
+//    @GetMapping("/ban/{userId}")
+//    public String showBanForm(@PathVariable int userId, Model model){
+//        model.addAttribute("user", service.getUserById(userId));
+//        return "ban-create";
+//    }
+//    @PostMapping("/banUpdate")
+//    public String updateBan(User user) {
+//        service.updateBan(user.getUserId(), user);
+//        return "redirect:/admin/banlist";
+//    }
 
 
 }

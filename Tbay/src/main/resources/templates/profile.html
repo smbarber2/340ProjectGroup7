@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:data-th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -69,9 +69,9 @@
                     <div class="content-header-wrapper">
                         <h2 class="title">Bio:</h2>
                         <div class="actions">
-                            <a href="edit-profile.html">
-                              <button class="btn btn-success"><i class="fa fa-plus"></i> Edit Profile</button>
-                            </a>                           
+                            <a th:href="@{/users/edit/{userId}(userId=${userId})}">
+                                <button class="btn btn-success"><i class="fa fa-plus"></i>Edit Profile</button>
+                            </a>
                             <a href="sellerpage.html">
                               <button class="btn btn-success"><i class="fa fa-plus"></i> Switch To Seller</button>
                             </a>

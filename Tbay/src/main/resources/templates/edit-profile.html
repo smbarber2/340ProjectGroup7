@@ -1,11 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Edit Profile</title>
     <html lang="en" xmlns:th="https://www.thymeleaf.org">
-    <link rel="stylesheet" href="../static/css/profile.css">
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        head{
+
+}
+
+/**BLUE HEADER HOLDER**/
+.banner {
+  border-radius: 25px;
+  background: #d7ecf4;
+  position: relative;
+  top: 0%
+  left: 0%
+  width: auto;
+  height: 150px;
+}
+
+/**LOGO Dimensions**/
+.logo{
+height: 150px;
+width: 170px;
+position: relative;
+}
+
+/**SEARCH BAR**/
+#mySearch {
+  width: 50%;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+  top: -100px;
+  left: 25%;
+  padding: 3px;
+  border: 1px solid #ddd;
+}
+
+/**STYLE of the Search button**/
+.search-button{
+color: white;
+border-radius:8px;
+background: #63D2BA;
+font-family: 'Trebuchet MS', sans-serif;
+font-size: 20px;
+}
+
+/**POSITION of the Search Button**/
+.SearchButton{
+position: relative;
+top:-139px;
+left:70%;
+height: 30px;
+width: 80px;
+}
+
+.shopping{
+height: 75px;
+width: 75px;
+position: relative;
+top: -195px;
+left: 80%;
+}
+
+/**PFP circle**/
+.profile{
+position: relative;
+left: 91%;
+top: -290px;
+height: 125px;
+width: 125px;
+background-color: #637AD2;
+border-radius: 50%;
+
+}
+
+body {
+
+}
+
+h1 {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 40px;
+  color: #7ecbe9;
+  text-shadow: -2px 2px 4px #236179;
+}
+
+h2{
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 35px;
+  color: #8095e7;
+  text-shadow: -2px 1px 2px #3e4f95;
+}
+
+h3{
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 25px;
+  color: #7adbc6;
+  text-shadow: -2px 2px 2px #3a8978;
+}
+
+p {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 12px;
+}
+
+css.a { text-decoration: none; }
+
+
+}
+
+.main {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    width: 500px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #555;
+    font-weight: bold;
+}
+
+
+input {
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.button{
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color: #53aacd;
+    width: 100%;
+    font-size: 16px;
+     opacity: 0.6; /* Initially disabled */
+     pointer-events: none; /* Initially disabled */
+}
+
+.submit-btn.enabled {
+            opacity: 1; /* Enabled */
+            pointer-events: auto; /* Enabled */
+}
+
+    </style>
+
 
     <link rel="stylesheet" href="../static/css/generalStyleTbay.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +176,7 @@
     <div class="banner">
 
         <div class="logo">
-            <a href="homepage.html"><img src="../static/tbaylogoTRANS.png" height="150" width="170"> </a>
+            <a href="homepage.html"><img src="../tbaylogoTRANS.png" height="150" width="170"> </a>
         </div>
 
         <div class="search">
@@ -26,11 +189,11 @@
         </a>
 
         <div class="shopping">
-            <a href="checkout.html"><img src="../static/shopping-cart.png" height="75" width="75" ></a>
+            <a href="checkout.html"><img src="https://raw.githubusercontent.com/smbarber2/340ProjectGroup7/refs/heads/main/Tbay/src/main/resources/templates/shopping-cart.png" height="75" width="75" ></a>
         </div>
 
         <div class="profile">
-            <a href="profile.html"><img src="../static/profilePic.png" height="125" width="125" ></a>
+            <a href="profile.html"><img src="https://raw.githubusercontent.com/smbarber2/340ProjectGroup7/refs/heads/main/Tbay/src/main/resources/templates/pfp.png" height="125" width="125" ></a>
         </div>
     </div>
 </head>
@@ -43,14 +206,16 @@
 <div class="editPFP">
 
 </div>
-<div class="editForm">
+        <form action="/update" method="post">
+
+        <div class="editForm">
     <center>
         <label>Name:</label> <input type="text" class="form-control" id="name" name="name" placeholder="${user.name}" data-th-value="${user.name}"><br>
         <label>Email:</label> <input type="text" class="form-control" id="email" name="email" placeholder="${user.email}" data-th-value="${user.email}"><br>
         <label>Password:</label> <input type="text" class="form-control" id="password" name="password" placeholder="${user.password}"
                         data-th-value="${user.password}"><br>
-        <label>Bio:</label> <textarea class="form-control" id="bio" rows="3" name="bio" placeholder="${user.bio}"
-                               data-th-text="${user.bio}"></textarea><br>
+        <label>Bio:</label> <input type="text" class="form-control" id="bio" rows="3" name="bio" placeholder="${user.bio}"
+                               data-th-text="${user.bio}"><br>
     <button type="submit" class="btn btn-primary">Save</button>
     </center>
 
