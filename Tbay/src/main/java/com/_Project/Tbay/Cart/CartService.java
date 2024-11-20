@@ -4,6 +4,7 @@ import com._Project.Tbay.Listing.ListingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,12 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 public class CartService {
     @Autowired
     private CartRepository cartRepository;
+    @Lazy
     @Autowired
     private ListingService listingService;
     @Autowired
@@ -24,7 +27,9 @@ public class CartService {
 
     private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 
-    public Cart getCartById(long cartId) { return cartRepository.findById(cartId).orElse(null);}
+    public Cart getCartById(long cartId) {
+        return cartRepository.findById(cartId).orElse(null);
+    }
 
     public List<Cart> getAllCarts() {
         return cartRepository.findAll();
@@ -62,9 +67,13 @@ public class CartService {
     public void addListing(long cartId, long listingId) {
         Cart existing = getCartById(cartId);
         List<Integer> list = existing.getCartList();
+        float total = 0;
         list.add((int)listingId);
         existing.setCartList(list);
-        existing.setTotalPrice(existing.getTotalPrice()+listingService.getListingById(listingId).getPrice());
+        for (Integer integer : list) {
+            total += listingService.getListingById(integer).getPrice();
+        }
+        existing.setTotalPrice(total);
         cartRepository.save(existing);
     }
 
@@ -79,6 +88,26 @@ public class CartService {
         existing.setCartList(list);
         existing.setTotalPrice(existing.getTotalPrice()-listingService.getListingById(listingId).getPrice());
         cartRepository.save(existing);
+    }
+
+    public void updateTotal(Cart cart){
+        float total = 0;
+        List<Integer> list = cart.getCartList();
+        for (Integer integer : list) {
+            total += listingService.getListingById(integer).getPrice();
+        }
+        cart.setTotalPrice(total);
+        cartRepository.save(cart);
+    }
+
+    public void updateCartListings(long listingId){
+        List<Cart> allCarts = getAllCarts();
+        for(Cart cart:allCarts){
+            List<Integer> list = cart.getCartList();
+            if(list.contains((int)listingId)){
+                updateTotal(cart);
+            }
+        }
     }
 
 }

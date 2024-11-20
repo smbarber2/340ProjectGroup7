@@ -1,5 +1,6 @@
 package com._Project.Tbay.Listing;
 
+import com._Project.Tbay.Cart.CartService;
 import com._Project.Tbay.Seller.SellerService;
 import com._Project.Tbay.User.User;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ public class ListingController {
     private ListingService service;
     @Autowired
     private SellerService sellerService;
+    @Autowired
+    private CartService cartService;
 
     @GetMapping("/allListing")
     public String getAllListings(Model model){
@@ -63,13 +66,15 @@ public class ListingController {
     @PostMapping("/update")
     public String updateListing(Listing listing, long sellerId) {
         service.addNewListing(listing);
+        cartService.updateCartListings(listing.getListingId());
         return "redirect:/seller/sellerListings/" + sellerId;
     }
 
-    @DeleteMapping("/delete/{listingId}")
+    @GetMapping("/delete/{listingId}")
     public String deleteListingById(@PathVariable long listingId) {
-        service.deleteListingById(listingId);
-        return "redirect:/Listing/allListing";
+        long sellerId = service.getListingById(listingId).getSellerId();
+        service.deleteListingById(sellerId, listingId);
+        return "redirect:/seller/sellerListings/" + sellerId;
     }
 
     @GetMapping("/search") // /search?contains= input

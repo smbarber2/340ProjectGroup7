@@ -1,8 +1,12 @@
 package com._Project.Tbay.Listing;
 
+import com._Project.Tbay.Cart.Cart;
+import com._Project.Tbay.Cart.CartService;
+import com._Project.Tbay.Seller.SellerService;
 import com._Project.Tbay.User.User;
 import com._Project.Tbay.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +15,12 @@ import java.util.List;
 public class ListingService {
     @Autowired
     private ListingRepository listingRepository;
+    @Lazy
+    @Autowired
+    private CartService cartService;
+    @Lazy
+    @Autowired
+    private SellerService sellerService;
 
     public List<Listing> getAllListings() {
         return listingRepository.findAll();
@@ -36,7 +46,12 @@ public class ListingService {
 
     public List<Listing> getListingBySearch(String name) {return listingRepository.findByNameContainingIgnoreCase(name); }
 
-    public void deleteListingById(long listingId) {
+    public void deleteListingById(long sellerId, long listingId) {
+        List<Cart> allCarts = cartService.getAllCarts();
+        for(Cart cart:allCarts){
+            cartService.removeListing(cart.getCartId(), listingId);
+        }
+        sellerService.deleteToSellerList(sellerId, listingId);
         listingRepository.deleteById(listingId);
     }
 

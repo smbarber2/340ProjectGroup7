@@ -6,6 +6,7 @@ import com._Project.Tbay.Listing.ListingService;
 import com._Project.Tbay.User.User;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 public class SellerService {
     @Autowired
     private SellerRepository sellerRepository;
+    @Lazy
     @Autowired
     private ListingService listingService;
 
@@ -61,6 +63,14 @@ public class SellerService {
             case "incoming":
                 seller.setIncomingOrders(list);
         }
+        sellerRepository.save(seller);
+    }
+
+    public void deleteToSellerList(long sellerId, long listingId){
+        Seller seller = getSellerById(sellerId);
+        List<Integer> list = getSellerById(sellerId).getSellerListings();
+        list.remove(Integer.valueOf((int) listingId));
+        seller.setSellerListings(list);
         sellerRepository.save(seller);
     }
 }
