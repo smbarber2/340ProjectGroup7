@@ -28,11 +28,21 @@ public class ListingController {
     public String getListing(@PathVariable long listingId, Model model) {
         model.addAttribute("listing", service.getListingById(listingId));
         model.addAttribute("title", "Listing Details:"+listingId);
+        model.addAttribute("seller", sellerService.getSellerById(service.getListingById(listingId).getSellerId()));
         return "indivListing";
+    }
+
+    @GetMapping("/seller/{listingId}")
+    public String getSellerListing(@PathVariable long listingId, Model model) {
+        model.addAttribute("listing", service.getListingById(listingId));
+        model.addAttribute("title", "Listing Details:"+listingId);
+        model.addAttribute("seller", sellerService.getSellerById(service.getListingById(listingId).getSellerId()));
+        return "indivListingSeller";
     }
 
     @GetMapping("/showNew/{sellerId}")
     public String showNewListing(@PathVariable long sellerId, Model model){
+        model.addAttribute("seller", sellerService.getSellerById(sellerId));
         return "indivListingAdd";
     }
 
@@ -43,16 +53,17 @@ public class ListingController {
         return "redirect:/seller/"+sellerId;
     }
 
-    /*@GetMapping("/updateListing/{listingId}")
+    @GetMapping("/updateListing/{listingId}")
     public String showUpdate(@PathVariable long listingId, Model model) {
        model.addAttribute("listing", service.getListingById(listingId));
-       return "listingUpdate";
+       model.addAttribute("seller", sellerService.getSellerById(service.getListingById(listingId).getSellerId()));
+       return "indivListingEdit";
     }
 
     @PostMapping("/update")
-    public String updateListing(Listing listing) {
+    public String updateListing(Listing listing, long sellerId) {
         service.addNewListing(listing);
-        return "redirect:/Listing/" +listing.getListingId();
+        return "redirect:/seller/sellerListings/" + sellerId;
     }
 
     @DeleteMapping("/delete/{listingId}")
@@ -66,7 +77,7 @@ public class ListingController {
         model.addAttribute("listingList", service.getListingBySearch(name));
         model.addAttribute("title", "Name:" + name);
         return "ListingPage";
-    }*/
+    }
 
 
 }

@@ -15,6 +15,9 @@ public class Listing {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private long sellerId;
+
     private String tag;
 
     private String description;
@@ -24,13 +27,14 @@ public class Listing {
 
     private List<Long> reviewIds;
 
-    public Listing(long listingId, String name, String tag, String description, float price, List<Long> reviewIds) {
+    public Listing(long listingId, String name, String tag, String description, float price, List<Long> reviewIds, long sellerId) {
         this.listingId = listingId;
         this.name = name;
         this.tag = tag;
         this.description = description;
         this.price = price;
         this.reviewIds = reviewIds;
+        this.sellerId = sellerId;
     }
     public Listing(){}
 
@@ -87,5 +91,13 @@ public class Listing {
 
     public List<Long> getReviewIds() {
         return reviewIds;
+    }
+
+    public long getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(long sellerId) {
+        this.sellerId = sellerId;
     }
 }

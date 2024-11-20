@@ -28,7 +28,7 @@
         </div>
 
         <div class="profile">
-            <a href="profile.html"><img th:src="@{/smegolPFP.png}" height="125" width="125" ></a>
+            <a data-th-href="@{/seller/sellerListings/{sellerId} (sellerId=${seller.sellerId})}"><img th:src="@{/smegolPFP.png}" height="125" width="125" ></a>
         </div>
     </div>
 </head>
@@ -67,7 +67,7 @@
                     <div class="drive-wrapper drive-grid-view" style="margin-bottom: 15px;">
                         <div class="grid-items-wrapper">
                             <tr data-th-each="listing : ${listingList}">
-                                <a data-th-href="@{/Listing/{listingId} (listingId=${listing.listingId})}" style="color: #616670">
+                                <a data-th-href="@{/Listing/seller/{listingId} (listingId=${listing.listingId})}" style="color: #616670">
                                     <div class="drive-item module text-center">
                                         <div class="drive-item-inner module-inner">
                                             <div class="drive-item-thumb">
