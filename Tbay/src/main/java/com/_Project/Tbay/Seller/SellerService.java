@@ -36,32 +36,54 @@ public class SellerService {
             case "listings" -> getSellerById(sellerId).getSellerListings();
             case "completed" -> getSellerById(sellerId).getCompletedOrders();
             case "incoming" -> getSellerById(sellerId).getIncomingOrders();
-            default -> new ArrayList<>();
+            default -> null;
         };
 
-        for(int val: deserializedList){
-            list.add(listingService.getListingById(val));
+        if(deserializedList!=null){
+            for(int val: deserializedList){
+                list.add(listingService.getListingById(val));
+            }
         }
-
         return list;
+    }
+
+    public void updateSellerListing(long sellerId){
+        Seller seller = getSellerById(sellerId);
+        List<Listing> listings = listingService.getAllListings();
+        List<Integer> sellerListings = new ArrayList<>();
+
+        for(Listing listing:listings){
+            if(listing.getSellerId()==sellerId){
+                sellerListings.add((int)listing.getListingId());
+            }
+        }
+        seller.setSellerListings(sellerListings);
+        sellerRepository.save(seller);
     }
 
     public void addToSellerList(long sellerId, long listingId, String listingType){
         Seller seller = getSellerById(sellerId);
+        updateSellerListing(sellerId);
         List<Integer> list = switch (listingType) {
-            case "listings" -> getSellerById(sellerId).getSellerListings();
-            case "completed" -> getSellerById(sellerId).getCompletedOrders();
-            case "incoming" -> getSellerById(sellerId).getIncomingOrders();
-            default -> new ArrayList<>();
+            case "listings" -> seller.getSellerListings();
+            case "completed" -> seller.getCompletedOrders();
+            case "incoming" -> seller.getIncomingOrders();
+            default -> null;
         };
+        if(list==null){
+            list = new ArrayList<>();
+        }
         list.add((int) listingId);
         switch (listingType){
             case "listings":
                 seller.setSellerListings(list);
+                break;
             case "completed":
                 seller.setCompletedOrders(list);
+                break;
             case "incoming":
                 seller.setIncomingOrders(list);
+                break;
         }
         sellerRepository.save(seller);
     }

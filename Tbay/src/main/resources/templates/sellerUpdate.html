@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SellerProfile</title>
+    <link rel="stylesheet" href="../css/profile.css" th:href="@{/css/profile.css}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div class="banner">
+
+        <div class="logo">
+            <a href="seller-homepage.html"><img th:src="@{/tbaylogoTrans.png}" height="150" width="170"> </a>
+        </div>
+
+        <div class="search">
+            <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
+        </div>
+        <a href="results.html">
+            <div class="SearchButton">
+                <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
+            </div>
+        </a>
+
+        <div class="shopping">
+            <a href="checkout.html"><img th:src="@{/shopping-cart.png}" height="75" width="75" ></a>
+        </div>
+
+        <div class="profile">
+            <a data-th-href="@{/seller/{sellerId} (sellerId=${seller.sellerId})}"><img th:src="@{'data:image/jpeg;base64,'+${profilePic}}" height="125" width="125" ></a>
+        </div>
+    </div>
+</head>
+<body>
+
+<div class="container">
+    <div class="view-account">
+        <section class="module">
+            <div class="module-inner">
+
+                <form action="/seller/uploadImage" method="post" enctype="multipart/form-data">
+                    <input id="input-file" type="file" name="file"/>
+                    <input type="hidden" name="sellerId" data-th-value="${seller.sellerId}">
+                    <button class="btn btn-sm btn-outline-success float-right" type="submit">
+                        Upload File
+                    </button>
+                </form>
+                <form action="/seller/update" method="post">
+                <div class="side-bar">
+                    <div class="user-info">
+                        <ul class="meta list list-unstyled" style="list-style-type:none; padding-left: 0px;">
+                            <img class="img-profile img-circle img-responsive center-block" th:src="@{'data:image/jpeg;base64,'+${profilePic}}" alt="">
+                            <li><input type="text" id="name" name="name" th:field="${seller.name}"/></li>
+                            <li><input type="text" id="email" name="email" th:field="${seller.email}"/></li>
+                            <li class="activity" data-th-text="'Member Since: '+${seller.creationDate}"></li>
+                        </ul>
+                    </div>
+                    <nav class="side-menu">
+                        <ul class="nav" style="padding-left: 0px;">
+                            <li class="active"><a data-th-href="@{/seller/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-user"></span> Profile</a></li>
+                            <li><a href="#"><span class="fa fa-cog"></span> Incoming Orders</a></li>
+                            <li><a href="#"><span class="fa fa-credit-card"></span> Completed Orders</a></li>
+                            <li><a data-th-href="@{/seller/sellerListings/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-envelope"></span> Listings</a></li>
+                            <li><a href="log-in.html"><span class="fa fa-envelope"></span> Log Out</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="content-panel">
+                    <div class="content-header-wrapper">
+                        <h2 class="title">Bio:</h2>
+                        <div class="content-bio">
+                            <p><textarea type="text" name="bio" th:field="${seller.bio}"/></p>
+                        </div>
+                    </div>
+                    <div class="content-utilities">
+                        <div class="actions">
+                            <div class="btn-group" role="group">
+                                <input type="hidden" name="sellerId" data-th-value="${seller.sellerId}">
+                                <input type="hidden" name="password" data-th-value="${seller.password}">
+                                <input type="hidden" name="creationDate" data-th-value="${seller.creationDate}">
+                                <input type="hidden" name="incomingOrders" data-th-value="${seller.incomingOrders}">
+                                <input type="hidden" name="completedOrders" data-th-value="${seller.completedOrders}">
+                                <input type="hidden" name="pfp" data-th-value="${seller.pfp}">
+                                <button type="submit" class="cart-button">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

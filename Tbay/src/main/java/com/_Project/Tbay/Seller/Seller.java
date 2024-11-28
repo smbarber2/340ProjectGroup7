@@ -1,10 +1,13 @@
 package com._Project.Tbay.Seller;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name="sellers")
@@ -23,6 +26,7 @@ public class Seller {
     @Column(nullable=false)
     private String email;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable=false)
     private Date creationDate;
 
@@ -41,10 +45,11 @@ public class Seller {
     @Column(nullable=true)
     public String bio;
 
-    @Column(nullable=true)
-    public String pfp;
+    @Lob
+    @Column(nullable=true, columnDefinition="LONGBLOB")
+    public byte[] pfp;
 
-    public Seller(long sellerId, String name, String password, String email, boolean status, String pfp, Date creationDate) {
+    public Seller(long sellerId, String name, String password, String email, boolean status, byte[] pfp, Date creationDate) {
         this.sellerId = sellerId;
         this.name = name;
         this.password = password;
@@ -141,5 +146,13 @@ public class Seller {
 
     public void setIncomingOrders(List<Integer> incomingOrders) {
         this.incomingOrders = incomingOrders;
+    }
+
+    public byte[] getPfp() {
+        return pfp;
+    }
+
+    public void setPfp(byte[] pfp) {
+        this.pfp = pfp;
     }
 }

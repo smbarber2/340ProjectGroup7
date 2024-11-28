@@ -29,7 +29,7 @@
         </div>
 
         <div class="profile">
-            <a href="profile.html"><img src="../smegolPFP.png" height="125" width="125" ></a>
+            <a data-th-href="@{/seller/{sellerId} (sellerId=${seller.sellerId})}"><img th:src="@{'data:image/jpeg;base64,'+${profilePic}}" height="125" width="125" ></a>
         </div>
     </div>
 </head>
@@ -41,7 +41,7 @@
             <div class="module-inner">
                 <div class="side-bar">
                     <div class="user-info">
-                        <img class="img-profile img-circle img-responsive center-block" src="../smegolPFP.png" alt="">
+                        <img class="img-profile img-circle img-responsive center-block" th:src="@{'data:image/jpeg;base64,'+${profilePic}}" />
                         <ul class="meta list list-unstyled" style="list-style-type:none; padding-left: 0px;">
                             <li class="name" width= 80px data-th-text="${seller.name}"></li>
                             <li class="email" data-th-text="${seller.email}"></li>
@@ -72,6 +72,7 @@
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Refresh" title="Refresh Orders"><i class="fa fa-refresh"></i></button>
                                 <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Archive" title="View All Orders"><i class="fa fa-archive"></i></button>
+                                <a data-th-href="@{/seller/update/{sellerId} (sellerId=${seller.sellerId})}"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edit Profile">Edit Profile</button></a>
                                 <h2 class="title">Incoming Orders:</h2>
                             </div>
                         </div>
@@ -97,7 +98,6 @@
                                     </div>
                                 </a>
                             </tr>
-
 
                         </div>
                       </div>
