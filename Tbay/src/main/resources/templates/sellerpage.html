@@ -85,7 +85,7 @@
                                     <div class="drive-item module text-center">
                                         <div class="drive-item-inner module-inner">
                                             <div class="drive-item-thumb">
-                                                <img class="img-responsive" src="../tbaylogo.PNG" alt="">
+                                                <img class="img-responsive" th:if="${listing.base64Image != null}" th:src="'data:image/png;base64,' + ${listing.base64Image}" alt="">
                                             </div>
                                         </div>
                                         <div class="drive-item-footer module-footer">

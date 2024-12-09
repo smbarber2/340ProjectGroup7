@@ -5,10 +5,16 @@ import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
 import com._Project.Tbay.User.User;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,9 +27,18 @@ public class SellerService {
     @Autowired
     private ListingService listingService;
 
+    private static final Logger logger = LoggerFactory.getLogger(SellerService.class);
+
     public void addNewSeller(Seller seller){
-        seller.setCreationDate(new Date(System.currentTimeMillis()));
-        sellerRepository.save(seller);
+        try {
+            seller.setCreationDate(new Date(System.currentTimeMillis()));
+            Path path = Paths.get("src/main/resources/static/pfp.png");
+            byte[] imageBytes = Files.readAllBytes(path);
+            seller.setPfp(imageBytes);
+            sellerRepository.save(seller);
+        } catch (IOException e) {
+            logger.warn("Error reading the image file: ", e);
+        }
     }
 
     public Seller getSellerById(long sellerId) {
@@ -41,7 +56,9 @@ public class SellerService {
 
         if(deserializedList!=null){
             for(int val: deserializedList){
-                list.add(listingService.getListingById(val));
+                if(listingService.getListingById(val)!=null){
+                    list.add(listingService.getListingById(val));
+                }
             }
         }
         return list;

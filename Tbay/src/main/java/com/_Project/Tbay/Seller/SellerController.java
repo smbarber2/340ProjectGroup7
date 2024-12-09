@@ -41,7 +41,14 @@ public class SellerController {
     public String getSellerById(@PathVariable long sellerId, Model model) {
         model.addAttribute("seller", service.getSellerById(sellerId));
         model.addAttribute("title", sellerId);
-        model.addAttribute("listingList", service.getSellerList(sellerId, "listings"));
+        List<Listing> listingList = service.getSellerList(sellerId, "listings");
+        for (Listing listing : listingList) {
+            if (listing.getPfp() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+                listing.setBase64Image(base64Image);
+            }
+        }
+        model.addAttribute("listingList", listingList);
 
         String base64 = null;
         if (service.getSellerById(sellerId).getPfp() != null) {
@@ -57,7 +64,20 @@ public class SellerController {
         model.addAttribute("seller", service.getSellerById(sellerId));
         model.addAttribute("title", sellerId);
 
-        model.addAttribute("listingList", service.getSellerList(sellerId, "listings"));
+        List<Listing> listingList = service.getSellerList(sellerId, "listings");
+        for (Listing listing : listingList) {
+            if (listing.getPfp() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+                listing.setBase64Image(base64Image);
+            }
+        }
+        model.addAttribute("listingList", listingList);
+
+        String base64 = null;
+        if (service.getSellerById(sellerId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(service.getSellerById(sellerId).getPfp());
+        }
+        model.addAttribute("profilePic", base64);
 
         return "ListingPage";
     }

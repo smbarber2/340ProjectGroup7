@@ -5,10 +5,17 @@ import com._Project.Tbay.Cart.CartService;
 import com._Project.Tbay.Seller.SellerService;
 import com._Project.Tbay.User.User;
 import com._Project.Tbay.User.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,6 +29,9 @@ public class ListingService {
     @Autowired
     private SellerService sellerService;
 
+    private static final Logger logger = LoggerFactory.getLogger(SellerService.class);
+
+
     public List<Listing> getAllListings() {
         return listingRepository.findAll();
     }
@@ -31,7 +41,14 @@ public class ListingService {
     }
 
     public void addNewListing(Listing listing){
-        listingRepository.save(listing);
+        try {
+            Path path = Paths.get("src/main/resources/static/tbaylogosquare.PNG");
+            byte[] imageBytes = Files.readAllBytes(path);
+            listing.setPfp(imageBytes);
+            listingRepository.save(listing);
+        } catch (IOException e) {
+            logger.warn("Error reading the image file: ", e);
+        }
     }
 
     public void updateListing(long listingId, Listing listing) {

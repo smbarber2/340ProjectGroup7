@@ -28,7 +28,7 @@
         </div>
 
         <div class="profile">
-            <a data-th-href="@{/seller/sellerListings/{sellerId} (sellerId=${seller.sellerId})}"><img th:src="@{/smegolPFP.png}" height="125" width="125" ></a>
+            <a data-th-href="@{/seller/{sellerId} (sellerId=${seller.sellerId})}"><img th:src="@{'data:image/jpeg;base64,'+${profilePic}}" height="125" width="125" ></a>
         </div>
     </div>
 </head>
@@ -71,7 +71,7 @@
                                     <div class="drive-item module text-center">
                                         <div class="drive-item-inner module-inner">
                                             <div class="drive-item-thumb">
-                                                <img class="img-responsive" th:src="@{/tbaylogo.PNG}" alt="">
+                                                <img th:if="${listing.base64Image != null}" th:src="'data:image/png;base64,' + ${listing.base64Image}" alt="">
                                             </div>
                                         </div>
                                         <div class="drive-item-footer module-footer">

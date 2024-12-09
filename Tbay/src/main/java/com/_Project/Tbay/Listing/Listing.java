@@ -27,7 +27,13 @@ public class Listing {
 
     private List<Long> reviewIds;
 
-    public Listing(long listingId, String name, String tag, String description, float price, List<Long> reviewIds, long sellerId) {
+    @Lob
+    @Column(nullable=true, columnDefinition="LONGBLOB")
+    public byte[] pfp;
+
+    public String base64Image;
+
+    public Listing(long listingId, String name, String tag, String description, float price, List<Long> reviewIds, long sellerId, byte[] pfp) {
         this.listingId = listingId;
         this.name = name;
         this.tag = tag;
@@ -35,6 +41,7 @@ public class Listing {
         this.price = price;
         this.reviewIds = reviewIds;
         this.sellerId = sellerId;
+        this.pfp = pfp;
     }
     public Listing(){}
 
@@ -43,7 +50,6 @@ public class Listing {
         this.name = name;
         this.price = price;
     }
-
 
     public void setListingId(long listingId){
         this.listingId = listingId;
@@ -99,5 +105,21 @@ public class Listing {
 
     public void setSellerId(long sellerId) {
         this.sellerId = sellerId;
+    }
+
+    public byte[] getPfp() {
+        return pfp;
+    }
+
+    public void setPfp(byte[] pfp) {
+        this.pfp = pfp;
+    }
+
+    public String getBase64Image() {
+        return base64Image;
+    }
+
+    public void setBase64Image(String base64Image) {
+        this.base64Image = base64Image;
     }
 }
