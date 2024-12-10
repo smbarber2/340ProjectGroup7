@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+
+    <link rel="stylesheet" href="profile.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="../static/css/generalStyleTbay.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div th:fragment="headerSeller">
+<div class="banner">
+        <div class="logo">
+            <a th:href="@{/homepage/{sellerId}(sellerId=${seller.sellerId})}"><img src="../static/tbaylogoTRANS.png" height="150" width="170"> </a>
+        </div>
+
+        <div class="search">
+            <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
+        </div>
+        <a href="results.html">
+            <div class="SearchButton">
+                <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
+            </div>
+        </a>
+
+        <div class="shopping">
+            <a href="checkout.html"><img src="../static/shopping-cart.png" height="75" width="75" ></a>
+        </div>
+
+        <div class="profile">
+            <a th:href="@{/{sellerId}(sellerId=${seller.sellerId})}"><img src="../static/profilePic.png" height="125" width="125" ></a>
+        </div>
+    </div>
+    </div>
+</head>
+</html>

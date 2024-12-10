@@ -13,10 +13,10 @@
     <link rel="stylesheet" th:href="../static/css/generalStyleTbay.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div th:fragment="header">
+    <div th:fragment="headerAdmin">
 <div class="banner">
         <div class="logo">
-            <a th:href="@{/homepage/{userId}(userId=${user.userId})}"><img src="../static/tbaylogoTRANS.png" height="150" width="170"> </a>
+            <a th:href="@{/homepage/{adminId}(adminId=${admin.adminId})}"><img src="../static/tbaylogoTRANS.png" height="150" width="170"> </a>
         </div>
 
         <div class="search">
@@ -33,7 +33,7 @@
         </div>
 
         <div class="profile">
-            <a th:href="@{/{userId}(userId=${user.userId})}"><th:img src="../static/profilePic.png" height="125" width="125" ></a>
+            <a th:href="@{/{adminId}(adminId=${admin.adminId})}"><img src="../static/profilePic.png" height="125" width="125" ></a>
         </div>
     </div>
 
