@@ -38,9 +38,10 @@ public class AppController {
         return "create-acct";
     }
 
-    @GetMapping("user/{userId}")
+    @GetMapping("/user/{userId}")
     public String profile(@PathVariable long userId, Model model) {
         Model user = model.addAttribute("user", userId);
+        model.addAttribute("user", UserService.getUserById(userId));
         return "profile";
     }
 
@@ -51,26 +52,28 @@ public class AppController {
         return "homepage";
     }
 
-    @GetMapping("seller/{sellerId}")
+    @GetMapping("/seller/{sellerId}")
     public String profileS(@PathVariable long sellerId, Model model) {
-        Model seller = model.addAttribute("seller", sellerId);
+        model.addAttribute("seller", SellerService.getSellerById(sellerId));
+        model.addAttribute("title", sellerId);
         return "profile";
     }
 
-    @GetMapping("seller/homepage/{sellerId}")
+    @GetMapping("/seller/homepage/{sellerId}")
     public String homepageSeller(@PathVariable long sellerId, Model model) {
-        model.addAttribute("user", UserService.getUserById(sellerId));
+        model.addAttribute("seller", SellerService.getSellerById(sellerId));
         model.addAttribute("title", sellerId);
         return "homepage";
     }
 
-    @GetMapping("admin/{adminId}")
-    public String profileA(@PathVariable long sellerId, Model model) {
-        Model seller = model.addAttribute("seller", sellerId);
+    @GetMapping("/admin/{adminId}")
+    public String profileA(@PathVariable long adminId, Model model) {
+        model.addAttribute("admin", AdminService.getUserById(adminId));
+        model.addAttribute("title", adminId);
         return "profile";
     }
 
-    @GetMapping("admin/homepage/{adminId}")
+    @GetMapping("/admin/homepage/{adminId}")
     public String homepageAdmin(@PathVariable long adminId, Model model) {
         model.addAttribute("user", UserService.getUserById(adminId));
         model.addAttribute("title", adminId);
