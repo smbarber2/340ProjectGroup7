@@ -67,7 +67,7 @@
             <th>Email</th>
             <th>Name</th>
             <th>Password</th>
-            <th>Status</th>
+            <th>Ban Status</th>
         </tr>
         </thead>
         <tbody>
@@ -78,7 +78,7 @@
             <td data-th-text="${users.email}"></td>
             <td data-th-text="${users.name}"></td>
             <td data-th-text="${users.password}"></td>
-            <td data-th-text="${users.status}"></td>
+            <td data-th-text="${users.ban}"></td>
 
             <td><a data-th-href="@{/users/{userId} (userId=${users.userId})}"
                    class="btn btn-sm btn-outline-secondary">View</a>

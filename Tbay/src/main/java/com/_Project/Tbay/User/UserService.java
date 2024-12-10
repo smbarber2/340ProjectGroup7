@@ -1,6 +1,7 @@
 package com._Project.Tbay.User;
 
 import com._Project.Tbay.Cart.CartRepository;
+import com._Project.Tbay.Report.Report;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,11 @@ public class UserService {
         existing.setBan(user.isBan());
         userRepository.save(existing);
     }
+
+    public List<User> getAllBans() {
+        return userRepository.findAll();
+    }
+
 
     public User getLastUser() {
         return userRepository.findFirstByOrderByCreationDateDesc();

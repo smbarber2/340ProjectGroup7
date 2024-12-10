@@ -44,7 +44,7 @@
 <body>
 <div class="container">
   <h1>Create New Ban</h1>
-  <form id="new-report" action="/reports/newBan" method="post">
+  <form id="new-report" action="/users/banAll" method="post">
 
     adminId:<input type="text" class="form-control" id="adminId" name="adminId" placeholder="AdminId">
     userId:<input type="text" class="form-control" id="userId" name="userId" placeholder="UserId">
@@ -52,8 +52,9 @@
     Name:<input type="text" class="form-control" id="name" name="name" placeholder="Name">
     Reason: <textarea class="form-control" id="reason" rows="3" name="reason" placeholder="Reason"></textarea>
 
-    <button type="submit" class="btn btn-primary">Save</button> <br>
-    <button type="reset"><a href="/admin/all">Cancel</a></button>
+    <button type="submit" class="btn btn-primary">Save</button>
+
+    <a href="/admin/all" type="reset" class="btn btn-secondary">Cancel</a>
 
   </form>
 </div>

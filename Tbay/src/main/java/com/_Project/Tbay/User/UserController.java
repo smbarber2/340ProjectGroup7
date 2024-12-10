@@ -82,11 +82,18 @@ public class UserController {
         model.addAttribute("user", service.getUserById(userId));
         return "ban-create";
     }
+
+    @GetMapping("/banAll")
+    public String getAllBans(Model model) {
+        model.addAttribute("banList", service.getAllBans());
+        model.addAttribute("title", "All Bans");
+        return "all-bans"; //Like the table from hw
+    }
+
     @PostMapping("/banUpdate")
     public String updateBan(User user) {
         service.updateBan(user.getUserId(), user);
         return "redirect:/admin/banlist";
     }
-
 
 }

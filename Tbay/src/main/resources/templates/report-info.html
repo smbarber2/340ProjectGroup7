@@ -60,6 +60,8 @@
     <div class="card-body">
       <h5 class="card-title" data-th-text=" 'User receiving report: '+ ${report.name}"></h5>
       <h5 class="card-subtitle" data-th-text=" ' UserId: '+ ${report.userId}"></h5>
+      <br>
+      <h5 class="card-subtitle" data-th-text=" ' User Email: '+ ${report.email}"></h5>
       <h5 class="card-text" data-th-text="'Reasoning: ' + ${report.reason}"></h5>
 
       <a data-th-href="@{/reports/updateReport/{reportId} (reportId = ${report.reportId})}" class="btn btn-primary">Edit Report</a>
