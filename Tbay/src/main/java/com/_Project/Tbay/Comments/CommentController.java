@@ -25,4 +25,18 @@ public class CommentController {
         model.addAttribute("title", "All Comments");
         return "comment-list"; //Like the table from hw
     }
+
+    @GetMapping("/{listingId}")
+    public String getCommentByListingId(@PathVariable long listingId, Model model) {
+        model.addAttribute("listing", commentservice.getCommentByListingId(listingId));
+        model.addAttribute("title", listingId);
+        return "indivListing";
+    }
+
+    @GetMapping("/{posterId}")
+    public String getCommentByPosterId(@PathVariable long posterId, Model model) {
+        model.addAttribute("poster", commentservice.getCommentByPosterId(posterId));
+        model.addAttribute("title", posterId);
+        return "";
+    }
 }

@@ -20,14 +20,8 @@ public class CommentService {
         return commentRepository.findById(posterId).orElse(null);
     }
 
-//    public void deleteCommentById(long userId) {
-//        commentRepository.deleteById(userId);
-//    }
-
-//    public void banUser(long userId, Model model) {
-//        Model existing = getUserById(userId);
-//        existing.setBan(model.getBan());
-//        userRepository.save(existing);
-//    }
+    public User getCommentByListingId(long listingId) {
+        return commentRepository.findById(listingId).orElse(null);
+    }
 
 }

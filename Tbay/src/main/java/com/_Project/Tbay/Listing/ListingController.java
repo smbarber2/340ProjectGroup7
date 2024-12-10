@@ -26,6 +26,8 @@ public class ListingController {
     private SellerService sellerService;
     @Autowired
     private CartService cartService;
+    @Autowired
+    private CartService commentService;
 
     private static final Logger logger = LoggerFactory.getLogger(SellerController.class);
 
