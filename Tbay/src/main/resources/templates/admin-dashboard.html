@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
@@ -8,28 +10,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="banner">
+    <div th:replace="~{fragments/header :: header}"> </div>
 
-        <div class="logo">
-            <a href="admin-dashboard.html"><img src="../static/tbaylogoTRANS.png" height="150" width="170"> </a>
-        </div>
-
-        <div class="search">
-            <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
-        </div>
-        <div class="SearchButton">
-            <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
-
-        </div>
-
-        <div class="shopping">
-            <a href="checkout.html"><img src="../static/shopping-cart.png" height="75" width="75" ></a>
-        </div>
-
-        <div class="profile">
-            <a href="adminpage.html"><img src="../static/pfp.png" height="125" width="125" ></a>
-        </div>
-    </div>
 </head>
 <body>
 

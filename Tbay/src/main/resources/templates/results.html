@@ -6,31 +6,8 @@
     <link rel="stylesheet" href="../static/css/horizontal-listing-style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="banner">
+    <nav data-th-insert="~{./fragments/header :: header}"></nav>
 
-        <div class="logo">
-            <a href="homepage.html"><img src="../static/tbaylogoTRANS.png" height="150" width="170"> </a>
-        </div>
-
-        <div class="search">
-            <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
-        </div>
-
-        <div class="SearchButton">
-            <a href="results.html">
-            <button class="search-button pure-button pure-button-active" >Search!</button>
-            </a>
-        </div>
-
-
-        <div class="shopping">
-            <a href="checkout.html"><img src="../static/shopping-cart.png" height="75" width="75" ></a>
-        </div>
-
-        <div class="profile">
-            <a href="profile.html"><img src="../static/profilePic.png" height="125" width="125" ></a>
-        </div>
-    </div>
 
 </head>
 <body>

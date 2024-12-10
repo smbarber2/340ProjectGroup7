@@ -18,14 +18,6 @@ public class UserController {
     @Autowired
     private CartService cartService;
 
-    //GET specific user
-//    @GetMapping("/{userId}")
-//    public String getUserById(@PathVariable long userId, Model model) {
-//        model.addAttribute("user", service.getUserById(userId));
-//        model.addAttribute("title", userId);
-//        return "profile";
-//    }
-
     @PostMapping("/new")
     public String addNewUser(User user){
         Cart cart = new Cart();

@@ -9,29 +9,8 @@
     <link rel="stylesheet" href="../css/generalStyleTbay.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div class="banner">
+    <nav data-th-insert="~{./fragments/header :: header}"></nav>
 
-        <div class="logo">
-            <a href="seller-homepage.html"><img src="../tbaylogoTRANS.png" height="150" width="170"> </a>
-        </div>
-
-        <div class="search">
-            <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
-        </div>
-        <a href="results.html">
-            <div class="SearchButton">
-                <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
-            </div>
-        </a>
-
-        <div class="shopping">
-            <a href="checkout.html"><img src="../shopping-cart.png" height="75" width="75" ></a>
-        </div>
-
-        <div class="profile">
-            <a data-th-href="@{/seller/{sellerId} (sellerId=${seller.sellerId})}"><img th:src="@{'data:image/jpeg;base64,'+${profilePic}}" height="125" width="125" ></a>
-        </div>
-    </div>
 </head>
 <body>
 

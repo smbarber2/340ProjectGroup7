@@ -1,15 +1,19 @@
 
 package com._Project.Tbay;
-
 import com._Project.Tbay.User.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+
 @Controller
 public class AppController {
+
+    @Autowired
+    private UserService UserService;
 
     @GetMapping({"", "/", "/home", "app"})
     public String home() {
@@ -34,10 +38,10 @@ public class AppController {
 
     @GetMapping("/homepage/{userId}")
     public String homepageUser(@PathVariable long userId, Model model) {
-        Model user = model.addAttribute("user", userId);
+        model.addAttribute("user", UserService.getUserById(userId));
+        model.addAttribute("title", userId);
         return "homepage";
     }
-
 
 
 }
