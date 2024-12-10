@@ -16,7 +16,7 @@
     <div th:fragment="header">
 <div class="banner">
         <div class="logo">
-            <a th:href="@{/homepage/{userId}(userId=${user.userId})}"><img src="../static/tbaylogoTRANS.png" height="150" width="170"> </a>
+            <a th:href="@{/homepage/{userId}(userId=${user.userId})}"><img th:src="@{/tbaylogoTRANS.png}" height="150" width="170"> </a>
         </div>
 
         <div class="search">
@@ -29,7 +29,7 @@
         </a>
 
         <div class="shopping">
-            <a href="checkout.html"><img src="../static/shopping-cart.png" height="75" width="75" ></a>
+            <a href="checkout.html"><img th:src="@{/shopping-cart.png}" height="75" width="75" ></a>
         </div>
 
         <div class="profile">
