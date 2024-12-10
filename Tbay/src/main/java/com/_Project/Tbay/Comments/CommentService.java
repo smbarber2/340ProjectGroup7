@@ -12,16 +12,19 @@ public class CommentService {
     @Autowired
     private CommentRepository commentRepository;
 
-    public List<User> getAllComments() {
+    public List<Comment> getAllComments() {
         return commentRepository.findAll();
     }
 
-    public User getCommentByPosterId(long posterId) {
+    public Comment getCommentByPosterId(long posterId) {
         return commentRepository.findById(posterId).orElse(null);
     }
 
-    public User getCommentByListingId(long listingId) {
+    public Comment getCommentByListingId(long listingId) {
         return commentRepository.findById(listingId).orElse(null);
     }
 
+//    public Listing getListingById(long listingId) {
+//        return listingRepository.findById(listingId).orElse(null);
+//    }
 }

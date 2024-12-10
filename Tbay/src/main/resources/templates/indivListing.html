@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <nav data-th-insert="~{./fragments/header :: header}"></nav>
+<!--    <nav data-th-insert="~{./fragments/header :: header}"></nav>-->
 
 </head>
 <body>
@@ -65,8 +65,28 @@
     </div>
 
 </div>
-            
 
+<div class="container">
+    <a href="profile.html"></a>
+    <h1 data-th-text="Comments"></h1>
+
+    <table class="table table-striped rounded-3 overflow-hidden">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Comment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-th-each="comments : ${commentList}">
+            <td data-th-text="${comments.name}"></td>
+            <td data-th-text="${comments.date}"></td>
+            <td data-th-text="${comments.body}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 
 </body>
