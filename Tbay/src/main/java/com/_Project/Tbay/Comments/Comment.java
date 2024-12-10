@@ -1,6 +1,9 @@
 package com._Project.Tbay.Comments;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "comments")
@@ -18,18 +21,19 @@ public class Comment {
     @Column(nullable=false)
     private String name;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable=false)
-    private String date;
+    private Date postDate;
 
     @Column(nullable=false)
     private String body;
 
-    public Comment(long commentId, long posterId, long listingId, String name, String date, String body) {
+    public Comment(long commentId, long posterId, long listingId, String name, Date postDate, String body) {
         this.commentId = commentId;
         this.posterId = posterId;
         this.listingId = listingId;
         this.name = name;
-        this.date = date;
+        this.postDate = postDate;
         this.body = body;
     }
 
@@ -64,15 +68,15 @@ public class Comment {
     }
 
     public String getName() {
-        return date;
+        return name;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPostDate(Date postDate) {
+        this.postDate = postDate;
     }
 
-    public String getDate() {
-        return date;
+    public Date getPostDate() {
+        return postDate;
     }
 
     public void setBody(String body) {

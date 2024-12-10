@@ -43,6 +43,7 @@ public class ListingController {
         model.addAttribute("listing", service.getListingById(listingId));
         model.addAttribute("title", "Listing Details:"+listingId);
         model.addAttribute("seller", sellerService.getSellerById(service.getListingById(listingId).getSellerId()));
+//        model.addAttribute("comment", commentService.getCommentbyListingId(service.getCommentbyListingId(listingId).get));
 
         String base64 = null;
         if (service.getListingById(listingId).getPfp() != null) {

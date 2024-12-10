@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CommentRepository  extends JpaRepository<User, Long>{
+public interface CommentRepository  extends JpaRepository<Comment, Long>{
 
 }
