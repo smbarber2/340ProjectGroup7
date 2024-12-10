@@ -18,26 +18,13 @@ public class UserController {
     @Autowired
     private CartService cartService;
 
-    //Pre MVC new
-//    @PostMapping("/new")
-//    public List<User> addNewUser(@RequestBody User user){
-//        Cart cart = new Cart();
-//        cartService.addNewCart(cart);
-//        user.setCartId(cart.getCartId());
-//        service.addNewUser(user);
-//        return service.getAllUsers();
-//    }
-
     //GET specific user
-    @GetMapping("/{userId}")
-    public String getUserById(@PathVariable long userId, Model model) {
-        model.addAttribute("user", service.getUserById(userId));
-        model.addAttribute("title", userId);
-        return "profile";
-    }
-
-    @GetMapping("/create-acct")
-    public String createAcct(){return "create-acct";}
+//    @GetMapping("/{userId}")
+//    public String getUserById(@PathVariable long userId, Model model) {
+//        model.addAttribute("user", service.getUserById(userId));
+//        model.addAttribute("title", userId);
+//        return "profile";
+//    }
 
     @PostMapping("/new")
     public String addNewUser(User user){
@@ -45,21 +32,8 @@ public class UserController {
         cartService.addNewCart(cart);
         user.setCartId(cart.getCartId());
         service.addNewUser(user);
-        return "homepageUser";
+        return "homepage";
     }
-
-    @GetMapping("/homepageUser/{userId}")
-    public String homepageUser(@PathVariable long userId, Model model){
-        model.addAttribute("user", service.getUserById(userId));
-        model.addAttribute("title", userId);
-        return "homepageUser";}
-
-    //Pre MVC update
-//    @PutMapping("/update/{userId}")
-//    public User updateUser(@PathVariable long userId, @RequestBody User user) {
-//        service.updateUser(userId, user);
-//        return service.getUserById(userId);
-//    }
 
     @GetMapping("/orders/{userId}")
     public String showOrders(){

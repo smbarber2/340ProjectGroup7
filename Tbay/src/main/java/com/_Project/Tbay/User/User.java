@@ -53,7 +53,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.auth = auth;
-        this.ban = ban;
+        this.ban = false;
         this.status = status;
         this.creationDate = creationDate;
         this.pfp = pfp;
