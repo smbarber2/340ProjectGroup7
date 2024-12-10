@@ -2,6 +2,8 @@ package com._Project.Tbay.Cart;
 
 import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
+import com._Project.Tbay.Orders.OrderRepository;
+import com._Project.Tbay.Orders.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +21,8 @@ public class CartController {
     private CartService service;
     @Autowired
     private ListingService listingService;
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/all")
     public String getAllCarts(Model model){
@@ -35,20 +39,40 @@ public class CartController {
 
     @GetMapping("/{cartId}")
     public String getCart(@PathVariable long cartId, Model model){
-
         model.addAttribute("cart", service.getCartById(cartId));
         model.addAttribute("title", "Cart:"+cartId);
 
         List<Listing> list = new ArrayList<>();
-        List<Integer> deserializedList = service.getCartById(cartId).getCartList();
-
-        for(int val: deserializedList){
-            list.add(listingService.getListingById(val));
+        if(service.getCartById(cartId).getCartList() !=null) {
+            List<Integer> deserializedList = service.getCartById(cartId).getCartList();
+            for(int val: deserializedList){
+                list.add(listingService.getListingById(val));
+            }
         }
 
         model.addAttribute("listingList", list);
         return "checkout";
     }
+
+    @PostMapping("/checkout")
+    public String checkout(@RequestParam("cartId") long cartId){
+        Cart cart = service.getCartById(cartId);
+        long userId = service.getCartById(cartId).getUserId();
+
+        List<Integer> cartList = cart.getCartList();
+        if(cartList!= null) {
+            for (Integer integer : cartList) {
+                Listing listing = listingService.getListingById(integer);
+                orderService.createOrder(listing.getSellerId(), listing.getListingId(), userId);
+            }
+        } else {
+            return "redirect:/"+ userId;
+        }
+
+        service.clearCart(cart);
+        return "redirect:/"+ userId;
+    }
+
 
     @PostMapping("/new")
     public void addNewCart(@RequestBody Cart cart) {

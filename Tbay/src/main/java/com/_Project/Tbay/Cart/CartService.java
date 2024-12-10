@@ -66,7 +66,7 @@ public class CartService {
 
     public void addListing(long cartId, long listingId) {
         Cart existing = getCartById(cartId);
-        List<Integer> list = existing.getCartList();
+        List<Integer> list = (existing.getCartList() != null) ? existing.getCartList() : new ArrayList<>();
         float total = 0;
         list.add((int)listingId);
         existing.setCartList(list);
@@ -88,6 +88,12 @@ public class CartService {
         existing.setCartList(list);
         existing.setTotalPrice(existing.getTotalPrice()-listingService.getListingById(listingId).getPrice());
         cartRepository.save(existing);
+    }
+
+    public void clearCart(Cart cart){
+        cart.setCartList(null);
+        cart.setTotalPrice(0);
+        cartRepository.save(cart);
     }
 
     public void updateTotal(Cart cart){

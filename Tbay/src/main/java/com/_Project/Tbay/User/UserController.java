@@ -2,11 +2,14 @@ package com._Project.Tbay.User;
 
 import com._Project.Tbay.Cart.Cart;
 import com._Project.Tbay.Cart.CartService;
+import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Report.Report;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -22,9 +25,34 @@ public class UserController {
     public String addNewUser(User user){
         Cart cart = new Cart();
         cartService.addNewCart(cart);
+        cart.setUserId(user.getUserId());
         user.setCartId(cart.getCartId());
         service.addNewUser(user);
         return "homepage";
+    }
+
+    @GetMapping("/{userId}")
+    public String profile(@PathVariable long userId, Model model) {
+        model.addAttribute("user", service.getUserById(userId));
+        model.addAttribute("title", userId);
+
+        List<Listing> wishlist = service.getWishlist(userId);
+
+        for (Listing listing : wishlist) {
+            if (listing.getPfp() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+                listing.setBase64Image(base64Image);
+            }
+        }
+        model.addAttribute("wishlist", wishlist);
+
+        String base64 = null;
+        if (service.getUserById(userId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(service.getUserById(userId).getPfp());
+        }
+        model.addAttribute("profilePic", base64);
+
+        return "profile";
     }
 
     @GetMapping("/orders/{userId}")

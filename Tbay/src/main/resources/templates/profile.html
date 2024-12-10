@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div th:replace="~{fragments/header :: header}"> </div>
+    <div th:replace="~{fragments/header :: header(userId=${user.userId})}"></div>
 
 </head>
 <body>
@@ -20,7 +20,7 @@
             <div class="module-inner">
                 <div class="side-bar">
                     <div class="user-info">
-                        <img class="img-profile img-circle img-responsive center-block" src="../profilePic.png" alt="">
+                        <img class="img-profile img-circle img-responsive center-block" th:src="@{'data:image/jpeg;base64,'+${profilePic}}" alt="">
                         <ul class="meta list list-unstyled" style="list-style-type:none; padding-left: 0px;">
                             <li class="name" width= 80px data-th-text="${user.name}"></li>
                             <li class="email"><a href="#" data-th-text="${user.email}"></a></li>
@@ -41,17 +41,6 @@
                 <div class="content-panel">
                     <div class="content-header-wrapper">
                         <h2 class="title">Bio:</h2>
-                        <div class="actions">
-                            <a href="edit-profile.html">
-                              <button class="btn btn-success"><i class="fa fa-plus"></i> Edit Profile</button>
-                            </a>                           
-                            <a href="sellerpage.html">
-                              <button class="btn btn-success"><i class="fa fa-plus"></i> Switch To Seller</button>
-                            </a>
-                            <a href="adminpage.html">
-                                <button class="btn btn-success"><i class="fa fa-plus"></i> Switch To Admin</button>
-                            </a>
-                        </div>
                         <div class="content-bio">
                             <p class="card-text" data-th-text="${user.bio}"></p>
                         </div>
@@ -67,134 +56,24 @@
                     </div>
                     <div class="drive-wrapper drive-grid-view">
                         <div class="grid-items-wrapper">
-
-                            <a href="indivListing.html" style="color: #616670">
-                            <div class="drive-item module text-center">
-                                <div class="drive-item-inner module-inner">
-                                    <div class="drive-item-thumb">
-                                        <img class="img-responsive" src="../tbaylogo.PNG" alt="">
-                                    </div>
-                                </div>
-                                <div class="drive-item-footer module-footer">
-                                    <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                        <li>Listing Name</li>
-                                        <li>Price: 100</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            </a>
-
-                            <a href="indivListing.html" style="color: #616670">
-                                <div class="drive-item module text-center">
-                                    <div class="drive-item-inner module-inner">
-                                        <div class="drive-item-thumb">
-                                            <img class="img-responsive" src="../tbaylogo.PNG" alt="">
+                            <tr data-th-each="listing : ${wishlist}">
+                                <a data-th-href="@{/Listing/{listingId} (listingId=${listing.listingId})}" style="color: #616670">
+                                    <div class="drive-item module text-center">
+                                        <div class="drive-item-inner module-inner">
+                                            <div class="drive-item-thumb">
+                                                <img th:if="${listing.base64Image != null}" th:src="'data:image/png;base64,' + ${listing.base64Image}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="drive-item-footer module-footer">
+                                            <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
+                                                <li data-th-text=" ${listing.name}"></li>
+                                                <li data-th-text="'$'+ ${listing.price}"></li>
+                                                <li data-th-text=" ${listing.tag}"><a style="font-size: 10px; color: #00000;"></a></li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div class="drive-item-footer module-footer">
-                                        <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                            <li>Listing Name</li>
-                                            <li>Price: 200</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="indivListing.html" style="color: #616670">
-                                <div class="drive-item module text-center">
-                                    <div class="drive-item-inner module-inner">
-                                        <div class="drive-item-thumb">
-                                            <img class="img-responsive" src="../tbaylogo.PNG" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="drive-item-footer module-footer">
-                                        <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                            <li>Listing Name</li>
-                                            <li>Price: 300</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="indivListing.html" style="color: #616670">
-                                <div class="drive-item module text-center">
-                                    <div class="drive-item-inner module-inner">
-                                        <div class="drive-item-thumb">
-                                            <img class="img-responsive" src="../tbaylogo.PNG" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="drive-item-footer module-footer">
-                                        <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                            <li>Listing Name</li>
-                                            <li>Price: 400</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="indivListing.html" style="color: #616670">
-                                <div class="drive-item module text-center">
-                                    <div class="drive-item-inner module-inner">
-                                        <div class="drive-item-thumb">
-                                            <img class="img-responsive" src="../tbaylogo.PNG" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="drive-item-footer module-footer">
-                                        <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                            <li>Listing Name</li>
-                                            <li>Price: 500</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="indivListing.html" style="color: #616670">
-                                <div class="drive-item module text-center">
-                                    <div class="drive-item-inner module-inner">
-                                        <div class="drive-item-thumb">
-                                            <img class="img-responsive" src="../tbaylogo.PNG" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="drive-item-footer module-footer">
-                                        <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                            <li>Listing Name</li>
-                                            <li>Price: 600</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="indivListing.html" style="color: #616670">
-                                <div class="drive-item module text-center">
-                                    <div class="drive-item-inner module-inner">
-                                        <div class="drive-item-thumb">
-                                            <img class="img-responsive" src="../tbaylogo.PNG" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="drive-item-footer module-footer">
-                                        <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                            <li>Listing Name</li>
-                                            <li>Price: 700</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="indivListing.html" style="color: #616670">
-                                <div class="drive-item module text-center">
-                                    <div class="drive-item-inner module-inner">
-                                        <div class="drive-item-thumb">
-                                            <img class="img-responsive" src="../tbaylogo.PNG" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="drive-item-footer module-footer">
-                                        <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                            <li>Listing Name</li>
-                                            <li>Price: 800</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
+                                </a>
+                            </tr>
                         </div>
                       </div>
                 </div>

@@ -12,6 +12,8 @@ public class Cart {
     @GeneratedValue(strategy=GenerationType.AUTO)
     public long cartId;
 
+    public long userId;
+
     public List<Integer> cartList;
 
     public float totalPrice;
@@ -20,8 +22,9 @@ public class Cart {
     public Cart(){}
 
 
-    public Cart(long cartId, List<Integer> cartList, float totalPrice, int transactionId){
+    public Cart(long cartId, long userId, List<Integer> cartList, float totalPrice, int transactionId){
         this.cartId = cartId;
+        this.userId = userId;
         this.cartList = cartList;
         this.totalPrice = totalPrice;
         this.transactionId = transactionId;
@@ -40,6 +43,14 @@ public class Cart {
 
     public long getCartId() {
         return cartId;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public void setCartList(List<Integer> cartList) {

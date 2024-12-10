@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AdminRepository  extends JpaRepository<User, Long>{
+public interface AdminRepository  extends JpaRepository<Admin, Long>{
 
 }

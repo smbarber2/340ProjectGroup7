@@ -1,6 +1,7 @@
 package com._Project.Tbay.Listing;
 
 import com._Project.Tbay.Cart.CartService;
+import com._Project.Tbay.Comments.CommentService;
 import com._Project.Tbay.Seller.Seller;
 import com._Project.Tbay.Seller.SellerController;
 import com._Project.Tbay.Seller.SellerService;
@@ -27,7 +28,7 @@ public class ListingController {
     @Autowired
     private CartService cartService;
     @Autowired
-    private CartService commentService;
+    private CommentService commentService;
 
     private static final Logger logger = LoggerFactory.getLogger(SellerController.class);
 

@@ -1,11 +1,15 @@
 package com._Project.Tbay.User;
 
 import com._Project.Tbay.Cart.CartRepository;
+import com._Project.Tbay.Listing.Listing;
+import com._Project.Tbay.Listing.ListingService;
 import com._Project.Tbay.Report.Report;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +19,9 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private CartRepository cartRepository;
+    @Autowired
+    @Lazy
+    private ListingService listingService;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -48,6 +55,18 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<Listing> getWishlist(long userId){
+        List<Listing> wishlist = new ArrayList<>();
+        List<Integer> userList = getUserById(userId).getWishlist();
+        if(userList!=null){
+            for(int val: userList){
+                if(listingService.getListingById(val)!=null){
+                    wishlist.add(listingService.getListingById(val));
+                }
+            }
+        }
+        return wishlist;
+    }
 
     public User getLastUser() {
         return userRepository.findFirstByOrderByCreationDateDesc();

@@ -44,10 +44,11 @@ public class User {
     @Column(nullable=true)
     public String bio;
 
-    @Column(nullable=true)
-    public String pfp;
+    @Lob
+    @Column(nullable=true, columnDefinition="LONGBLOB")
+    public byte[] pfp;
 
-    public User(long userId, String name, String password, String email, boolean auth, boolean ban, boolean status, String pfp) {
+    public User(long userId, String name, String password, String email, boolean auth, boolean ban, boolean status, byte[] pfp) {
         this.userId = userId;
         this.name = name;
         this.password = password;
@@ -55,7 +56,6 @@ public class User {
         this.auth = auth;
         this.ban = false;
         this.status = status;
-        this.creationDate = creationDate;
         this.pfp = pfp;
     }
 
@@ -88,7 +88,6 @@ public class User {
     public void setWishlist(List<Integer> wishlist) {
         this.wishlist = wishlist;
    }
-
 
     public void setStatus(boolean status) {
         this.status = status;
@@ -155,6 +154,14 @@ public class User {
     public void setBan(boolean ban) { this.ban = ban; }
 
     public boolean isBan() { return ban;}
+
+    public byte[] getPfp() {
+        return pfp;
+    }
+
+    public void setPfp(byte[] pfp) {
+        this.pfp = pfp;
+    }
 }
 
 
