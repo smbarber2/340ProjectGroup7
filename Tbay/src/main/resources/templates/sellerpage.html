@@ -80,14 +80,14 @@
                     <div class="drive-wrapper drive-grid-view" style="margin-bottom: 15px;">
                         <div class="grid-items-wrapper">
 
+                        </div>
+                    </div>
+                    <h2 class="title">Completed Orders:</h2>
+                    <div class="drive-wrapper drive-grid-view" style="margin-bottom: 15px;">
+                        <div class="grid-items-wrapper">
                             <tr data-th-each="listing : ${listingList}">
                                 <a data-th-href="@{/Listing/{listingId} (listingId=${listing.listingId})}" style="color: #616670">
                                     <div class="drive-item module text-center">
-                                        <div class="drive-item-inner module-inner">
-                                            <div class="drive-item-thumb">
-                                                <img class="img-responsive" th:if="${listing.base64Image != null}" th:src="'data:image/png;base64,' + ${listing.base64Image}" alt="">
-                                            </div>
-                                        </div>
                                         <div class="drive-item-footer module-footer">
                                             <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
                                                 <li data-th-text=" ${listing.name}"></li>
@@ -98,13 +98,8 @@
                                     </div>
                                 </a>
                             </tr>
-
                         </div>
-                      </div>
-                      <h2 class="title">Completed Orders:</h2>
-                      <div class="drive-wrapper drive-grid-view">
-
-                      </div>
+                    </div>
                 </div>
             </div>
         </section>
