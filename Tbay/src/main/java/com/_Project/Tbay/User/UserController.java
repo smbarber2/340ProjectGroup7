@@ -65,15 +65,18 @@ public class UserController {
         model.addAttribute("user", service.getUserById(userId));
         model.addAttribute("title", userId);
 
-        List<Listing> cart = CartService.getCart(userId);
+//        model.addAttribute("cart", service.getCartById(userId));
+//        model.addAttribute("title", cartId);
 
-        for (Listing listing : cart) {
-            if (listing.getPfp() != null) {
-                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
-                listing.setBase64Image(base64Image);
-            }
-        }
-        model.addAttribute("cart", cart);
+//        List<Listing> cart = service.getCart(userId);
+//
+//        for (Listing listing : cart) {
+//            if (listing.getPfp() != null) {
+//                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+//                listing.setBase64Image(base64Image);
+//            }
+//        }
+//        model.addAttribute("cart", cart);
 
         return "checkout";
     }
@@ -84,6 +87,7 @@ public class UserController {
         model.addAttribute("title", userId);
         return "edit-profile";
     }
+
     @PostMapping("/update")
     public String updateUser(@RequestParam long userId, User user, Model model) {
         model.addAttribute("user", service.getUserById(userId));
@@ -98,7 +102,6 @@ public class UserController {
         return "ban-create";
     }
 
-
     @GetMapping("/banAll")
     public String getAllBans(Model model) {
         model.addAttribute("banList", service.getAllBans());
@@ -111,5 +114,4 @@ public class UserController {
         service.updateBan(user.getUserId(), user);
         return "redirect:/admin/banlist";
     }
-
 }
