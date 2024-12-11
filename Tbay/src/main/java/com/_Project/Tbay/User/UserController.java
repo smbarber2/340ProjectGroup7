@@ -60,15 +60,34 @@ public class UserController {
         return "sellerOrders";
     }
 
-    @GetMapping("/update/{userid}")
+//    @GetMapping("/checkout/{userId}")
+//    public String checkoutShow(@PathVariable long userId, Model model){
+//        model.addAttribute("user", service.getUserById(userId));
+//        model.addAttribute("title", userId);
+//
+//        List<Listing> cart = service.getCart(userId);
+//
+//        for (Listing listing : cart) {
+//            if (listing.getPfp() != null) {
+//                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+//                listing.setBase64Image(base64Image);
+//            }
+//        }
+//        model.addAttribute("cart", cart);
+//
+//        return "checkout";
+//    }
+
+    @GetMapping("/update/{userId}")
     public String showUpdateForm(@PathVariable long userId, Model model){
         model.addAttribute("user", service.getUserById(userId));
+        model.addAttribute("title", userId);
         return "edit-profile";
     }
     @PostMapping("/update")
     public String updateUser(User user) {
         service.updateUser(user.getUserId(), user);
-        return "redirect:/profile/";
+        return "redirect:/{userId}";
     }
 
     @GetMapping("/ban/{userId}")
