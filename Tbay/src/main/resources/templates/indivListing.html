@@ -57,6 +57,18 @@
                                 <button type="submit" class="cart-button">Add to cart</button>
                                 </form>
                             </a>
+                            <a>
+                                <form th:if="${wishlistAsLongs.contains(listing.listingId)}" action="/Listing/removeFromWishlist" method="post">
+                                    <input type="hidden" name="userId" th:value="${user.userId}">
+                                    <input type="hidden" name="listingId" th:value="${listing.listingId}">
+                                    <button type="submit" class="cart-button" style="background-color: #f44336">Remove from Wishlist</button>
+                                </form>
+                                <form th:unless="${wishlistAsLongs.contains(listing.listingId)}"  action="/Listing/addToWishlist" method="post">
+                                    <input type="hidden" name="userId" data-th-value="${user.userId}">
+                                    <input type="hidden" name="listingId" data-th-value="${listing.listingId}">
+                                    <button type="submit" class="cart-button">Add to Wishlist</button>
+                                </form>
+                            </a>
                         </div>
                     </div>
                 </div>

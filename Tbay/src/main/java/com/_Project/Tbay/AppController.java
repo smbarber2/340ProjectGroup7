@@ -62,7 +62,7 @@ public class AppController {
                 }
             }
         }
-        model.addAttribute("listingList", listingList);
+        model.addAttribute("wishlist", listingList);
 
         List<Listing> recList = listingService.getAllListings();
         List<Integer> wishlist = userService.getUserById(userId).getWishlist();

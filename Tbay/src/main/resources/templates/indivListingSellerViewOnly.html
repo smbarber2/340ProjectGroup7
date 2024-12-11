@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Individual Listing Page</title>
+  <link rel="stylesheet" type="text/css" href="../css/indivListingStyle.css" th:href="@{/css/indivListingStyle.css}">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <div th:replace="~{fragments/headerSeller :: headerSeller(sellerId=${seller.sellerId}, profilePic=${profilePic})}"></div>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="view-account">
+    <section class="module">
+      <div class="module-inner">
+        <div class="side-bar">
+          <nav class="side-menu">
+            <ul class="nav" style="padding-left: 0px;">
+              <li><a href="#"><img src="../tbaylogoTRANS.png" alt="" class="center"></a></li>
+              <li><a href="#"><img src="../tbaylogoTRANS.png" alt="" class="center"></a></li>
+              <li><a href="#"><img src="../tbaylogoTRANS.png" alt="" class="center"></a></li>
+              <li><a href="#"><img src="../tbaylogoTRANS.png" alt="" class="center"></a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="content-panel">
+          <div class="left-column">
+            <img data-image="black" th:src="@{'data:image/jpeg;base64,'+${listingImg}}" alt="">
+          </div>
+          <div class="right-column">
+            <div class="product-description">
+              <span data-th-text="${listing.tag}"></span>
+              <h1 data-th-text="${listing.name}"></h1>
+              <h2 data-th-text="${sellerListing.name}" ></h2>
+              <p data-th-text="${listing.description}"></p>
+            </div>
+            <div class="product-configuration">
+              <div class="type-config">
+                <div class="type-choose">
+                  <button>Thing1</button>
+                  <button>Thing2</button>
+                  <button>Thing3</button>
+                </div>
+              </div>
+            </div>
+            <div class="product-price">
+              <span data-th-text="'$'+${listing.price}"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+<style>
+  .comment-container {
+  padding: 20px;
+}
+
+.comment-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.comment-box {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: 10px;
+}
+
+
+.user-details {
+  text-align: center;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.post-date {
+  font-size: 1em;
+  color: gray;
+}
+
+.comment-body {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 1.5em;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  max-width: calc(100% - 100px);
+  margin-left: 10px;
+}
+
+</style>
+<div class="comment-container">
+  <a href="profile.html"></a>
+  <h1 data-th-text="Comments"></h1>
+
+  <div class="comment-boxes">
+    <div class="comment-box" data-th-each="comments : ${commentList}">
+      <div class="profile-info">
+        <!--                <img class="profile-pic" src="${comments.pfp}" alt="Profile Picture">-->
+        <div class="user-details">
+          <a class="user-name" data-th-href="@{/users/{userId} (userId=${comments.posterId})}" data-th-text="${comments.name}"></a>
+          <div class="post-date" data-th-text="${comments.postDate}"></div>
+        </div>
+      </div>
+      <div class="comment-body" data-th-text="${comments.body}"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .comment-form {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 20px;
+  resize: vertical;
+}
+</style>
+
+<!--<div class="comment-form">-->
+<!--    <h1>Post a Comment</h1>-->
+<!--    <form id="new-comment" action="/newComment" method="post">-->
+<!--        <textarea name="body" id="body" placeholder="Write your comment..." required></textarea>-->
+
+<!--        <input class="set-today" type="date" value="${postdate}">-->
+<!--        <script type="text/javascript">-->
+<!--            window.onload= function() {-->
+<!--                document.querySelector('.set-today').value=(new Date()).toISOString().substr(0,10));-->
+<!--            }-->
+<!--        </script>-->
+<!--        <input type="hidden" name="name" value="${name}" />-->
+<!--        <input type="hidden" name="posterId" value="${posterId}" />-->
+
+<!--        <button type="submit" class="btn btn-sm btn-outline-secondary">Submit Comment</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+</body>
+</html>

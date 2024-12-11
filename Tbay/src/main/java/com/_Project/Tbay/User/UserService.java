@@ -89,6 +89,34 @@ public class UserService {
         return wishlist;
     }
 
+    public void addToWishlist(long userId, long listingId){
+        User user = getUserById(userId);
+        if(user.getWishlist()==null){
+            List<Integer> wishlist = new ArrayList<>();
+            wishlist.add((int)listingId);
+            user.setWishlist(wishlist);
+        } else if(!user.getWishlist().contains((int)listingId)){
+            List<Integer> wishlist = user.getWishlist();
+            wishlist.add((int)listingId);
+            user.setWishlist(wishlist);
+        }
+        userRepository.save(user);
+    }
+
+    public void removeFromWishlist(long userId, long listingId){
+        User user = getUserById(userId);
+        List<Integer> wishlist = user.getWishlist();
+        wishlist.remove(Integer.valueOf((int)listingId));
+        user.setWishlist(wishlist);
+        userRepository.save(user);
+    }
+
+    public void clearWishlist(long userId){
+        User user = getUserById(userId);
+        user.setWishlist(null);
+        userRepository.save(user);
+    }
+
     public User getLastUser() {
         return userRepository.findFirstByOrderByCreationDateDesc();
     }

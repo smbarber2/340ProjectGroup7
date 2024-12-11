@@ -82,7 +82,7 @@ public class CartController {
         } else {
             return "redirect:/users/"+ userId;
         }
-
+        userService.clearWishlist(userId);
         service.clearCart(cart);
         return "redirect:/users/"+ userId;
     }

@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/Listing")
@@ -71,9 +72,47 @@ public class ListingController {
                 commentForListing.add(comment);
             }
         }
+        List<Long> wishlistAsLongs = userService.getUserById(userId).getWishlist().stream()
+                .map(Integer::longValue) // Convert each int to long
+                .collect(Collectors.toList());
+
+        model.addAttribute("wishlistAsLongs", wishlistAsLongs);
+
         model.addAttribute("commentList", commentForListing);
 
         return "indivListing";
+    }
+
+    @GetMapping("/sellerView/{listingId}/{sellerId}")
+    public String getListingSellerViewOnly(@PathVariable long listingId, @PathVariable long sellerId, Model model) {
+        model.addAttribute("listing", service.getListingById(listingId));
+        model.addAttribute("title", "Listing Details:"+listingId);
+        model.addAttribute("sellerListing", sellerService.getSellerById(service.getListingById(listingId).getSellerId()));
+        model.addAttribute("seller", sellerService.getSellerById(sellerId));
+
+        String base64 = null;
+        if (service.getListingById(listingId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(service.getListingById(listingId).getPfp());
+        }
+        model.addAttribute("listingImg", base64);
+
+        String base64Pfp = null;
+        if (sellerService.getSellerById(sellerId).getPfp() != null) {
+            base64Pfp = Base64.getEncoder().encodeToString(sellerService.getSellerById(sellerId).getPfp());
+        }
+        model.addAttribute("profilePic", base64Pfp);
+
+        List<Comment> commentForListing = new ArrayList<>();
+        List<Comment> commentList = commentService.getAllComments();
+
+        for (Comment comment : commentList) {
+            if (comment.getListingId() == listingId) {
+                commentForListing.add(comment);
+            }
+        }
+        model.addAttribute("commentList", commentForListing);
+
+        return "indivListingSellerViewOnly";
     }
 
     @GetMapping("/seller/{listingId}")
@@ -157,6 +196,18 @@ public class ListingController {
         service.deleteListingById(sellerId, listingId);
         return "redirect:/seller/sellerListings/" + sellerId;
     }
+
+    @PostMapping("/addToWishlist")
+    public String addToWishlist(@RequestParam("userId") long userId, @RequestParam("listingId") long listingId){
+        userService.addToWishlist(userId, listingId);
+        return "redirect:/Listing/"+ listingId + "/" + userId;
+    }
+    @PostMapping("/removeFromWishlist")
+    public String removeFromWishlist(@RequestParam("userId") long userId, @RequestParam("listingId") long listingId){
+        userService.removeFromWishlist(userId, listingId);
+        return "redirect:/Listing/"+ listingId + "/" + userId;
+    }
+
 
     @GetMapping("/search") // /search?contains= input
     public String getListingBySearch(@RequestParam(name = "contains", defaultValue = "unspecified") String name, Model model) {

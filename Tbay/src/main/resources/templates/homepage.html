@@ -18,8 +18,24 @@
 
 <div class="drive-wrapper drive-grid-view">
     <div class="grid-items-wrapper">
-
-
+        <tr data-th-each="listing : ${wishlist}">
+            <a data-th-href="@{/Listing/{listingId}/{userId} (listingId=${listing.listingId}, userId=${user.userId})}" style="color: #616670">
+                <div class="drive-item module text-center">
+                    <div class="drive-item-inner module-inner">
+                        <div class="drive-item-thumb">
+                            <img th:if="${listing.base64Image != null}" th:src="'data:image/png;base64,' + ${listing.base64Image}" alt="">
+                        </div>
+                    </div>
+                    <div class="drive-item-footer module-footer">
+                        <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
+                            <li data-th-text=" ${listing.name}"></li>
+                            <li data-th-text="'$'+ ${listing.price}"></li>
+                            <li data-th-text=" ${listing.tag}"><a style="font-size: 10px; color: #00000;"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </tr>
     </div>
 </div>
 </div>

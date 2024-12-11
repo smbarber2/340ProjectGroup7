@@ -19,7 +19,7 @@
 <div class="drive-wrapper drive-grid-view">
   <div class="grid-items-wrapper">
     <tr data-th-each="listing : ${listingList}">
-      <a data-th-href="@{/Listing/seller/{listingId} (listingId=${listing.listingId})}" style="color: #616670">
+      <a data-th-href="@{/Listing/seller/{listingId} (listingId=${listing.listingId})}"  style="color: #616670">
         <div class="drive-item module text-center">
           <div class="drive-item-inner module-inner">
             <div class="drive-item-thumb">
@@ -45,7 +45,7 @@
 <div class="drive-wrapper drive-grid-view">
   <div class="grid-items-wrapper">
     <tr data-th-each="listing : ${recList}">
-      <a data-th-href="@{/Listing/seller/{listingId} (listingId=${listing.listingId})}" style="color: #616670">
+      <a data-th-href="@{/Listing/sellerView/{listingId}/{sellerId} (listingId=${listing.listingId}, sellerId=${seller.sellerId})}" style="color: #616670">
         <div class="drive-item module text-center">
           <div class="drive-item-inner module-inner">
             <div class="drive-item-thumb">
