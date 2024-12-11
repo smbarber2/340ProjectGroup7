@@ -72,9 +72,14 @@ public class ListingController {
                 commentForListing.add(comment);
             }
         }
-        List<Long> wishlistAsLongs = userService.getUserById(userId).getWishlist().stream()
-                .map(Integer::longValue) // Convert each int to long
-                .collect(Collectors.toList());
+
+        User user = userService.getUserById(userId);
+        List<Long> wishlistAsLongs = new ArrayList<>();
+        if(user.getWishlist()!=null){
+            wishlistAsLongs = user.getWishlist().stream()
+                    .map(Integer::longValue) // Convert each int to long
+                    .collect(Collectors.toList());
+        }
 
         model.addAttribute("wishlistAsLongs", wishlistAsLongs);
 
