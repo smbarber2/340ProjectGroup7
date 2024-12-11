@@ -33,6 +33,7 @@ public class AdminService {
         userRepository.deleteById(userId);
     }
 
+
 //    public void banUser(long userId, Model model) {
 //        Model existing = getUserById(userId);
 //        existing.setBan(model.getBan());

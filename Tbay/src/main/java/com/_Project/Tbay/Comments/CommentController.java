@@ -26,7 +26,7 @@ public class CommentController {
     public String getAllComments(Model model) {
         model.addAttribute("commentList", commentservice.getAllComments());
         model.addAttribute("title", "All Comments");
-        return "comment-list"; //Like the table from hw
+        return "all-comments"; //Like the table from hw
     }
 
 //

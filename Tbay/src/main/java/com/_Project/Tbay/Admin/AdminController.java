@@ -1,6 +1,7 @@
 package com._Project.Tbay.Admin;
 
 
+import com._Project.Tbay.Comments.CommentService;
 import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
 import com._Project.Tbay.User.User;
@@ -18,6 +19,9 @@ public class AdminController {
     private AdminService adminservice;
     @Autowired
     private ListingService listingService;
+    @Autowired
+    private CommentService commentService;
+
 
     //GET all users
     @GetMapping("/all")
@@ -47,6 +51,12 @@ public class AdminController {
     public String deleteUserById(@PathVariable long userId) {
         adminservice.deleteUserById(userId);
         return "redirect:/admin/all";
+    }
+
+    @GetMapping("/delete/comment/{commentId}")
+    public String deleteCommentById(@PathVariable long commentId) {
+        commentService.deleteCommentById(commentId);
+        return "redirect:/comment/all";
     }
 
 //    @GetMapping("/ban/{userid}")
