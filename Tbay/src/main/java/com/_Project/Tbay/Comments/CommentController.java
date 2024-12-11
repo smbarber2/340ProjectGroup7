@@ -3,6 +3,7 @@ package com._Project.Tbay.Comments;
 import com._Project.Tbay.Admin.AdminService;
 import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
+import com._Project.Tbay.Report.Report;
 import com._Project.Tbay.User.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,17 @@ public class CommentController {
         model.addAttribute("poster", commentservice.getCommentByPosterId(posterId));
         model.addAttribute("title", posterId);
         return "";
+    }
+
+//    @GetMapping("/createComment/{userId}")
+//    public String showCreateForm(@PathVariable long userId, Model model){
+//        model.addAttribute("user", commentservice.getUserById(userId));
+//        model.addAttribute("title", userId);
+//        return "report-create";
+//    }
+    @PostMapping("/newComment")
+    public String addNewComment(Comment comment) {
+        commentservice.saveComment(comment);
+        return "redirect:/reports/all";
     }
 }
