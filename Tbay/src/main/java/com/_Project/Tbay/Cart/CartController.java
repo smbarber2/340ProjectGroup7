@@ -4,6 +4,8 @@ import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
 import com._Project.Tbay.Orders.OrderRepository;
 import com._Project.Tbay.Orders.OrderService;
+import com._Project.Tbay.User.User;
+import com._Project.Tbay.User.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -23,6 +26,8 @@ public class CartController {
     private ListingService listingService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/all")
     public String getAllCarts(Model model){
@@ -49,8 +54,19 @@ public class CartController {
                 list.add(listingService.getListingById(val));
             }
         }
-
         model.addAttribute("listingList", list);
+
+        User user = userService.getUserById(service.getCartById(cartId).getUserId());
+        model.addAttribute("user", user);
+
+        String pfpBase64 = null;
+        if (user.getPfp() != null) {
+            pfpBase64 = Base64.getEncoder().encodeToString(user.getPfp());
+        }
+        model.addAttribute("profilePic", pfpBase64);
+
+
+
         return "checkout";
     }
 
