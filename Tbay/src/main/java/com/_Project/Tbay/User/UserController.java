@@ -4,10 +4,16 @@ import com._Project.Tbay.Cart.Cart;
 import com._Project.Tbay.Cart.CartService;
 import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Report.Report;
+import com._Project.Tbay.Seller.Seller;
+import com._Project.Tbay.Seller.SellerController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
 import java.util.List;
@@ -20,6 +26,8 @@ public class UserController {
     private UserService service;
     @Autowired
     private CartService cartService;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @PostMapping("/new")
     public String addNewUser(User user){
@@ -60,32 +68,24 @@ public class UserController {
         return "sellerOrders";
     }
 
-//    @GetMapping("/checkout/{userId}")
-//    public String checkoutShow(@PathVariable long userId, Model model){
-//        model.addAttribute("user", service.getUserById(userId));
-//        model.addAttribute("title", userId);
-//
-////        model.addAttribute("cart", service.getCartById(userId));
-////        model.addAttribute("title", cartId);
-//
-////        List<Listing> cart = service.getCart(userId);
-////
-////        for (Listing listing : cart) {
-////            if (listing.getPfp() != null) {
-////                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
-////                listing.setBase64Image(base64Image);
-////            }
-////        }
-////        model.addAttribute("cart", cart);
-//
-//        return "checkout";
-//    }
 
     @GetMapping("/update/{userId}")
     public String showUpdateForm(@PathVariable long userId, Model model){
         model.addAttribute("user", service.getUserById(userId));
         model.addAttribute("title", userId);
+
+        String base64 = null;
+        if (service.getUserById(userId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(service.getUserById(userId).getPfp());
+        }
+        model.addAttribute("profilePic", base64);
         return "edit-profile";
+    }
+
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.setDisallowedFields("wishlist");
     }
 
     @PostMapping("/update")
@@ -94,6 +94,20 @@ public class UserController {
         model.addAttribute("title", userId);
         service.updateUser(userId, user);
         return "redirect:/users/" + userId;
+    }
+
+    @PostMapping("/uploadImage")
+    public String upload(Model model, @RequestParam("file") MultipartFile file, @RequestParam("userId") long userId) {
+        User user = service.getUserById(userId);
+
+        try {
+            byte[] imageBytes = file.getBytes();
+            user.setPfp(imageBytes);
+            service.addNewUser(user);
+        } catch (Exception e) {
+            logger.warn("An exception was thrown:", e);
+        }
+        return "redirect:/users/update/" + userId;
     }
 
     @GetMapping("/ban/{userId}")
@@ -106,7 +120,7 @@ public class UserController {
     public String getAllBans(Model model) {
         model.addAttribute("banList", service.getAllBans());
         model.addAttribute("title", "All Bans");
-        return "all-bans"; //Like the table from hw
+        return "all-bans";
     }
 
     @PostMapping("/banUpdate")

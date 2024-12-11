@@ -44,6 +44,7 @@ public class UserService {
         existing.setEmail(user.getEmail());
         existing.setPassword(user.getPassword());
         existing.setBio(user.getBio());
+        existing.setWishlist(user.getWishlist());
         userRepository.save(existing);
     }
 
@@ -69,19 +70,6 @@ public class UserService {
         }
         return wishlist;
     }
-
-//    public List<Listing> getCart(long userId){
-//        List<Listing> cart = new ArrayList<>();
-//        List<Integer> userList = getCartListing(userId);
-//        if(userList!=null){
-//            for(int val: userList){
-//                if(listingService.getListingById(val)!=null){
-//                    cart.add(listingService.getListingById(val));
-//                }
-//            }
-//        }
-//        return cart;
-//    }
 
     public User getLastUser() {
         return userRepository.findFirstByOrderByCreationDateDesc();
