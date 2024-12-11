@@ -115,6 +115,12 @@ public class AppController {
 
         return "sellerHomepage";
     }
+
+//    @GetMapping("/search/{tag}")
+//    public String tagSearch(Model model) {
+//        model.addAttribute("user", userService.getUserById(userId));
+//        model.addAttribute("title", userId);
+//        return "homepage";}
     /*
     @GetMapping("/admin/{adminId}")
     public String profileA(@PathVariable long sellerId, Model model) {

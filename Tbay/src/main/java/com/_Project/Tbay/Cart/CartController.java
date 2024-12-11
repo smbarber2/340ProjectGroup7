@@ -87,7 +87,6 @@ public class CartController {
         return "redirect:/users/"+ userId;
     }
 
-
     @PostMapping("/new")
     public void addNewCart(@RequestBody Cart cart) {
         service.addNewCart(cart);
