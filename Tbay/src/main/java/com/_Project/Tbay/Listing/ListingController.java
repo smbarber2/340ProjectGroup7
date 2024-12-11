@@ -98,7 +98,7 @@ public class ListingController {
     @PostMapping("/newListing")
     public String addNewListing(@RequestParam("sellerId") long sellerId, Listing listing){
         service.addNewListing(listing);
-        sellerService.addToSellerList(sellerId, listing.getListingId(), "listings");
+        sellerService.addToSellerList(sellerId, listing.getListingId());
         return "redirect:/seller/"+sellerId;
     }
 

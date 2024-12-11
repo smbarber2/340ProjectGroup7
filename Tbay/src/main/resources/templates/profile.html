@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <div th:replace="~{fragments/header :: header(userId=${user.userId})}"></div>
+    <div th:replace="~{fragments/header :: header(userId=${user.userId}, profilePic=${profilePic})}"></div>
 
 </head>
 <body>

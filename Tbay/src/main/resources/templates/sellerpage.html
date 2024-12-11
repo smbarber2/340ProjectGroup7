@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/generalStyleTbay.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+    <div th:replace="~{fragments/headerSeller :: headerSeller(sellerId=${seller.sellerId}, profilePic=${profilePic})}"></div>
 </head>
 <body>
 
@@ -57,25 +57,25 @@
                     </div>
                     <div class="drive-wrapper drive-grid-view" style="margin-bottom: 15px;">
                         <div class="grid-items-wrapper">
-
-                        </div>
-                    </div>
-                    <h2 class="title">Completed Orders:</h2>
-                    <div class="drive-wrapper drive-grid-view" style="margin-bottom: 15px;">
-                        <div class="grid-items-wrapper">
-                            <tr data-th-each="listing : ${listingList}">
-                                <a data-th-href="@{/Listing/{listingId} (listingId=${listing.listingId})}" style="color: #616670">
+                            <tr data-th-each="order : ${incomingOrders}">
+                                <a style="color: #616670">
                                     <div class="drive-item module text-center">
                                         <div class="drive-item-footer module-footer">
                                             <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                                <li data-th-text=" ${listing.name}"></li>
-                                                <li data-th-text="'$'+ ${listing.price}"></li>
-                                                <li data-th-text=" ${listing.tag}"><a style="font-size: 10px; color: #00000;"></a></li>
+                                                <li data-th-text=" ${order.orderId}"></li>
+                                                <li data-th-text="${#dates.format(order.orderDate, 'dd-MMM-yyyy')}"></li>
+                                                <li data-th-text=" ${order.listingId}"><a style="font-size: 10px; color: #00000;"></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </a>
                             </tr>
+                        </div>
+                    </div>
+                    <h2 class="title">Completed Orders:</h2>
+                    <div class="drive-wrapper drive-grid-view" style="margin-bottom: 15px;">
+                        <div class="grid-items-wrapper">
+
                         </div>
                     </div>
                 </div>

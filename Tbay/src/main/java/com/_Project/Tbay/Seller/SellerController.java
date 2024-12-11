@@ -5,6 +5,8 @@ import com._Project.Tbay.Cart.CartController;
 import com._Project.Tbay.Cart.CartService;
 import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
+import com._Project.Tbay.Orders.Order;
+import com._Project.Tbay.Orders.OrderService;
 import com._Project.Tbay.User.User;
 import com._Project.Tbay.User.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,20 +37,16 @@ public class SellerController {
     @Autowired
     private ListingService listingService;
 
+
     private static final Logger logger = LoggerFactory.getLogger(SellerController.class);
 
-    @GetMapping("/seller/{sellerId}")
+    @GetMapping("/{sellerId}")
     public String getSellerById(@PathVariable long sellerId, Model model) {
         model.addAttribute("seller", service.getSellerById(sellerId));
         model.addAttribute("title", sellerId);
-        List<Listing> listingList = service.getSellerList(sellerId, "listings");
-        for (Listing listing : listingList) {
-            if (listing.getPfp() != null) {
-                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
-                listing.setBase64Image(base64Image);
-            }
-        }
-        model.addAttribute("listingList", listingList);
+        List<Order> incomingOrders = service.getSellerIncomingOrders(sellerId);
+
+        model.addAttribute("incomingOrders", incomingOrders);
 
         String base64 = null;
         if (service.getSellerById(sellerId).getPfp() != null) {
@@ -64,7 +62,7 @@ public class SellerController {
         model.addAttribute("seller", service.getSellerById(sellerId));
         model.addAttribute("title", sellerId);
 
-        List<Listing> listingList = service.getSellerList(sellerId, "listings");
+        List<Listing> listingList = service.getSellerList(sellerId);
         for (Listing listing : listingList) {
             if (listing.getPfp() != null) {
                 String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
@@ -86,7 +84,7 @@ public class SellerController {
     public String showUpdate(@PathVariable long sellerId, Model model) {
         model.addAttribute("seller", service.getSellerById(sellerId));
         model.addAttribute("title", sellerId);
-        model.addAttribute("listingList", service.getSellerList(sellerId, "listings"));
+        model.addAttribute("listingList", service.getSellerList(sellerId));
 
         String base64 = null;
         if (service.getSellerById(sellerId).getPfp() != null) {

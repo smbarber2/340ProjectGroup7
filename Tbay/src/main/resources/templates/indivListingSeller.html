@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <nav data-th-insert="~{./fragments/header :: header}"></nav>
+    <div th:replace="~{fragments/headerSeller :: headerSeller(sellerId=${seller.sellerId}, profilePic=${profilePic})}"></div>
 
 </head>
 <body>

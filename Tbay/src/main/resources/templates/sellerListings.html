@@ -17,7 +17,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
 
-    <nav data-th-insert="~{./fragments/header :: header}"></nav>
+    <div th:replace="~{fragments/headerSeller :: headerSeller(sellerId=${seller.sellerId}, profilePic=${profilePic})}"></div>
 
 </head>
 <body>

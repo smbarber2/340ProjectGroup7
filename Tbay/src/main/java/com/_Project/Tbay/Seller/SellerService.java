@@ -3,6 +3,8 @@ package com._Project.Tbay.Seller;
 import com._Project.Tbay.Cart.CartRepository;
 import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
+import com._Project.Tbay.Orders.Order;
+import com._Project.Tbay.Orders.OrderService;
 import com._Project.Tbay.User.User;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -26,6 +28,11 @@ public class SellerService {
     @Lazy
     @Autowired
     private ListingService listingService;
+    @Lazy
+    @Autowired
+    private OrderService orderService;
+
+
 
     private static final Logger logger = LoggerFactory.getLogger(SellerService.class);
 
@@ -45,17 +52,12 @@ public class SellerService {
         return sellerRepository.findById(sellerId).orElse(null);
     }
 
-    public List<Listing> getSellerList(long sellerId, String listingType){
+    public List<Listing> getSellerList(long sellerId){
+        Seller seller = getSellerById(sellerId);
         List<Listing> list = new ArrayList<>();
-        List<Integer> deserializedList = switch (listingType) {
-            case "listings" -> getSellerById(sellerId).getSellerListings();
-            case "completed" -> getSellerById(sellerId).getCompletedOrders();
-            case "incoming" -> getSellerById(sellerId).getIncomingOrders();
-            default -> null;
-        };
-
-        if(deserializedList!=null){
-            for(int val: deserializedList){
+        List<Integer> oldList = (seller.getSellerListings() != null) ? seller.getSellerListings() : new ArrayList<>();
+        if(oldList!=null){
+            for(int val: oldList){
                 if(listingService.getListingById(val)!=null){
                     list.add(listingService.getListingById(val));
                 }
@@ -63,6 +65,21 @@ public class SellerService {
         }
         return list;
     }
+
+    public List<Order> getSellerIncomingOrders(long sellerId){
+        Seller seller = getSellerById(sellerId);
+        List<Order> list = new ArrayList<>();
+        List<Integer> oldList = (seller.getIncomingOrders() != null) ? seller.getIncomingOrders() : new ArrayList<>();
+        if(oldList!=null){
+            for(int val: oldList){
+                if(orderService.getOrderById(val)!=null){
+                    list.add(orderService.getOrderById(val));
+                }
+            }
+        }
+        return list;
+    }
+
 
     public void updateSellerListing(long sellerId){
         Seller seller = getSellerById(sellerId);
@@ -78,30 +95,20 @@ public class SellerService {
         sellerRepository.save(seller);
     }
 
-    public void addToSellerList(long sellerId, long listingId, String listingType){
+    public void addOrder(long sellerId, long orderId){
+        Seller seller = getSellerById(sellerId);
+        List<Integer> list = (seller.getIncomingOrders() != null) ? seller.getIncomingOrders() : new ArrayList<>();
+        list.add((int) orderId);
+        seller.setIncomingOrders(list);
+        sellerRepository.save(seller);
+    }
+
+    public void addToSellerList(long sellerId, long listingId){
         Seller seller = getSellerById(sellerId);
         updateSellerListing(sellerId);
-        List<Integer> list = switch (listingType) {
-            case "listings" -> seller.getSellerListings();
-            case "completed" -> seller.getCompletedOrders();
-            case "incoming" -> seller.getIncomingOrders();
-            default -> null;
-        };
-        if(list==null){
-            list = new ArrayList<>();
-        }
+        List<Integer> list = (seller.getSellerListings() != null) ? seller.getSellerListings() : new ArrayList<>();
         list.add((int) listingId);
-        switch (listingType){
-            case "listings":
-                seller.setSellerListings(list);
-                break;
-            case "completed":
-                seller.setCompletedOrders(list);
-                break;
-            case "incoming":
-                seller.setIncomingOrders(list);
-                break;
-        }
+        seller.setSellerListings(list);
         sellerRepository.save(seller);
     }
 
