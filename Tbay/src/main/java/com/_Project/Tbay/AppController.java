@@ -3,6 +3,7 @@ package com._Project.Tbay;
 
 import com._Project.Tbay.Admin.AdminService;
 import com._Project.Tbay.Listing.Listing;
+import com._Project.Tbay.Listing.ListingService;
 import com._Project.Tbay.Seller.SellerService;
 import com._Project.Tbay.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class AppController {
     private SellerService sellerService;
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private ListingService listingService;
 
     @GetMapping({"", "/", "/home", "app"})
     public String home() {
@@ -49,9 +52,36 @@ public class AppController {
 
     @GetMapping("/seller/homepage/{sellerId}")
     public String homepageSeller(@PathVariable long sellerId, Model model) {
-        model.addAttribute("user", sellerService.getSellerById(sellerId));
+        model.addAttribute("seller", sellerService.getSellerById(sellerId));
         model.addAttribute("title", sellerId);
-        return "homepage";
+
+        List<Listing> listingList = sellerService.getSellerList(sellerId);
+        for (Listing listing : listingList) {
+            if (listing.getPfp() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+                listing.setBase64Image(base64Image);
+            }
+        }
+        model.addAttribute("listingList", listingList);
+
+        List<Listing> recList = listingService.getAllListings();
+        List<Integer> sellerList = sellerService.getSellerById(sellerId).getSellerListings();
+        recList.removeIf(listing -> sellerList.contains((int)listing.getListingId()));
+        for (Listing listing : recList) {
+            if (listing.getPfp() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+                listing.setBase64Image(base64Image);
+            }
+        }
+        model.addAttribute("recList", recList);
+
+        String base64 = null;
+        if (sellerService.getSellerById(sellerId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(sellerService.getSellerById(sellerId).getPfp());
+        }
+        model.addAttribute("profilePic", base64);
+
+        return "sellerHomepage";
     }
     /*
     @GetMapping("/admin/{adminId}")

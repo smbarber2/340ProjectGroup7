@@ -141,7 +141,6 @@ public class SellerService {
         Seller seller = getSellerById(sellerId);
         updateSellerListing(sellerId);
         List<Integer> list = (seller.getSellerListings() != null) ? seller.getSellerListings() : new ArrayList<>();
-        list.add((int) listingId);
         seller.setSellerListings(list);
         sellerRepository.save(seller);
     }

@@ -53,16 +53,16 @@ public class ListingController {
         }
         model.addAttribute("listingImg", base64);
 
-            List<Comment> commentForListing = new ArrayList<>();
+        List<Comment> commentForListing = new ArrayList<>();
 
-            List<Comment> commentList = commentService.getAllComments();
+        List<Comment> commentList = commentService.getAllComments();
 
-            for (Comment comment : commentList) {
-                if (comment.getListingId() == listingId) {
-                    commentForListing.add(comment);
-                }
+        for (Comment comment : commentList) {
+            if (comment.getListingId() == listingId) {
+                commentForListing.add(comment);
             }
-            model.addAttribute("commentList", commentForListing);
+        }
+        model.addAttribute("commentList", commentForListing);
 
         return "indivListing";
     }

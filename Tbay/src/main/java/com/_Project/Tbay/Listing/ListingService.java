@@ -69,8 +69,10 @@ public class ListingService {
 
     public void deleteListingById(long sellerId, long listingId) {
         List<Cart> allCarts = cartService.getAllCarts();
-        for(Cart cart:allCarts){
-            cartService.removeListing(cart.getCartId(), listingId);
+        if(allCarts !=null){
+            for(Cart cart:allCarts){
+                cartService.removeListing(cart.getCartId(), listingId);
+            }
         }
         sellerService.deleteToSellerList(sellerId, listingId);
         listingRepository.deleteById(listingId);

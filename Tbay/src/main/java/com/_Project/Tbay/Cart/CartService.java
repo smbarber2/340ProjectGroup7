@@ -84,7 +84,9 @@ public class CartService {
     public void removeListing(long cartId, long listingId) {
         Cart existing = getCartById(cartId);
         List<Integer> list = existing.getCartList();
-        list.remove(Integer.valueOf((int)listingId));
+        if(list!=null && list.contains((int)listingId)){
+            list.remove(Integer.valueOf((int)listingId));
+        }
         existing.setCartList(list);
         existing.setTotalPrice(existing.getTotalPrice()-listingService.getListingById(listingId).getPrice());
         cartRepository.save(existing);
