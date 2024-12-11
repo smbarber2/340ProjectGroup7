@@ -60,23 +60,23 @@ public class UserController {
         return "sellerOrders";
     }
 
-//    @GetMapping("/checkout/{userId}")
-//    public String checkoutShow(@PathVariable long userId, Model model){
-//        model.addAttribute("user", service.getUserById(userId));
-//        model.addAttribute("title", userId);
-//
-//        List<Listing> cart = service.getCart(userId);
-//
-//        for (Listing listing : cart) {
-//            if (listing.getPfp() != null) {
-//                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
-//                listing.setBase64Image(base64Image);
-//            }
-//        }
-//        model.addAttribute("cart", cart);
-//
-//        return "checkout";
-//    }
+    @GetMapping("/checkout/{userId}")
+    public String checkoutShow(@PathVariable long userId, Model model){
+        model.addAttribute("user", service.getUserById(userId));
+        model.addAttribute("title", userId);
+
+        List<Listing> cart = CartService.getCart(userId);
+
+        for (Listing listing : cart) {
+            if (listing.getPfp() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+                listing.setBase64Image(base64Image);
+            }
+        }
+        model.addAttribute("cart", cart);
+
+        return "checkout";
+    }
 
     @GetMapping("/update/{userId}")
     public String showUpdateForm(@PathVariable long userId, Model model){
@@ -85,9 +85,11 @@ public class UserController {
         return "edit-profile";
     }
     @PostMapping("/update")
-    public String updateUser(User user) {
-        service.updateUser(user.getUserId(), user);
-        return "redirect:/{userId}";
+    public String updateUser(@RequestParam long userId, User user, Model model) {
+        model.addAttribute("user", service.getUserById(userId));
+        model.addAttribute("title", userId);
+        service.updateUser(userId, user);
+        return "redirect:/users/" + userId;
     }
 
     @GetMapping("/ban/{userId}")
@@ -95,6 +97,7 @@ public class UserController {
         model.addAttribute("user", service.getUserById(userId));
         return "ban-create";
     }
+
 
     @GetMapping("/banAll")
     public String getAllBans(Model model) {

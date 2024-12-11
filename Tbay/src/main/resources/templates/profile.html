@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="../css/profile.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" th:href="@{/css/generalStyleTbay.css}">
+    <link rel="stylesheet" type="text/css" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
+    <link rel="stylesheet" type="text/css" href="../css/profile.css" th:href="@{/css/profile.css}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!--    <div th:replace="~{fragments/header :: header(userId=${user.userId}, profilePic=${profilePic})}"></div>-->
+    <div th:replace="~{fragments/header :: header(userId=${user.userId}, profilePic=${profilePic})}"></div>
 
 </head>
 <body>
@@ -50,7 +52,7 @@
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Refresh" title="Refresh Wishlist"><i class="fa fa-refresh"></i></button>
                                 <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Archive" title="View Wishlist"><i class="fa fa-archive"></i></button>
-                                <a th:href="@{/users/edit/{userId}(userId=${userId})}"><button class="btn btn-success"><i class="fa fa-plus"></i>Edit Profile</button></a>
+                                <a th:href="@{/users/update/{userId}(userId=${userId})}"><button class="btn btn-success"><i class="fa fa-plus"></i>Edit Profile</button>
 
                                 <h2 class="title">Wishlist:</h2>
                             </div>

@@ -50,7 +50,8 @@
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Refresh" title="Refresh Orders"><i class="fa fa-refresh"></i></button>
                                 <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" data-original-title="Archive" title="View All Orders"><i class="fa fa-archive"></i></button>
-                                <a data-th-href="@{/seller/update/{sellerId} (sellerId=${seller.sellerId})}"><button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edit Profile">Edit Profile</button></a>
+                                <a th:href="@{/users/edit/{userId}(userId=${userId})}"><button class="btn btn-success"><i class="fa fa-plus"></i>Edit Profile</button>
+                                </a>
                                 <h2 class="title">Incoming Orders:</h2>
                             </div>
                         </div>
