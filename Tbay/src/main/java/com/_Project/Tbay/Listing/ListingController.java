@@ -1,6 +1,7 @@
 package com._Project.Tbay.Listing;
 
 import com._Project.Tbay.Cart.CartService;
+import com._Project.Tbay.Comments.Comment;
 import com._Project.Tbay.Comments.CommentService;
 import com._Project.Tbay.Seller.Seller;
 import com._Project.Tbay.Seller.SellerController;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -44,13 +46,23 @@ public class ListingController {
         model.addAttribute("listing", service.getListingById(listingId));
         model.addAttribute("title", "Listing Details:"+listingId);
         model.addAttribute("seller", sellerService.getSellerById(service.getListingById(listingId).getSellerId()));
-//        model.addAttribute("comment", commentService.getCommentbyListingId(service.getCommentbyListingId(listingId).get));
 
         String base64 = null;
         if (service.getListingById(listingId).getPfp() != null) {
             base64 = Base64.getEncoder().encodeToString(service.getListingById(listingId).getPfp());
         }
         model.addAttribute("listingImg", base64);
+
+            List<Comment> commentForListing = new ArrayList<>();
+
+            List<Comment> commentList = commentService.getAllComments();
+
+            for (Comment comment : commentList) {
+                if (comment.getListingId() == listingId) {
+                    commentForListing.add(comment);
+                }
+            }
+            model.addAttribute("commentList", commentForListing);
 
         return "indivListing";
     }

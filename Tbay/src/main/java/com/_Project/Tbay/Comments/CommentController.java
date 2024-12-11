@@ -28,24 +28,24 @@ public class CommentController {
         return "comment-list"; //Like the table from hw
     }
 
-
-    @GetMapping("/{listingId}")
-    public String getCommentByListingId(@PathVariable long listingId, Model model) {
-        model.addAttribute("listing", commentservice.getCommentByListingId(listingId));
-        model.addAttribute("title", listingId);
-        List<Comment> commentForListing = new ArrayList<>();
-
-        List<Comment> commentList = commentservice.getAllComments();
-
-        for (Comment comment : commentList) {
-            if (comment.getListingId() == listingId) {
-                commentForListing.add(comment);
-            }
-        }
-        model.addAttribute("commentList", commentForListing);
-
-        return "indivListing";
-    }
+//
+//    @GetMapping("/{listingId}")
+//    public String getCommentByListingId(@PathVariable long listingId, Model model) {
+//        model.addAttribute("listing", commentservice.getCommentByListingId(listingId));
+//        model.addAttribute("title", listingId);
+//        List<Comment> commentForListing = new ArrayList<>();
+//
+//        List<Comment> commentList = commentservice.getAllComments();
+//
+//        for (Comment comment : commentList) {
+//            if (comment.getListingId() == listingId) {
+//                commentForListing.add(comment);
+//            }
+//        }
+//        model.addAttribute("commentList", commentForListing);
+//
+//        return "indivListing";
+//    }
 
 
     @GetMapping("/{posterId}")
