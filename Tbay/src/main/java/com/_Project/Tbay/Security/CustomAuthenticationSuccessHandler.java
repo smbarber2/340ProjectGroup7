@@ -1,5 +1,5 @@
-/*
-package com._Project.Tbay.security;
+
+package com._Project.Tbay.Security;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,4 +26,3 @@ public class CustomAuthenticationSuccessHandler implements org.springframework.s
     }
 }
 
-*/

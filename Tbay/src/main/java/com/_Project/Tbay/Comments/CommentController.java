@@ -62,9 +62,9 @@ public class CommentController {
 //        model.addAttribute("title", userId);
 //        return "report-create";
 //    }
-    @PostMapping("/newComment")
-    public String addNewComment(Comment comment) {
-        commentservice.saveComment(comment);
-        return "redirect:/reports/all";
-    }
+//    @PostMapping("/newComment")
+//    public String addNewComment(Comment comment) {
+//        commentservice.saveComment(comment);
+//        return "redirect:/reports/all";
+//    }
 }

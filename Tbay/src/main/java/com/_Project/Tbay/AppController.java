@@ -32,7 +32,7 @@ public class AppController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "log-in";
     }
 
     @GetMapping("/create-acct")
