@@ -20,7 +20,7 @@
             </div>
 
             <div class="search">
-                <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
+                <input type="text" id="searchbar" name="search" onkeyup="search()" placeholder="Search by book title or subject..." title="Type in a category">
             </div>
             <a href="results.html">
                 <div class="SearchButton">
@@ -38,5 +38,33 @@
     </div>
 
     </div>
+
+<!--    PSUEDO CODE IDEA FOR SEARCH FUNCTION-->
+<!--    <script>-->
+<!--        function search() {-->
+<!--        let input = document.getElementById('searchbar').value-->
+<!--        input = input.toLowerCase();-->
+
+<!--        listingIDs[] = getAllListings();-->
+<!--        ints results[];-->
+<!--        const searchList = new Map();-->
+
+<!--        for(let i =0; i < listingIDs.length; i++;){-->
+<!--            searchList.set(listingIDs[i], searchList.set(listingIDs[i].getName()));-->
+<!--                }-->
+
+<!--        searchList.forEach(){-->
+<!--        if(searchList.value() == input){-->
+<!--            results[] = searchList.key();-->
+<!--        }-->
+<!--        }-->
+
+<!--        for(let x=0; x < results.length; x++;){-->
+<!--        display result[x] in table-->
+<!--        }-->
+<!--            }-->
+<!--    </script>-->
+
+
 </head>
 </html>

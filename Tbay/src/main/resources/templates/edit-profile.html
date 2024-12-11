@@ -21,7 +21,7 @@
     <h2>Edit Profile</h2>
 
     <div class="editPFP">
-        <img th:src="@{'data:image/jpeg;base64,'+${profilePic}}" height="125" width="125">
+        <img th:src="@{'data:image/jpeg;base64,'+${profilePic}}" height="125" width="125" border-radius="50%" border-style="solid";>
 </div>
         <form action="/users/uploadImage" method="post" enctype="multipart/form-data">
             <input id="input-file" type="file" name="file"/>
