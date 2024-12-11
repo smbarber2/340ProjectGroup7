@@ -29,7 +29,7 @@
 <div class="drive-wrapper drive-grid-view">
     <div class="grid-items-wrapper">
         <tr data-th-each="listing : ${recList}">
-            <a data-th-href="@{/Listing/seller/{listingId} (listingId=${listing.listingId})}" style="color: #616670">
+            <a data-th-href="@{/Listing/{listingId}/{userId} (listingId=${listing.listingId}, userId=${user.userId})}" style="color: #616670">
                 <div class="drive-item module text-center">
                     <div class="drive-item-inner module-inner">
                         <div class="drive-item-thumb">

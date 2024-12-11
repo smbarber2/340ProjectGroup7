@@ -44,8 +44,8 @@ public class ListingController {
         return "ListingPage";
     }
 
-    @GetMapping("/{listingId}")
-    public String getListing(@PathVariable long listingId, long userId, Model model) {
+    @GetMapping("/{listingId}/{userId}")
+    public String getListing(@PathVariable long listingId, @PathVariable long userId, Model model) {
         model.addAttribute("listing", service.getListingById(listingId));
         model.addAttribute("title", "Listing Details:"+listingId);
         model.addAttribute("seller", sellerService.getSellerById(service.getListingById(listingId).getSellerId()));
@@ -56,6 +56,12 @@ public class ListingController {
             base64 = Base64.getEncoder().encodeToString(service.getListingById(listingId).getPfp());
         }
         model.addAttribute("listingImg", base64);
+
+        String base64Pfp = null;
+        if (userService.getUserById(userId).getPfp() != null) {
+            base64Pfp = Base64.getEncoder().encodeToString(userService.getUserById(userId).getPfp());
+        }
+        model.addAttribute("profilePic", base64Pfp);
 
         List<Comment> commentForListing = new ArrayList<>();
 
