@@ -44,9 +44,12 @@ public class SellerController {
     public String getSellerById(@PathVariable long sellerId, Model model) {
         model.addAttribute("seller", service.getSellerById(sellerId));
         model.addAttribute("title", sellerId);
-        List<Order> incomingOrders = service.getSellerIncomingOrders(sellerId);
 
+        List<Order> incomingOrders = service.getSellerIncomingOrders(sellerId);
         model.addAttribute("incomingOrders", incomingOrders);
+
+        List<Order> completedOrders = service.getSellerCompletedOrders(sellerId);
+        model.addAttribute("completedOrders", completedOrders);
 
         String base64 = null;
         if (service.getSellerById(sellerId).getPfp() != null) {
@@ -78,6 +81,40 @@ public class SellerController {
         model.addAttribute("profilePic", base64);
 
         return "ListingPage";
+    }
+
+    @GetMapping("/incomingOrders/{sellerId}")
+    public String showIncomingOrders(@PathVariable long sellerId, Model model) {
+        model.addAttribute("seller", service.getSellerById(sellerId));
+        model.addAttribute("title", sellerId);
+
+        List<Order> incomingOrders = service.getSellerIncomingOrders(sellerId);
+        model.addAttribute("incomingOrders", incomingOrders);
+
+        String base64 = null;
+        if (service.getSellerById(sellerId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(service.getSellerById(sellerId).getPfp());
+        }
+        model.addAttribute("profilePic", base64);
+
+        return "incomingOrders";
+    }
+
+    @GetMapping("/completedOrders/{sellerId}")
+    public String showCompletedOrders(@PathVariable long sellerId, Model model) {
+        model.addAttribute("seller", service.getSellerById(sellerId));
+        model.addAttribute("title", sellerId);
+
+        List<Order> completedOrders = service.getSellerCompletedOrders(sellerId);
+        model.addAttribute("completedOrders", completedOrders);
+
+        String base64 = null;
+        if (service.getSellerById(sellerId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(service.getSellerById(sellerId).getPfp());
+        }
+        model.addAttribute("profilePic", base64);
+
+        return "completedOrders";
     }
 
     @GetMapping("/update/{sellerId}")
@@ -132,7 +169,4 @@ public class SellerController {
         }
         return "redirect:/seller/update/" + sellerId;
     }
-
-
-
 }

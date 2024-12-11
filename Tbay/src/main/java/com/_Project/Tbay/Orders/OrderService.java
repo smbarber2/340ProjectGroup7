@@ -24,5 +24,4 @@ public class OrderService {
         sellerService.addOrder(sellerId, order.getOrderId());
     }
 
-
 }

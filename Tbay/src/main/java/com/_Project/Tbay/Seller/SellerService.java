@@ -80,6 +80,19 @@ public class SellerService {
         return list;
     }
 
+    public List<Order> getSellerCompletedOrders(long sellerId){
+        Seller seller = getSellerById(sellerId);
+        List<Order> list = new ArrayList<>();
+        List<Integer> oldList = (seller.getCompletedOrders() != null) ? seller.getCompletedOrders() : new ArrayList<>();
+        if(oldList!=null){
+            for(int val: oldList){
+                if(orderService.getOrderById(val)!=null){
+                    list.add(orderService.getOrderById(val));
+                }
+            }
+        }
+        return list;
+    }
 
     public void updateSellerListing(long sellerId){
         Seller seller = getSellerById(sellerId);
@@ -100,6 +113,22 @@ public class SellerService {
         List<Integer> list = (seller.getIncomingOrders() != null) ? seller.getIncomingOrders() : new ArrayList<>();
         list.add((int) orderId);
         seller.setIncomingOrders(list);
+        sellerRepository.save(seller);
+    }
+
+    public void removeOrder(long sellerId, long orderId){
+        Seller seller = getSellerById(sellerId);
+        List<Integer> list = (seller.getIncomingOrders() != null) ? seller.getIncomingOrders() : new ArrayList<>();
+        list.remove(Integer.valueOf((int) orderId));
+        seller.setIncomingOrders(list);
+        sellerRepository.save(seller);
+    }
+
+    public void addCompletedOrder(long sellerId, long orderId){
+        Seller seller = getSellerById(sellerId);
+        List<Integer> list = (seller.getCompletedOrders() != null) ? seller.getCompletedOrders() : new ArrayList<>();
+        list.add((int) orderId);
+        seller.setCompletedOrders(list);
         sellerRepository.save(seller);
     }
 

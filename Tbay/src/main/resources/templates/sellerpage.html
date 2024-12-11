@@ -23,14 +23,14 @@
                         <ul class="meta list list-unstyled" style="list-style-type:none; padding-left: 0px;">
                             <li class="name" width= 80px data-th-text="${seller.name}"></li>
                             <li class="email" data-th-text="${seller.email}"></li>
-                            <li class="activity" data-th-text="'Member Since: '+${seller.creationDate}"></li>
+                            <li class="activity" data-th-text="'Member Since: '+${#dates.format(seller.creationDate, 'dd-MMM-yyyy')}"></li>
                         </ul>
                     </div>
                     <nav class="side-menu">
                         <ul class="nav" style="padding-left: 0px;">
                             <li class="active"><a data-th-href="@{/seller/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-user"></span> Profile</a></li>
-                            <li><a href="#"><span class="fa fa-cog"></span> Incoming Orders</a></li>
-                            <li><a href="#"><span class="fa fa-credit-card"></span> Completed Orders</a></li>
+                            <li><a data-th-href="@{/seller/incomingOrders/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-cog"></span> Incoming Orders</a></li>
+                            <li><a data-th-href="@{/seller/completedOrders/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-credit-card"></span> Completed Orders</a></li>
                             <li><a data-th-href="@{/seller/sellerListings/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-envelope"></span> Listings</a></li>
                             <li><a href="log-in.html"><span class="fa fa-envelope"></span> Log Out</a></li>
 
@@ -58,7 +58,7 @@
                     <div class="drive-wrapper drive-grid-view" style="margin-bottom: 15px;">
                         <div class="grid-items-wrapper">
                             <tr data-th-each="order : ${incomingOrders}">
-                                <a style="color: #616670">
+                                <a data-th-href="@{/seller/incomingOrders/{sellerId} (sellerId=${seller.sellerId})}" style="color: #616670">
                                     <div class="drive-item module text-center">
                                         <div class="drive-item-footer module-footer">
                                             <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
@@ -75,7 +75,19 @@
                     <h2 class="title">Completed Orders:</h2>
                     <div class="drive-wrapper drive-grid-view" style="margin-bottom: 15px;">
                         <div class="grid-items-wrapper">
-
+                            <tr data-th-each="order : ${completedOrders}">
+                                <a data-th-href="@{/seller/completedOrders/{sellerId} (sellerId=${seller.sellerId})}" style="color: #616670">
+                                    <div class="drive-item module text-center">
+                                        <div class="drive-item-footer module-footer">
+                                            <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
+                                                <li data-th-text=" ${order.orderId}"></li>
+                                                <li data-th-text="${#dates.format(order.orderDate, 'dd-MMM-yyyy')}"></li>
+                                                <li data-th-text=" ${order.listingId}"><a style="font-size: 10px; color: #00000;"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </tr>
                         </div>
                     </div>
                 </div>

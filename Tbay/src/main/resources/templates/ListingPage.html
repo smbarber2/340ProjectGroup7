@@ -22,7 +22,7 @@
                     <nav class="side-menu">
                         <ul class="nav" style="padding-left: 0px;">
                             <li><a data-th-href="@{/seller/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-user"></span> Profile</a></li>
-                            <li><a href="#"><span class="fa fa-cog"></span> Incoming Orders</a></li>
+                            <li><a data-th-href="@{/seller/incomingOrders/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-cog"></span> Incoming Orders</a></li>
                             <li><a href="#"><span class="fa fa-credit-card"></span> Completed Orders</a></li>
                             <li class="active"><a data-th-href="@{/seller/sellerListings/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-envelope"></span> Listings</a></li>
 
@@ -31,9 +31,6 @@
                 </div>
 
                 <div class="content-panel">
-                    <div class="content-header-wrapper">
-                        
-                    </div>
                     <div class="content-utilities">
                         <div class="actions">
                             <div class="btn-group" role="group">

@@ -66,11 +66,11 @@ public class CartController {
                 orderService.createOrder(listing.getSellerId(), listing.getListingId(), userId);
             }
         } else {
-            return "redirect:/"+ userId;
+            return "redirect:/users/"+ userId;
         }
 
         service.clearCart(cart);
-        return "redirect:/"+ userId;
+        return "redirect:/users/"+ userId;
     }
 
 

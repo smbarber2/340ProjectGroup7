@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Listing Page</title>
+  <link rel="stylesheet" href="../css/profile.css" th:href="@{/css/profile.css}">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <div th:replace="~{fragments/headerSeller :: headerSeller(sellerId=${seller.sellerId}, profilePic=${profilePic})}"></div>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="view-account">
+    <section class="module">
+      <div class="module-inner">
+        <div class="side-bar">
+          <nav class="side-menu">
+            <ul class="nav" style="padding-left: 0px;">
+              <li><a data-th-href="@{/seller/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-user"></span> Profile</a></li>
+              <li class="active"><a data-th-href="@{/seller/incomingOrders/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-cog"></span> Incoming Orders</a></li>
+              <li><a data-th-href="@{/seller/completedOrders/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-credit-card"></span> Completed Orders</a></li>
+              <li><a data-th-href="@{/seller/sellerListings/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-envelope"></span> Listings</a></li>
+
+            </ul>
+          </nav>
+        </div>
+
+        <div class="content-panel">
+          <div class="drive-wrapper drive-grid-view" style="margin-bottom: 15px;">
+            <div class="grid-items-wrapper">
+              <table class="table table-striped rounded-3 overflow-hidden">
+                <tbody>
+                <tr data-th-each="order: ${incomingOrders}">
+                  <td data-th-text=" ${order.orderId}"></td>
+                  <td data-th-text="${#dates.format(order.orderDate, 'dd-MMM-yyyy')}"></td>
+                  <td data-th-text=" ${order.listingId}"></td>
+                  <td>
+                    <form action="/orders/completeOrder" method="post">
+                      <input type="hidden" name="orderId" data-th-value="${order.orderId}">
+                      <input type="hidden" name="sellerId" data-th-value="${seller.sellerId}">
+                      <button type="submit">Completed</button>
+                    </form>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+
+</body>
+</html>
