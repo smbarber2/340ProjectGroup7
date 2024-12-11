@@ -162,6 +162,7 @@ public class User {
     public void setPfp(byte[] pfp) {
         this.pfp = pfp;
     }
+
 }
 
 

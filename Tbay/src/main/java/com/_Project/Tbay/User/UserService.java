@@ -23,6 +23,8 @@ public class UserService {
     @Lazy
     private ListingService listingService;
 
+
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
@@ -70,7 +72,7 @@ public class UserService {
 
 //    public List<Listing> getCart(long userId){
 //        List<Listing> cart = new ArrayList<>();
-//        List<Integer> userList = getUserById(userId).getCart();
+//        List<Integer> userList = getCartListing(userId);
 //        if(userList!=null){
 //            for(int val: userList){
 //                if(listingService.getListingById(val)!=null){

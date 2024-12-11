@@ -56,15 +56,18 @@ public class CommentController {
         return "";
     }
 
-//    @GetMapping("/createComment/{userId}")
-//    public String showCreateForm(@PathVariable long userId, Model model){
-//        model.addAttribute("user", commentservice.getUserById(userId));
-//        model.addAttribute("title", userId);
-//        return "report-create";
-//    }
-//    @PostMapping("/newComment")
-//    public String addNewComment(Comment comment) {
-//        commentservice.saveComment(comment);
-//        return "redirect:/reports/all";
-//    }
+    @GetMapping("/createComment/{posterId}")
+    public String showCreateForm(@PathVariable long posterId, Model model){
+        model.addAttribute("user", commentservice.getCommentByPosterId(posterId));
+        model.addAttribute("title", posterId);
+        return "comment-create";
+    }
+
+    @PostMapping("/newComment")
+    public String addNewComment(Comment comment, @RequestParam("listingId") Long listingId) {
+        commentservice.saveComment(comment);
+
+        return "redirect:/Listing/" + listingId;
+    }
+
 }

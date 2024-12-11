@@ -60,11 +60,14 @@ public class UserController {
         return "sellerOrders";
     }
 
-//    @GetMapping("/checkout/{userId}")
-//    public String checkoutShow(@PathVariable long userId, Model model){
-//        model.addAttribute("user", service.getUserById(userId));
-//        model.addAttribute("title", userId);
-//
+    @GetMapping("/checkout/{userId}")
+    public String checkoutShow(@PathVariable long userId, Model model){
+        model.addAttribute("user", service.getUserById(userId));
+        model.addAttribute("title", userId);
+
+//        model.addAttribute("cart", service.getCartById(userId));
+//        model.addAttribute("title", cartId);
+
 //        List<Listing> cart = service.getCart(userId);
 //
 //        for (Listing listing : cart) {
@@ -74,9 +77,9 @@ public class UserController {
 //            }
 //        }
 //        model.addAttribute("cart", cart);
-//
-//        return "checkout";
-//    }
+
+        return "checkout";
+    }
 
     @GetMapping("/update/{userId}")
     public String showUpdateForm(@PathVariable long userId, Model model){
@@ -84,10 +87,13 @@ public class UserController {
         model.addAttribute("title", userId);
         return "edit-profile";
     }
+
     @PostMapping("/update")
-    public String updateUser(User user) {
-        service.updateUser(user.getUserId(), user);
-        return "redirect:/{userId}";
+    public String updateUser(@RequestParam long userId, User user, Model model) {
+        model.addAttribute("user", service.getUserById(userId));
+        model.addAttribute("title", userId);
+        service.updateUser(userId, user);
+        return "redirect:/users/" + userId;
     }
 
     @GetMapping("/ban/{userId}")
@@ -108,5 +114,4 @@ public class UserController {
         service.updateBan(user.getUserId(), user);
         return "redirect:/admin/banlist";
     }
-
 }

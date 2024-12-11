@@ -10,6 +10,7 @@
     <title>Tbay Checkout</title>
     <link rel="stylesheet" type="text/css" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
 
+    <div th:replace="~{fragments/header :: header(userId=${user.userId}, profilePic=${profilePic})}"></div>
 
 </head>
 <body>
@@ -38,12 +39,12 @@
     </div>
 </div><br>
 
-<span style="margin-left:5vw" data-th-text="'Total: $'+${cart.totalPrice}"></span>
+<!--<span style="margin-left:5vw" data-th-text="'Total: $'+${cart.totalPrice}"></span>-->
+<span style="margin-left:5vw" <p>$0.00</p></span>
+
     <form action="/carts/checkout" method="post">
         <input type="hidden" name="cartId" data-th-value="${cart.cartId}">
         <button style="margin-left:5vw" type="submit">Checkout</button>
     </form>
-
-
 </body>
 </html>
