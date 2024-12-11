@@ -33,10 +33,11 @@ public class UserController {
     public String addNewUser(User user){
         Cart cart = new Cart();
         cartService.addNewCart(cart);
-        cart.setUserId(user.getUserId());
         user.setCartId(cart.getCartId());
         service.addNewUser(user);
-        return "homepage";
+        cart.setUserId(user.getUserId());
+        cartService.addNewCart(cart);
+        return "redirect:/user/homepage/"+user.getUserId();
     }
 
     @GetMapping("/{userId}")

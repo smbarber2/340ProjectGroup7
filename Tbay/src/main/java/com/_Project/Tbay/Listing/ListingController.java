@@ -64,7 +64,6 @@ public class ListingController {
         model.addAttribute("profilePic", base64Pfp);
 
         List<Comment> commentForListing = new ArrayList<>();
-
         List<Comment> commentList = commentService.getAllComments();
 
         for (Comment comment : commentList) {

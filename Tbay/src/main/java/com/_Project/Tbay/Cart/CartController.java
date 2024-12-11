@@ -47,6 +47,9 @@ public class CartController {
         model.addAttribute("cart", service.getCartById(cartId));
         model.addAttribute("title", "Cart:"+cartId);
 
+        User user = userService.getUserById(service.getCartById(cartId).getUserId());
+        model.addAttribute("user", user);
+
         List<Listing> list = new ArrayList<>();
         if(service.getCartById(cartId).getCartList() !=null) {
             List<Integer> deserializedList = service.getCartById(cartId).getCartList();
@@ -55,9 +58,6 @@ public class CartController {
             }
         }
         model.addAttribute("listingList", list);
-
-        User user = userService.getUserById(service.getCartById(cartId).getUserId());
-        model.addAttribute("user", user);
 
         String pfpBase64 = null;
         if (user.getPfp() != null) {
