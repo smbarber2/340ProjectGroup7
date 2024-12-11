@@ -135,7 +135,10 @@ public class SellerController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setDisallowedFields("sellerListings");
+        binder.setDisallowedFields("incomingOrders");
+        binder.setDisallowedFields("completedOrders");
     }
+
 
     @PostMapping("/update")
     public String update(@ModelAttribute Seller seller, @RequestParam long sellerId) {

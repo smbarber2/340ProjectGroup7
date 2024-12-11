@@ -109,9 +109,8 @@ public class CartService {
     public void updateCartListings(long listingId){
         List<Cart> allCarts = getAllCarts();
         for(Cart cart:allCarts){
-            List<Integer> list = cart.getCartList();
-            if(list.contains((int)listingId)){
-                updateTotal(cart);
+            if(cart.getCartList()!=null && cart.getCartList().contains((int)listingId)){
+                    updateTotal(cart);
             }
         }
     }

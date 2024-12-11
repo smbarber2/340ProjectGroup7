@@ -25,7 +25,6 @@
                             <li><a data-th-href="@{/seller/incomingOrders/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-cog"></span> Incoming Orders</a></li>
                             <li class="active"><a data-th-href="@{/seller/completedOrders/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-credit-card"></span> Completed Orders</a></li>
                             <li><a data-th-href="@{/seller/sellerListings/{sellerId} (sellerId=${seller.sellerId})}"><span class="fa fa-envelope"></span> Listings</a></li>
-
                         </ul>
                     </nav>
                 </div>
@@ -34,11 +33,18 @@
                     <div class="drive-wrapper drive-grid-view" style="margin-bottom: 15px;">
                         <div class="grid-items-wrapper">
                             <table class="table table-striped rounded-3 overflow-hidden">
+                                <tr class="headings">
+                                    <th class="column-title">Order Id</th>
+                                    <th class="column-title">Order Date</th>
+                                    <th class="column-title">Listing Id</th>
+                                    <th class="column-title">Completion Date</th>
+                                </tr>
                                 <tbody>
                                 <tr data-th-each="order: ${completedOrders}">
                                     <td data-th-text=" ${order.orderId}"></td>
                                     <td data-th-text="${#dates.format(order.orderDate, 'dd-MMM-yyyy')}"></td>
                                     <td data-th-text=" ${order.listingId}"></td>
+                                    <td data-th-text="${#dates.format(order.completionDate, 'dd-MMM-yyyy')}"></td>
                                 </tr>
                                 </tbody>
                             </table>

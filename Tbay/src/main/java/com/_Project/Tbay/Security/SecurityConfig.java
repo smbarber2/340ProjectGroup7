@@ -1,4 +1,4 @@
-
+/*
 package com._Project.Tbay.Security;
 import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
@@ -55,3 +55,4 @@ public class SecurityConfig {
 
 
 }
+*/

@@ -62,9 +62,9 @@
                                     <div class="drive-item module text-center">
                                         <div class="drive-item-footer module-footer">
                                             <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                                <li data-th-text=" ${order.orderId}"></li>
-                                                <li data-th-text="${#dates.format(order.orderDate, 'dd-MMM-yyyy')}"></li>
-                                                <li data-th-text=" ${order.listingId}"><a style="font-size: 10px; color: #00000;"></a></li>
+                                                <li data-th-text=" 'Order Id: ' +${order.orderId}"></li>
+                                                <li data-th-text=" 'Ordered: ' + ${#dates.format(order.orderDate, 'dd-MMM-yyyy')}"></li>
+                                                <li data-th-text=" 'Listing Id: ' + ${order.listingId}"><a style="font-size: 10px; color: #00000;"></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -80,9 +80,9 @@
                                     <div class="drive-item module text-center">
                                         <div class="drive-item-footer module-footer">
                                             <ul class="utilities list-inline" style="list-style-type:none;padding-left: 20px;">
-                                                <li data-th-text=" ${order.orderId}"></li>
-                                                <li data-th-text="${#dates.format(order.orderDate, 'dd-MMM-yyyy')}"></li>
-                                                <li data-th-text=" ${order.listingId}"><a style="font-size: 10px; color: #00000;"></a></li>
+                                                <li data-th-text=" 'Order Id: ' + ${order.orderId}"></li>
+                                                <li data-th-text="'Completed: ' + ${#dates.format(order.completionDate, 'dd-MMM-yyyy')}"></li>
+                                                <li data-th-text=" 'Listing Id: ' + ${order.listingId}"><a style="font-size: 10px; color: #00000;"></a></li>
                                             </ul>
                                         </div>
                                     </div>

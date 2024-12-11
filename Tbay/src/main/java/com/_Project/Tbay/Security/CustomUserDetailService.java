@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+
+/*
 public class CustomUserDetailService implements UserDetailsService{
     @Autowired
     private UserRepository repo;
@@ -26,3 +28,4 @@ public class CustomUserDetailService implements UserDetailsService{
                 user.getName(), user.getPassword(), authList);
     }
 }
+*/

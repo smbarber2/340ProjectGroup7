@@ -92,6 +92,11 @@ public class ListingController {
     @GetMapping("/showNew/{sellerId}")
     public String showNewListing(@PathVariable long sellerId, Model model){
         model.addAttribute("seller", sellerService.getSellerById(sellerId));
+        String pfpBase64 = null;
+        if (sellerService.getSellerById(sellerId).getPfp() != null) {
+            pfpBase64 = Base64.getEncoder().encodeToString(sellerService.getSellerById(sellerId).getPfp());
+        }
+        model.addAttribute("profilePic", pfpBase64);
         return "indivListingAdd";
     }
 

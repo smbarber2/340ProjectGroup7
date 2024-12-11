@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -42,9 +43,12 @@ public class ListingService {
 
     public void addNewListing(Listing listing){
         try {
-            Path path = Paths.get("src/main/resources/static/tbaylogosquare.PNG");
-            byte[] imageBytes = Files.readAllBytes(path);
-            listing.setPfp(imageBytes);
+            if(listing.getPfp()==null){
+                ClassPathResource resource = new ClassPathResource("static/tbaylogosquare.PNG");
+                Path path = resource.getFile().toPath();
+                byte[] imageBytes = Files.readAllBytes(path);
+                listing.setPfp(imageBytes);
+            }
             listingRepository.save(listing);
         } catch (IOException e) {
             logger.warn("Error reading the image file: ", e);

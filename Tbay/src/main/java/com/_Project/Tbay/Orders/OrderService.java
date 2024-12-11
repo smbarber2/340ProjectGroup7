@@ -17,6 +17,14 @@ public class OrderService {
         return orderRepository.findById(orderId).orElse(null);
     }
 
+    public void orderCompletion(long orderId){
+        Order order = getOrderById(orderId);
+        order.setCompletionStatus(true);
+        Date date = new Date(System.currentTimeMillis());
+        order.setCompletionDate(date);
+        orderRepository.save(order);
+    }
+
     public void createOrder(long sellerId, long listingId, long userId){
         Date date = new Date(System.currentTimeMillis());
         Order order = new Order(0, sellerId, userId, listingId, date ,false);

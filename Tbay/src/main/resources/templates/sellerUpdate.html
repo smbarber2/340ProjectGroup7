@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <nav data-th-insert="~{./fragments/header :: header}"></nav>
+    <div th:replace="~{fragments/headerSeller :: headerSeller(sellerId=${seller.sellerId}, profilePic=${profilePic})}"></div>
 
 </head>
 <body>
@@ -60,8 +60,6 @@
                                 <input type="hidden" name="sellerId" data-th-value="${seller.sellerId}">
                                 <input type="hidden" name="password" data-th-value="${seller.password}">
                                 <input type="hidden" name="creationDate" data-th-value="${seller.creationDate}">
-                                <input type="hidden" name="incomingOrders" data-th-value="${seller.incomingOrders}">
-                                <input type="hidden" name="completedOrders" data-th-value="${seller.completedOrders}">
                                 <input type="hidden" name="pfp" data-th-value="${seller.pfp}">
                                 <button type="submit" class="cart-button">Save</button>
                             </div>

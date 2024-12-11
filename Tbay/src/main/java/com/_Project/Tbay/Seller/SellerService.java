@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -39,9 +40,12 @@ public class SellerService {
     public void addNewSeller(Seller seller){
         try {
             seller.setCreationDate(new Date(System.currentTimeMillis()));
-            Path path = Paths.get("src/main/resources/static/pfp.png");
-            byte[] imageBytes = Files.readAllBytes(path);
-            seller.setPfp(imageBytes);
+            if(seller.getPfp()==null){
+                ClassPathResource resource = new ClassPathResource("static/pfp.png");
+                Path path = resource.getFile().toPath();
+                byte[] imageBytes = Files.readAllBytes(path);
+                seller.setPfp(imageBytes);
+            }
             sellerRepository.save(seller);
         } catch (IOException e) {
             logger.warn("Error reading the image file: ", e);
@@ -129,6 +133,7 @@ public class SellerService {
         List<Integer> list = (seller.getCompletedOrders() != null) ? seller.getCompletedOrders() : new ArrayList<>();
         list.add((int) orderId);
         seller.setCompletedOrders(list);
+        orderService.orderCompletion(orderId);
         sellerRepository.save(seller);
     }
 
