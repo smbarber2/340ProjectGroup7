@@ -65,8 +65,6 @@ public class CartController {
         }
         model.addAttribute("profilePic", pfpBase64);
 
-
-
         return "checkout";
     }
 

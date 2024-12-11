@@ -60,26 +60,26 @@ public class UserController {
         return "sellerOrders";
     }
 
-    @GetMapping("/checkout/{userId}")
-    public String checkoutShow(@PathVariable long userId, Model model){
-        model.addAttribute("user", service.getUserById(userId));
-        model.addAttribute("title", userId);
-
-//        model.addAttribute("cart", service.getCartById(userId));
-//        model.addAttribute("title", cartId);
-
-//        List<Listing> cart = service.getCart(userId);
+//    @GetMapping("/checkout/{userId}")
+//    public String checkoutShow(@PathVariable long userId, Model model){
+//        model.addAttribute("user", service.getUserById(userId));
+//        model.addAttribute("title", userId);
 //
-//        for (Listing listing : cart) {
-//            if (listing.getPfp() != null) {
-//                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
-//                listing.setBase64Image(base64Image);
-//            }
-//        }
-//        model.addAttribute("cart", cart);
-
-        return "checkout";
-    }
+////        model.addAttribute("cart", service.getCartById(userId));
+////        model.addAttribute("title", cartId);
+//
+////        List<Listing> cart = service.getCart(userId);
+////
+////        for (Listing listing : cart) {
+////            if (listing.getPfp() != null) {
+////                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+////                listing.setBase64Image(base64Image);
+////            }
+////        }
+////        model.addAttribute("cart", cart);
+//
+//        return "checkout";
+//    }
 
     @GetMapping("/update/{userId}")
     public String showUpdateForm(@PathVariable long userId, Model model){

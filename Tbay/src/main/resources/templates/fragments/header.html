@@ -29,7 +29,7 @@
             </a>
 
             <div class="shopping">
-                <a th:href="@{/users/checkout/{userId}(userId=${user.userId})}"><img th:src="@{/shopping-cart.png}" height="75" width="75"  alt=""></a>
+                <a th:href="@{/carts/{cartId}(cartId=${user.cartId})}"><img th:src="@{/shopping-cart.png}" height="75" width="75"  alt=""></a>
             </div>
 
         <div class="profile">
