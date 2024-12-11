@@ -7,6 +7,7 @@ import com._Project.Tbay.Seller.Seller;
 import com._Project.Tbay.Seller.SellerController;
 import com._Project.Tbay.Seller.SellerService;
 import com._Project.Tbay.User.User;
+import com._Project.Tbay.User.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,8 @@ public class ListingController {
     private CartService cartService;
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private UserService userService;
 
     private static final Logger logger = LoggerFactory.getLogger(SellerController.class);
 
@@ -42,10 +45,11 @@ public class ListingController {
     }
 
     @GetMapping("/{listingId}")
-    public String getListing(@PathVariable long listingId, Model model) {
+    public String getListing(@PathVariable long listingId, long userId, Model model) {
         model.addAttribute("listing", service.getListingById(listingId));
         model.addAttribute("title", "Listing Details:"+listingId);
         model.addAttribute("seller", sellerService.getSellerById(service.getListingById(listingId).getSellerId()));
+        model.addAttribute("user", userService.getUserById(userId));
 
         String base64 = null;
         if (service.getListingById(listingId).getPfp() != null) {

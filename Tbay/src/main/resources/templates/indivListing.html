@@ -52,7 +52,7 @@
                             <span data-th-text="'$'+${listing.price}"></span>
                             <a>
                                 <form action="/carts/addListing" method="post">
-                                <input type="hidden" name="cartId" data-th-value="102">
+                                <input type="hidden" name="cartId" data-th-value="${user.cartId}">
                                 <input type="hidden" name="listingId" data-th-value="${listing.listingId}">
                                 <button type="submit" class="cart-button">Add to cart</button>
                                 </form>

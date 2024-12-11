@@ -47,6 +47,38 @@ public class AppController {
     public String homepageUser(@PathVariable long userId, Model model) {
         model.addAttribute("user", userService.getUserById(userId));
         model.addAttribute("title", userId);
+
+        String base64 = null;
+        if (userService.getUserById(userId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(userService.getUserById(userId).getPfp());
+        }
+
+        List<Listing> listingList = userService.getWishlist(userId);
+        if(listingList!=null){
+            for (Listing listing : listingList) {
+                if (listing.getPfp() != null) {
+                    String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+                    listing.setBase64Image(base64Image);
+                }
+            }
+        }
+        model.addAttribute("listingList", listingList);
+
+        List<Listing> recList = listingService.getAllListings();
+        List<Integer> wishlist = userService.getUserById(userId).getWishlist();
+        if(wishlist!=null){
+            recList.removeIf(listing -> wishlist.contains((int)listing.getListingId()));
+        }
+
+        for (Listing listing : recList) {
+            if (listing.getPfp() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+                listing.setBase64Image(base64Image);
+            }
+        }
+        model.addAttribute("recList", recList);
+
+        model.addAttribute("profilePic", base64);
         return "homepage";
     }
 
