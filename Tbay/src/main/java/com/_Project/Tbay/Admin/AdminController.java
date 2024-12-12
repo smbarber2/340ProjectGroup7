@@ -4,6 +4,7 @@ package com._Project.Tbay.Admin;
 import com._Project.Tbay.Comments.CommentService;
 import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
+import com._Project.Tbay.Seller.Seller;
 import com._Project.Tbay.User.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,12 @@ public class AdminController {
     @Autowired
     private CommentService commentService;
 
+
+    @PostMapping("/new")
+    public String addNewSeller(Admin admin){
+        adminservice.addNewAdmin(admin);
+        return "redirect:/admin/homepage/"+ admin.getAdminId();
+    }
 
     //GET all users
     @GetMapping("/all/{adminId}")

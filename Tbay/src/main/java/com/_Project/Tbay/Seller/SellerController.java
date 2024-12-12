@@ -60,6 +60,12 @@ public class SellerController {
         return "sellerpage";
     }
 
+    @PostMapping("/new")
+    public String addNewSeller(Seller seller){
+        service.addNewSeller(seller);
+        return "redirect:/seller/homepage/"+ seller.getSellerId();
+    }
+
     @GetMapping("/sellerListings/{sellerId}")
     public String getUserById(@PathVariable long sellerId, Model model) {
         model.addAttribute("seller", service.getSellerById(sellerId));
@@ -162,7 +168,6 @@ public class SellerController {
     @PostMapping("/uploadImage")
     public String upload(Model model, @RequestParam("file") MultipartFile file, @RequestParam("sellerId") long sellerId) {
         Seller seller = service.getSellerById(sellerId);
-
         try {
             byte[] imageBytes = file.getBytes();
             seller.setPfp(imageBytes);
