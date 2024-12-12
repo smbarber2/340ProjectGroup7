@@ -55,7 +55,7 @@ public class AppController {
             }
             case "admin" -> {
                 long adminId = adminService.getAdminByEmail(email).getAdminId();
-                yield "redirect:/seller/homepage/" + adminId;
+                yield "redirect:/admin/homepage/" + adminId;
             }
             default -> "/login";
         };

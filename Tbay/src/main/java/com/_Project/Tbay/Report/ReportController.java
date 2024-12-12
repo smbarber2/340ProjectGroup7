@@ -50,13 +50,15 @@ public class ReportController {
         model.addAttribute("admin", adminservice.getAdminById(adminId));
         model.addAttribute("user", userService.getUserById(userId));
         model.addAttribute("title", userId);
+
+
         return "report-create";
     }
     @PostMapping("/newReport")
-    public String addNewReport(@PathVariable long adminId, Report report, Model model) {
+    public String addNewReport(@RequestParam  long adminId, Report report, Model model) {
         model.addAttribute("admin", adminservice.getAdminById(adminId));
         reportService.saveReport(report);
-        return "redirect:/reports/all/{adminId";
+        return "redirect:/reports/all/" + adminId;
     }
 
 

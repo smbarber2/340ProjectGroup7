@@ -19,10 +19,10 @@
   <h1>File New Report</h1>
   <form action="/reports/newReport" method="post">
 
-    adminId:<input type="text" class="form-control" id="adminId" name="adminId" placeholder="AdminId">
-    userId:<input type="text" class="form-control" id="userId" name="userId" placeholder="UserId">
-    Email: <input type="text" class="form-control" id="email" name="email" placeholder="Email">
-    Name:<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+    <input type="hidden" class="form-control" id="adminId" name="adminId"  data-th-value="${admin.adminId}">
+    <input type="hidden" class="form-control" id="userId" name="userId" data-th-value="${user.userId}">
+    <input type="hidden" class="form-control" id="email" name="email" data-th-value="${user.email}">
+    Report Name:<input type="text" class="form-control" id="name" name="name" placeholder="Name">
     Reason: <textarea class="form-control" id="reason" rows="3" name="reason" placeholder="Reason"></textarea>
     Date: <input type="date" class="form-control" id="date" name="date" min="2000-01-01" max="2100-12-31">
 
