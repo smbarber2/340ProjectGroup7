@@ -20,3 +20,9 @@ Tbay is a mercential web app that provides users with a vertiable catalogue of t
 > Sellers (providors) will create listings and respond to reviews.
 > 
 > SysAdmins will be able to monitor and take down unsuitable listings and delete reviews.
+
+---
+
+## How To Use
+
+Begin with localhost8080:/login and log in with the accounts in the provided sql file. Make sure that the password and Email matches. For user, you can create your own account.
