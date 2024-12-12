@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -25,7 +27,8 @@ public class AdminController {
 
     //GET all users
     @GetMapping("/all")
-    public String getAllUsers(Model model) {
+    public String getAllUsers(@PathVariable long adminId, Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         model.addAttribute("userList", adminservice.getAllUsers());
         model.addAttribute("title", "All Users");
         return "user-list"; //Like the table from hw
@@ -69,4 +72,18 @@ public class AdminController {
 //        adminservice.banUser(model.getUserById(), model);
 //        return "redirect:/admin/banlist";
 //    }
+
+    @GetMapping("/profile/{adminId}")
+    public String profile(@PathVariable long adminId, Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
+        model.addAttribute("title", adminId);
+
+        String base64 = null;
+        if (adminservice.getAdminById(adminId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(adminservice.getAdminById(adminId).getPfp());
+        }
+        model.addAttribute("profilePic", base64);
+
+        return "adminpage";
+    }
 }

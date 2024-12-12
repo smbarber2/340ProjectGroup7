@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "admins")
 public class Admin {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long adminId;
@@ -18,11 +19,16 @@ public class Admin {
     @Column(nullable=false)
     private String email;
 
-    public Admin(long adminId, String name, String password, String email) {
+    @Lob
+    @Column(nullable=true, columnDefinition="LONGBLOB")
+    public byte[] pfp;
+
+    public Admin(long adminId, String name, String password, byte[] pfp, String email) {
         this.adminId = adminId;
         this.name = name;
         this.password = password;
         this.email = email;
+        this.pfp = pfp;
     }
 
     public Admin() {}
@@ -57,6 +63,14 @@ public class Admin {
 
     public String getEmail() {
         return email;
+    }
+
+    public byte[] getPfp() {
+        return pfp;
+    }
+
+    public void setPfp(byte[] pfp) {
+        this.pfp = pfp;
     }
 }
 

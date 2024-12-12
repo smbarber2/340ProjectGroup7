@@ -221,6 +221,8 @@ public class ListingController {
         return "ListingPage";
     }
 
+//    public List<Listing> getListingBySearch(String name) {return listingRepository.findByNameContainingIgnoreCase(name); }
+
     @PostMapping("/uploadImage")
     public String upload(Model model, @RequestParam("file") MultipartFile file, @RequestParam("listingId") long listingId) {
         Listing listing = service.getListingById(listingId);
@@ -234,6 +236,5 @@ public class ListingController {
         }
         return "redirect:/Listing/updateListing/" + listingId;
     }
-
 
 }

@@ -134,6 +134,20 @@ public class AppController {
         return "sellerHomepage";
     }
 
+    @GetMapping("/admin/homepage/{adminId}")
+    public String homepageAdmin(@PathVariable long adminId, Model model) {
+        model.addAttribute("admin", adminService.getAdminById(adminId));
+        model.addAttribute("title", adminId);
+
+        String base64 = null;
+        if (adminService.getAdminById(adminId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(adminService.getAdminById(adminId).getPfp());
+        }
+
+        model.addAttribute("profilePic", base64);
+        return "admin-homepage";
+    }
+
 //    @GetMapping("/search/{tag}")
 //    public String tagSearch(Model model) {
 //        model.addAttribute("user", userService.getUserById(userId));
