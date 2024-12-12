@@ -47,7 +47,6 @@ public class CommentController {
         return "redirect:/Listing/" + listingId + "/" + posterId;
     }
 
-//
     @GetMapping("/{listingId}")
     public String getCommentByListingId(@PathVariable long listingId, Model model) {
         model.addAttribute("listing", commentservice.getCommentByListingId(listingId));
