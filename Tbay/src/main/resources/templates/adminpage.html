@@ -11,7 +11,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <nav data-th-insert="~{./fragments/header :: header}, profilePic=${profilePic})}"></nav>
+    <div th:replace="~{fragments/headerAdmin :: headerAdmin(adminId=${admin.adminId}, profilePic=${profilePic})}"></div>
 
 </head>
 <body>
@@ -33,7 +33,7 @@
                         <ul class="nav" style="padding-left: 0px;">
                             <li class="active"><a href="#"><span class="fa fa-user"></span> Profile</a></li>
                             <li><a href="#"><span class="fa fa-cog"></span>Moderation History</a></li>
-                            <li><a href="log-in.html"><span class="fa fa-envelope"></span> Log Out</a></li>
+                            <li><a data-th-href="@{/logout}"><span class="fa fa-envelope"></span> Log Out</a></li>
                             <li><a href="user-list.html"><span class="fa fa-crosshairs"></span> User List</a></li>
                         </ul>
                     </nav>
