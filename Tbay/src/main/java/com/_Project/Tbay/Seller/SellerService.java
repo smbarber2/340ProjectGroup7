@@ -37,6 +37,11 @@ public class SellerService {
 
     private static final Logger logger = LoggerFactory.getLogger(SellerService.class);
 
+    public List<Seller> getAllSellers() {
+        return sellerRepository.findAll();
+    }
+
+
     public void addNewSeller(Seller seller){
         try {
             seller.setCreationDate(new Date(System.currentTimeMillis()));
@@ -54,6 +59,16 @@ public class SellerService {
 
     public Seller getSellerById(long sellerId) {
         return sellerRepository.findById(sellerId).orElse(null);
+    }
+
+    public Seller getSellerByEmail(String email){
+        List<Seller> sellerList = getAllSellers();
+        for(Seller seller:sellerList){
+            if(seller.getEmail().equals(email)){
+                return seller;
+            }
+        }
+        return null;
     }
 
     public List<Listing> getSellerList(long sellerId){

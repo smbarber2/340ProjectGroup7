@@ -111,6 +111,16 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public User getUserByEmail(String email){
+        List<User> userList = getAllUsers();
+        for(User user:userList){
+            if(user.getEmail().equals(email)){
+                return user;
+            }
+        }
+        return null;
+    }
+
     public void clearWishlist(long userId){
         User user = getUserById(userId);
         user.setWishlist(null);

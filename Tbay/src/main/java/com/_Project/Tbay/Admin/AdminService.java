@@ -1,5 +1,6 @@
 package com._Project.Tbay.Admin;
 
+import com._Project.Tbay.Seller.Seller;
 import com._Project.Tbay.User.User;
 import com._Project.Tbay.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,20 @@ public class AdminService {
 
     public Admin getAdminById(long adminId){
         return adminRepository.findById(adminId).orElse(null);
+    }
+
+    public List<Admin> getAllAdmins(){
+        return adminRepository.findAll();
+    }
+
+    public Admin getAdminByEmail(String email){
+        List<Admin> adminList = getAllAdmins();
+        for(Admin admin:adminList){
+            if(admin.getEmail().equals(email)){
+                return admin;
+            }
+        }
+        return null;
     }
 
     public List<User> getAllUsers() {

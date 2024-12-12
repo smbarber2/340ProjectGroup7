@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Base64;
 import java.util.List;
@@ -42,6 +43,23 @@ public class AppController {
     public String createAcct() {
         return "create-acct";
     }
+
+    @GetMapping("/register")
+    public String register(@RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("role") String role){
+        switch (role) {
+            case "user":
+                long userId = userService.getUserByEmail(email).getUserId();
+                return "redirect:/user/homepage/" + userId;
+            case "seller":
+                long sellerId = sellerService.getSellerByEmail(email).getSellerId();
+                return "redirect:/seller/homepage/" + sellerId;
+            case "admin":
+                long adminId = adminService.getAdminByEmail(email).getAdminId();
+                return "redirect:/seller/homepage/" + adminId;
+        }
+        return "/login";
+    }
+
 
     @GetMapping("/user/homepage/{userId}")
     public String homepageUser(@PathVariable long userId, Model model) {
