@@ -83,7 +83,6 @@ public class UserController {
         return "edit-profile";
     }
 
-
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setDisallowedFields("wishlist");

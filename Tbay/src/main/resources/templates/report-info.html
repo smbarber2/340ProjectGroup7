@@ -41,10 +41,11 @@
       <h5 class="card-subtitle" data-th-text=" ' User Email: '+ ${report.email}"></h5>
       <h5 class="card-text" data-th-text="'Reasoning: ' + ${report.reason}"></h5>
 
-      <a data-th-href="@{/reports/updateReport/{reportId} (reportId = ${report.reportId})}" class="btn btn-primary">Edit Report</a>
+      <a data-th-href="@{/reports/updateReport/{adminId}/{reportId} (reportId = ${report.reportId}, adminId = ${admin.adminId})}" class="btn btn-primary">Edit Report</a>
 
       <a data-th-href="@{/reports/deleteReport/{reportId} (reportId = ${report.reportId})}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete Report</a>
       <a data-th-href="@{/reports/all/{adminId} (adminId=${admin.adminId})}" class="btn btn-secondary">Return</a>
+
     </div>
     <div class="card-footer text-body-secondary" data-th-text="'Report Id: ' + ${report.reportId}">
 

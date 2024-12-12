@@ -6,7 +6,10 @@ import com._Project.Tbay.User.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -50,9 +53,10 @@ public class ReportController {
         return "report-create";
     }
     @PostMapping("/newReport")
-    public String addNewReport(Report report) {
+    public String addNewReport(@PathVariable long adminId, Report report, Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         reportService.saveReport(report);
-        return "redirect:/reports/all";
+        return "redirect:/reports/all/{adminId";
     }
 
 
@@ -62,25 +66,26 @@ public class ReportController {
 //        return reportService.getReportById(reportId);
 //    }
 
-    @GetMapping("/updateReport/{reportId}")
-    public String showUpdateReport(@PathVariable long reportId, Model model){
+    @GetMapping("/updateReport/{adminId}/{reportId}")
+    public String showUpdateReport(@PathVariable long reportId, @PathVariable long adminId, Model model){
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         model.addAttribute("report", reportService.getReportById(reportId));
         return "edit-report";
     }
 
     @PostMapping("/update")
-    public String updateReport(Report report) {
+    public String updateReport(@RequestParam long adminId, Report report, Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         reportService.addNewReport(report);
         return "redirect:/reports/" + report.getReportId();
     }
 
 
-
-    @GetMapping("/deleteReport/{reportId}")
-    public String deleteReportById(@PathVariable long reportId) {
+    @GetMapping("/deleteReport/{adminId}/{reportId}")
+    public String deleteReportById(@PathVariable long reportId, @PathVariable long adminId, Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         reportService.deleteReportById(reportId);
-        return "redirect:/reports/all";
+        return "redirect:/reports/all/{adminId}";
     }
-
 
 }

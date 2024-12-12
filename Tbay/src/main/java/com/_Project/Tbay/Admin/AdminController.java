@@ -51,16 +51,18 @@ public class AdminController {
     }
 
     //DELETE existing User
-    @GetMapping("/delete/{userId}")
-    public String deleteUserById(@PathVariable long userId) {
+    @GetMapping("/delete/{adminId}/{userId}")
+    public String deleteUserById(@PathVariable long userId, @PathVariable long adminId, Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         adminservice.deleteUserById(userId);
-        return "redirect:/admin/all";
+        return "redirect:/admin/all/{adminId}";
     }
 
-    @GetMapping("/delete/comment/{commentId}")
-    public String deleteCommentById(@PathVariable long commentId) {
+    @GetMapping("/delete/comment/{adminId}/{commentId}")
+    public String deleteCommentById(@PathVariable long commentId, @PathVariable long adminId, Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         commentService.deleteCommentById(commentId);
-        return "redirect:/comment/all";
+        return "redirect:/comment/all/{adminId}";
     }
 
 //    @GetMapping("/ban/{userid}")
