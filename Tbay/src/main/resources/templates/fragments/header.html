@@ -20,13 +20,13 @@
             </div>
 
             <div class="search">
-                <input type="text" id="searchbar" name="search" onkeyup="search()" placeholder="Search by book title or subject..." title="Type in a category">
+                <form th:action="@{/}">
+                    <input type="text" name="search" th:value="${name}" placeholder="Search by book title or subject..." />
+                    <div class="SearchButton">
+                        <button type="submit" class="search-button pure-button pure-button-active">Search!</button>
+                    </div>
+                </form>
             </div>
-            <a href="results.html">
-                <div class="SearchButton">
-                    <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
-                </div>
-            </a>
 
             <div class="shopping">
                 <a th:href="@{/carts/{cartId}(cartId=${user.cartId})}"><img th:src="@{/shopping-cart.png}" height="75" width="75"  alt=""></a>

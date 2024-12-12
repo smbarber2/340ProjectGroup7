@@ -214,12 +214,12 @@ public class ListingController {
     }
 
 
-    @GetMapping("/search") // /search?contains= input
-    public String getListingBySearch(@RequestParam(name = "contains", defaultValue = "unspecified") String name, Model model) {
-        model.addAttribute("listingList", service.getListingBySearch(name));
-        model.addAttribute("title", "Name:" + name);
-        return "ListingPage";
-    }
+//    @GetMapping("/search") // /search?contains= input
+//    public String getListingBySearch(@RequestParam(name = "contains", defaultValue = "unspecified") String name, Model model) {
+//        model.addAttribute("listingList", service.getListingBySearch(name));
+//        model.addAttribute("title", "Name:" + name);
+//        return "ListingPage";
+//    }
 
 //    public List<Listing> getListingBySearch(String name) {return listingRepository.findByNameContainingIgnoreCase(name); }
 
@@ -236,5 +236,6 @@ public class ListingController {
         }
         return "redirect:/Listing/updateListing/" + listingId;
     }
+    }
 
-}
+

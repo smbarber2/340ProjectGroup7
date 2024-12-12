@@ -65,7 +65,11 @@ public class ListingService {
         listingRepository.save(existing);
     }
 
-    public List<Listing> getListingBySearch(String name) {return listingRepository.findByNameContainingIgnoreCase(name); }
+    //public List<Listing> getListingBySearch(String name) {return listingRepository.findByNameContainingIgnoreCase(name); }
+
+    public List<Listing> getListingsByName(String name){
+        return listingRepository.findListingsByNameMatching(name);
+    }
 
     public void deleteListingById(long sellerId, long listingId) {
         List<Cart> allCarts = cartService.getAllCarts();

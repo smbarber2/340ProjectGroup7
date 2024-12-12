@@ -26,7 +26,7 @@ public class AdminController {
 
 
     //GET all users
-    @GetMapping("/all")
+    @GetMapping("/all/{adminId}")
     public String getAllUsers(@PathVariable long adminId, Model model) {
         model.addAttribute("admin", adminservice.getAdminById(adminId));
         model.addAttribute("userList", adminservice.getAllUsers());

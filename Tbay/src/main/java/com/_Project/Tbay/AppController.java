@@ -29,10 +29,7 @@ public class AppController {
     @Autowired
     private ListingService listingService;
 
-    @GetMapping({"", "/", "/home", "app"})
-    public String home() {
-        return "home";
-    }
+
 
     @GetMapping("/login")
     public String login() {
@@ -134,6 +131,26 @@ public class AppController {
         return "sellerHomepage";
     }
 
+//    @GetMapping("/search") // /search?contains= input
+//    public String getListingBySearch(@RequestParam(name = "contains", defaultValue = "unspecified") String name, Model model) {
+//        model.addAttribute("listingList", ListingService.getListingBySearch(name));
+//        model.addAttribute("title", "Name:" + name);
+//        return "ListingPage";
+//    }
+
+//    @GetMapping("/results/{name}")
+//    public String getListingsByName(@RequestParam(name = "name") String name, Model model) {
+//        List<Listing> resultList;
+//        if (name != null) {
+//            resultList = listingService.getListingsByName(name);
+//        } else resultList = listingService.getAllListings();
+//
+//        model.addAttribute("resultList", resultList);
+//        return "results" + {name};
+//    }
+
+
+
     @GetMapping("/admin/homepage/{adminId}")
     public String homepageAdmin(@PathVariable long adminId, Model model) {
         model.addAttribute("admin", adminService.getAdminById(adminId));
@@ -154,6 +171,8 @@ public class AppController {
 //        model.addAttribute("title", userId);
 //        return "homepage";}
     /*
+
+
     @GetMapping("/admin/{adminId}")
     public String profileA(@PathVariable long sellerId, Model model) {
         Model seller = model.addAttribute("seller", sellerId);

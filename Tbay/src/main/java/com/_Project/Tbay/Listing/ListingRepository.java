@@ -2,6 +2,7 @@ package com._Project.Tbay.Listing;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,4 +11,6 @@ import java.util.List;
 public interface ListingRepository extends JpaRepository<Listing, Long> {
     List<Listing> findByNameContainingIgnoreCase(String name);
 
+    @Query(value = "select * from listings a where a.name like %?1%", nativeQuery = true)
+    List<Listing> findListingsByNameMatching(String name);
 }
