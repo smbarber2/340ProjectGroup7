@@ -4,6 +4,7 @@ package com._Project.Tbay.Admin;
 import com._Project.Tbay.Comments.CommentService;
 import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
+import com._Project.Tbay.Seller.Seller;
 import com._Project.Tbay.User.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class AdminController {
     private CommentService commentService;
 
 
+    @PostMapping("/new")
+    public String addNewSeller(Admin admin){
+        adminservice.addNewAdmin(admin);
+        return "redirect:/admin/homepage/"+ admin.getAdminId();
+    }
+
     //GET all users
     @GetMapping("/all/{adminId}")
     public String getAllUsers(@PathVariable long adminId, Model model) {
@@ -44,16 +51,18 @@ public class AdminController {
     }
 
     //DELETE existing User
-    @GetMapping("/delete/{userId}")
-    public String deleteUserById(@PathVariable long userId) {
+    @GetMapping("/delete/{adminId}/{userId}")
+    public String deleteUserById(@PathVariable long userId, @PathVariable long adminId, Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         adminservice.deleteUserById(userId);
-        return "redirect:/admin/all";
+        return "redirect:/admin/all/{adminId}";
     }
 
-    @GetMapping("/delete/comment/{commentId}")
-    public String deleteCommentById(@PathVariable long commentId) {
+    @GetMapping("/delete/comment/{adminId}/{commentId}")
+    public String deleteCommentById(@PathVariable long commentId, @PathVariable long adminId, Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         commentService.deleteCommentById(commentId);
-        return "redirect:/comment/all";
+        return "redirect:/comment/all/{adminId}";
     }
 
 //    @GetMapping("/ban/{userid}")

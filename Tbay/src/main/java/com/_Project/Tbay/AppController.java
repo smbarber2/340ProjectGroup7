@@ -116,7 +116,9 @@ public class AppController {
 
         List<Listing> recList = listingService.getAllListings();
         List<Integer> sellerList = sellerService.getSellerById(sellerId).getSellerListings();
-        recList.removeIf(listing -> sellerList.contains((int)listing.getListingId()));
+        if(sellerList!=null){
+            recList.removeIf(listing -> sellerList.contains((int)listing.getListingId()));
+        }
         for (Listing listing : recList) {
             if (listing.getPfp() != null) {
                 String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
@@ -134,12 +136,6 @@ public class AppController {
         return "sellerHomepage";
     }
 
-//    @GetMapping("/search") // /search?contains= input
-//    public String getListingBySearch(@RequestParam(name = "contains", defaultValue = "unspecified") String name, Model model) {
-//        model.addAttribute("listingList", ListingService.getListingBySearch(name));
-//        model.addAttribute("title", "Name:" + name);
-//        return "ListingPage";
-//    }
 
     @GetMapping("/searchResults")
     public String getListingsByName(@RequestParam("name") String name, @RequestParam("userId") long userId, Model model) {

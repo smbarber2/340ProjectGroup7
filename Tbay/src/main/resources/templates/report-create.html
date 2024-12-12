@@ -9,7 +9,7 @@
           crossorigin="anonymous"></script>
   <title>Create Report</title>
   <link rel="stylesheet" type="text/css" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
-  <nav data-th-insert="~{./fragments/header :: header}, profilePic=${profilePic})}"></nav>
+  <div th:replace="~{fragments/headerAdmin :: headerAdmin(adminId=${admin.adminId}, profilePic=${profilePic})}"></div>
 
 
 </head>
@@ -28,7 +28,7 @@
 
     <button type="submit" class="btn btn-primary">Save</button>
 
-    <a href="/admin/all" type="reset" class="btn btn-secondary">Cancel</a>
+    <a data-th-href="@{/reports/all/{adminId} (adminId=${admin.adminId})}" class="btn btn-secondary">Cancel</a>
 
   </form>
 </div>

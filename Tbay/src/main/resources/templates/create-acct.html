@@ -16,24 +16,6 @@
          height="180"/>
     <h1><u>Create Your Account</u></h1>
 
-    <script th:inline="javascript">
-        document.getElementById('role').addEventListener('change', function() {
-            var selectedValue = this.value;
-            var form = document.getElementById('form');
-
-            switch (selectedValue) {
-                case 'user':
-                    form.action = /*[[@{/users/new}]]*/;
-                    break;
-                case 'seller':
-                    form.action = /*[[@{/action2}]]*/;
-                    break;
-                default:
-                    form.action = /*[[@{/create-acct}]]*/;
-            }
-        });
-    </script>
-
     <form id="form" th:action="@{/users/new}" method="post">
         <label for="name">
             Name:
@@ -51,7 +33,7 @@
         </p>
 
         <label for="role">Role:</label>
-        <select id="role" name="role">
+        <select id="role" name="role" onchange="updateFormAction()">
             <option value="user">User</option>
             <option value="seller">Seller</option>
             <option value="admin">Admin</option>
@@ -59,6 +41,20 @@
 
             <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <script>
+        function updateFormAction() {
+            const form = document.getElementById("form");
+            const selectedRole = document.getElementById("role").value;
+
+            if (selectedRole === "user") {
+                form.action = "/users/new";
+            } else if (selectedRole === "seller") {
+                form.action = "/seller/new";
+            } else if (selectedRole === "admin") {
+                form.action = "/admin/new";
+            }
+        }
+    </script>
 </div>
 </body>
 </html>
