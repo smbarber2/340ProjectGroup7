@@ -1,10 +1,13 @@
 
 package com._Project.Tbay;
 
+import com._Project.Tbay.Admin.Admin;
 import com._Project.Tbay.Admin.AdminService;
 import com._Project.Tbay.Listing.Listing;
 import com._Project.Tbay.Listing.ListingService;
+import com._Project.Tbay.Seller.Seller;
 import com._Project.Tbay.Seller.SellerService;
+import com._Project.Tbay.User.User;
 import com._Project.Tbay.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -46,18 +49,27 @@ public class AppController {
     public String register(@RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("role") String role){
         return switch (role) {
             case "user" -> {
-                long userId = userService.getUserByEmail(email).getUserId();
-                yield "redirect:/user/homepage/" + userId;
+                User user = userService.getUserByEmail(email);
+                if(user!=null && user.getPassword().equals(password)){
+                    yield "redirect:/user/homepage/" + user.getUserId();
+                }
+                yield "redirect:/login";
             }
             case "seller" -> {
-                long sellerId = sellerService.getSellerByEmail(email).getSellerId();
-                yield "redirect:/seller/homepage/" + sellerId;
+                Seller seller = sellerService.getSellerByEmail(email);
+                if(seller!=null && seller.getPassword().equals(password)){
+                    yield "redirect:/seller/homepage/" + seller.getSellerId();
+                }
+                yield "redirect:/login";
             }
             case "admin" -> {
-                long adminId = adminService.getAdminByEmail(email).getAdminId();
-                yield "redirect:/admin/homepage/" + adminId;
+                Admin admin = adminService.getAdminByEmail(email);
+                if(admin!=null && admin.getPassword().equals(password)){
+                    yield "redirect:/admin/homepage/" + admin.getAdminId();
+                }
+                yield "redirect:/login";
             }
-            default -> "/login";
+            default -> "redirect:/login";
         };
     }
 
