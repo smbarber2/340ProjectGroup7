@@ -20,8 +20,13 @@
             </div>
 
             <div class="search">
-                <form th:action="@{/}">
-                    <input type="text" name="search" th:value="${name}" placeholder="Search by book title or subject..." />
+                <form th:action="@{/searchResults}" method="GET">
+                    <!-- Bind the input field for search query -->
+                    <input type="text" id="name" name="name" placeholder="Search by book title or subject..." />
+
+                    <!-- Pass the userId dynamically using Thymeleaf -->
+                    <input type="hidden" name="userId" th:value="${user.userId}" />
+
                     <div class="SearchButton">
                         <button type="submit" class="search-button pure-button pure-button-active">Search!</button>
                     </div>

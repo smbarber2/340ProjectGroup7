@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -43,20 +44,22 @@ public class AppController {
 
     @GetMapping("/register")
     public String register(@RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("role") String role){
-        switch (role) {
-            case "user":
+        return switch (role) {
+            case "user" -> {
                 long userId = userService.getUserByEmail(email).getUserId();
-                return "redirect:/user/homepage/" + userId;
-            case "seller":
+                yield "redirect:/user/homepage/" + userId;
+            }
+            case "seller" -> {
                 long sellerId = sellerService.getSellerByEmail(email).getSellerId();
-                return "redirect:/seller/homepage/" + sellerId;
-            case "admin":
+                yield "redirect:/seller/homepage/" + sellerId;
+            }
+            case "admin" -> {
                 long adminId = adminService.getAdminByEmail(email).getAdminId();
-                return "redirect:/seller/homepage/" + adminId;
-        }
-        return "/login";
+                yield "redirect:/seller/homepage/" + adminId;
+            }
+            default -> "/login";
+        };
     }
-
 
     @GetMapping("/user/homepage/{userId}")
     public String homepageUser(@PathVariable long userId, Model model) {
@@ -138,17 +141,34 @@ public class AppController {
 //        return "ListingPage";
 //    }
 
-//    @GetMapping("/results/{name}")
-//    public String getListingsByName(@RequestParam(name = "name") String name, Model model) {
-//        List<Listing> resultList;
-//        if (name != null) {
-//            resultList = listingService.getListingsByName(name);
-//        } else resultList = listingService.getAllListings();
-//
-//        model.addAttribute("resultList", resultList);
-//        return "results" + {name};
-//    }
+    @GetMapping("/searchResults")
+    public String getListingsByName(@RequestParam("name") String name, @RequestParam("userId") long userId, Model model) {
+        List<Listing> resultList;
+        if (name != null) {
+            resultList = listingService.getListingsByName(name);
+        } else resultList = listingService.getAllListings();
 
+        model.addAttribute("resultList", resultList);
+        model.addAttribute("user", userService.getUserById(userId));
+
+        return "redirect:/results/"+ name + "/" + userId;
+    }
+
+    @GetMapping("/results/{name}/{userId}")
+    public String searchSstring(Model model, @PathVariable long userId, @PathVariable String name){
+        List<Listing> resultList = (name != null) ? listingService.getListingsByName(name) : listingService.getAllListings();
+
+        model.addAttribute("resultList", resultList);
+        model.addAttribute("user", userService.getUserById(userId));
+
+        String base64 = null;
+        if (userService.getUserById(userId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(userService.getUserById(userId).getPfp());
+        }
+        model.addAttribute("profilePic", base64);
+
+        return "results";
+    }
 
 
     @GetMapping("/admin/homepage/{adminId}")
@@ -163,6 +183,11 @@ public class AppController {
 
         model.addAttribute("profilePic", base64);
         return "admin-homepage";
+    }
+
+    @GetMapping("/logout")
+    public String logOut(){
+        return "redirect:/login";
     }
 
 //    @GetMapping("/search/{tag}")
