@@ -1,5 +1,6 @@
 package com._Project.Tbay.Report;
 
+import com._Project.Tbay.Admin.AdminService;
 import com._Project.Tbay.User.User;
 import com._Project.Tbay.User.UserService;
 import org.springframework.stereotype.Controller;
@@ -16,16 +17,20 @@ public class ReportController {
     private ReportService reportService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private AdminService adminservice;
 
-    @GetMapping("/all")
-    public String getAllReports(Model model) {
+    @GetMapping("/all/{adminId}")
+    public String getAllReports(@PathVariable long adminId,Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         model.addAttribute("reportList", reportService.getAllReports());
         model.addAttribute("title", "All Reports");
         return "all-reports"; //Like the table from hw
     }
 
-    @GetMapping("/{reportId}")
-    public String getReport(@PathVariable long reportId, Model model) {
+    @GetMapping("/{adminId}/{reportId}")
+    public String getReport(@PathVariable long reportId, @PathVariable long adminId, Model model) {
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         model.addAttribute("report", reportService.getReportById(reportId));
         model.addAttribute("title", reportId);
         return "report-info";
@@ -37,8 +42,9 @@ public class ReportController {
     //    return reportService.getAllReports();
    // }
 
-    @GetMapping("/createReportForm/{userId}")
-    public String showCreateForm(@PathVariable long userId, Model model){
+    @GetMapping("/createReportForm/{adminId}/{userId}")
+    public String showCreateForm(@PathVariable long userId, @PathVariable long adminId, Model model){
+        model.addAttribute("admin", adminservice.getAdminById(adminId));
         model.addAttribute("user", userService.getUserById(userId));
         model.addAttribute("title", userId);
         return "report-create";

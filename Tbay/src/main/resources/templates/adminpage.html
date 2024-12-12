@@ -7,9 +7,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
+    <link rel="stylesheet" type="text/css" href="../css/profile.css" th:href="@{/css/profile.css}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <nav data-th-insert="~{./fragments/header :: header}, profilePic=${profilePic})}"></nav>
+        <nav data-th-insert="~{./fragments/header :: header}, profilePic=${profilePic})}"></nav>
 
 </head>
 <body>
@@ -41,9 +43,7 @@
                     <div class="content-header-wrapper">
                         <h2 class="title">Bio:</h2>
                         <div class="actions">
-                            <a href="">
-                                <button class="btn btn-success"><i class="fa fa-plus"></i> Edit Profile</button>
-                            </a>                           
+                            <a th:href="@{/users/update/{userId}(userId=${userId})}"><button class="btn btn-success"><i class="fa fa-plus"></i>Edit Profile</button></a>
                             <a href="profile.html">
                                 <button class="btn btn-success"><i class="fa fa-plus"></i> Switch To Customer</button>
                             </a>

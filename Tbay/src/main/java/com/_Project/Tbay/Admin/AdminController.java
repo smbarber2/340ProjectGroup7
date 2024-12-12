@@ -43,12 +43,6 @@ public class AdminController {
         return "profile.html";
     }
 
-    //GET all listings - IN Listing controller
-    //@GetMapping("/allListing")
-    //public List<Listing> getAllListings(){
-    //    return service.getAllListings();
-    //}
-
     //DELETE existing User
     @GetMapping("/delete/{userId}")
     public String deleteUserById(@PathVariable long userId) {

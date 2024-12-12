@@ -20,10 +20,13 @@ public class CommentController {
     private CommentService commentservice;
     @Autowired
     private ListingService listingService;
+    @Autowired
+    private AdminService adminService;
 
     //GET all users
-    @GetMapping("/all")
-    public String getAllComments(Model model) {
+    @GetMapping("/all/{adminId}")
+    public String getAllComments(@PathVariable long adminId,Model model) {
+        model.addAttribute("admin", adminService.getAdminById(adminId));
         model.addAttribute("commentList", commentservice.getAllComments());
         model.addAttribute("title", "All Comments");
         return "all-comments"; //Like the table from hw

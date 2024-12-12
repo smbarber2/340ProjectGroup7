@@ -63,10 +63,11 @@
     </div>
 </div>
 <ul>
-    <li><a href="/admin/all">Users</a></li>
-    <li><a href="/Listing/allListing">Listings</a></li>
-    <li><a href="/comment/all">Comments</a></li>
-    <li><a href="/reports/all">Reports</a></li>
+    <li><a data-th-href="@{/admin/all/{adminId} (adminId=${admin.adminId})}">Users</a></li>
+<!--    <li><a href="/Listing/allListing">Listings</a></li>-->
+    <li><a data-th-href="@{/comment/all/{adminId} (adminId=${admin.adminId})}">Comments</a></li>
+    <li><a data-th-href="@{/reports/all/{adminId} (adminId=${admin.adminId})}">Reports</a></li>
+
 </ul>
 </body>
 </html>

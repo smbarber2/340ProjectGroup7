@@ -9,7 +9,7 @@
           crossorigin="anonymous"></script>
   <title>Report Info</title>
   <link rel="stylesheet" type="text/css" href="../css/generalStyleTbay.css" th:href="@{/css/generalStyleTbay.css}">
-  <nav data-th-insert="~{./fragments/header :: header}, profilePic=${profilePic})}"></nav>
+  <div th:replace="~{fragments/headerAdmin :: headerAdmin(adminId=${admin.adminId}, profilePic=${profilePic})}"></div>
 
 
 </head>
@@ -44,7 +44,7 @@
       <a data-th-href="@{/reports/updateReport/{reportId} (reportId = ${report.reportId})}" class="btn btn-primary">Edit Report</a>
 
       <a data-th-href="@{/reports/deleteReport/{reportId} (reportId = ${report.reportId})}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete Report</a>
-      <a href="/reports/all" class="btn btn-secondary">Return</a>
+      <a data-th-href="@{/reports/all/{adminId} (adminId=${admin.adminId})}" class="btn btn-secondary">Return</a>
     </div>
     <div class="card-footer text-body-secondary" data-th-text="'Report Id: ' + ${report.reportId}">
 
