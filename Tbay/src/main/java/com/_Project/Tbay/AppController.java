@@ -143,20 +143,48 @@ public class AppController {
 
     @GetMapping("/searchResults")
     public String getListingsByName(@RequestParam("name") String name, @RequestParam("userId") long userId, Model model) {
-        List<Listing> resultList;
-        if (name != null) {
-            resultList = listingService.getListingsByName(name);
-        } else resultList = listingService.getAllListings();
-
-        model.addAttribute("resultList", resultList);
-        model.addAttribute("user", userService.getUserById(userId));
-
         return "redirect:/results/"+ name + "/" + userId;
     }
 
-    @GetMapping("/results/{name}/{userId}")
-    public String searchSstring(Model model, @PathVariable long userId, @PathVariable String name){
+    @GetMapping("/searchSellerResults")
+    public String getSellerSearch(@RequestParam("name") String name, @RequestParam("sellerId") long sellerId, Model model) {
+        return "redirect:/resultSeller/"+ name + "/" + sellerId;
+    }
+
+    @GetMapping("/resultSeller/{name}/{sellerId}")
+    public String searchSellerString(Model model, @PathVariable long sellerId, @PathVariable String name){
         List<Listing> resultList = (name != null) ? listingService.getListingsByName(name) : listingService.getAllListings();
+        List<Listing> newResultList = new ArrayList<>();
+        for (Listing listing : resultList) {
+            if (listing.getPfp() != null && listing.getSellerId()!=sellerId) {
+                newResultList.add(listing);
+                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+                listing.setBase64Image(base64Image);
+            }
+        }
+
+        model.addAttribute("resultList", newResultList);
+        model.addAttribute("seller", sellerService.getSellerById(sellerId));
+
+        String base64 = null;
+        if (sellerService.getSellerById(sellerId).getPfp() != null) {
+            base64 = Base64.getEncoder().encodeToString(sellerService.getSellerById(sellerId).getPfp());
+        }
+        model.addAttribute("profilePic", base64);
+
+        return "resultSeller";
+    }
+
+    @GetMapping("/results/{name}/{userId}")
+    public String searchString(Model model, @PathVariable long userId, @PathVariable String name){
+        List<Listing> resultList = (name != null) ? listingService.getListingsByName(name) : listingService.getAllListings();
+
+        for (Listing listing : resultList) {
+            if (listing.getPfp() != null) {
+                String base64Image = Base64.getEncoder().encodeToString(listing.getPfp());
+                listing.setBase64Image(base64Image);
+            }
+        }
 
         model.addAttribute("resultList", resultList);
         model.addAttribute("user", userService.getUserById(userId));

@@ -19,14 +19,17 @@
                 <a th:href="@{/seller/homepage/{sellerId}(sellerId=${seller.sellerId})}"><img th:src="@{/tbaylogoTRANS.png}" height="150" width="170">  </a>
             </div>
 
-            <div class="search">
-                <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search by book title or subject..." title="Type in a category">
-            </div>
-            <a href="results.html">
-                <div class="SearchButton">
-                    <button class="search-button pure-button pure-button-active" href="results.html">Search!</button>
+            <form th:action="@{/searchSellerResults}" method="GET">
+                <div class="search">
+                    <input type="text" id="mySearch" name="name" placeholder="Search by book title or subject..." title="Type in a category">
                 </div>
-            </a>
+
+                <input type="hidden" name="sellerId" th:value="${seller.sellerId}" />
+
+                <div class="SearchButton">
+                    <button type="submit" class="search-button pure-button pure-button-active">Search!</button>
+                </div>
+            </form>
 
             <div class="shopping">
                 <a></a>

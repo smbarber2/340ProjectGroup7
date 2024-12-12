@@ -19,28 +19,27 @@
                 <a th:href="@{/user/homepage/{userId}(userId=${user.userId})}"> <img th:src="@{/tbaylogoTRANS.png}" height="150" width="170" alt=""> </a>
             </div>
 
-            <div class="search">
-                <form th:action="@{/searchResults}" method="GET">
-                    <!-- Bind the input field for search query -->
-                    <input type="text" id="name" name="name" placeholder="Search by book title or subject..." />
 
-                    <!-- Pass the userId dynamically using Thymeleaf -->
-                    <input type="hidden" name="userId" th:value="${user.userId}" />
+            <form th:action="@{/searchResults}" method="GET">
+                <div class="search">
+                    <input type="text" id="mySearch" name="name" placeholder="Search by book title or subject..." title="Type in a category">
+                </div>
 
-                    <div class="SearchButton">
-                        <button type="submit" class="search-button pure-button pure-button-active">Search!</button>
-                    </div>
-                </form>
-            </div>
+                <input type="hidden" name="userId" th:value="${user.userId}" />
+
+                <div class="SearchButton">
+                    <button type="submit" class="search-button pure-button pure-button-active">Search!</button>
+                </div>
+            </form>
 
             <div class="shopping">
                 <a th:href="@{/carts/{cartId}(cartId=${user.cartId})}"><img th:src="@{/shopping-cart.png}" height="75" width="75"  alt=""></a>
             </div>
 
-        <div class="profile">
-            <a th:href="@{/users/{userId}(userId=${user.userId})}"><img th:src="@{'data:image/jpeg;base64,'+${profilePic}}" height="125" width="125"></a>
+            <div class="profile">
+                <a th:href="@{/users/{userId}(userId=${user.userId})}"><img th:src="@{'data:image/jpeg;base64,'+${profilePic}}" height="125" width="125"></a>
+            </div>
         </div>
-    </div>
 
     </div>
 
